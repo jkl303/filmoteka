@@ -1,0 +1,70 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+// GLOBAL RESET //
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img,
+picture {
+  display: block;
+}
+
+body {
+  font-family: $main-font;
+}
+
+// COMMON
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 450px;
+
+  @include tablet-bg {
+    // width: 738px;
+    max-width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @include desktop {
+    // width: 1280px;
+    max-width: 1216px;
+  }
+}
+
+.page-heading {
+  font-family: $main-font;
+  font-weight: 500;
+  font-size: 24px;
+  margin-top: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}

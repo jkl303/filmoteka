@@ -1,0 +1,22 @@
+@use './../utilities/variables' as *;
+
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: $color-light-gray;
+}
+
+.footer-text {
+  text-align: center;
+  color: #545454;
+  padding: 0 2px 0 2px;
+}
+
+.footer-link {
+  text-decoration: underline;
+}
+
+.footer-icon {
+  width: 14px;
+  height: 13px;
+}
