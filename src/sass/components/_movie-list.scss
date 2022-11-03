@@ -1,0 +1,64 @@
+@use './../utilities/variables' as *;
+@use './../utilities/mixins' as *;
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+
+  @include tablet-bg {
+    column-gap: 32px;
+    row-gap: 32px;
+  }
+
+  @include desktop {
+    column-gap: 16px;
+  }
+}
+
+.movie-item {
+  max-width: 373px;
+}
+
+.movie-image {
+  display: block;
+  height: 402px;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+
+  @include tablet-bg {
+    height: 455px;
+    max-width: 336px;
+  }
+
+  @include desktop {
+    height: 574px;
+    max-width: 373px;
+  }
+}
+
+.movie-info {
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+.movie-title,
+.movie-description {
+  font-family: $main-font;
+  font-size: 12px;
+  line-height: 1.33;
+
+  @include desktop {
+    font-size: 20px;
+  }
+}
+
+.movie-title {
+  color: black;
+  text-transform: uppercase;
+}
+
+.movie-description {
+  color: $color-accent-orange;
+}

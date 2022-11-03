@@ -11,24 +11,24 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./sass/main.scss" />
+    <link rel="stylesheet" href="./../sass/main.scss" />
   </head>
   <body>
-    <header class="header">
+    <header class="header header__library">
       <div class="container">
         <nav class="header-menu">
-          <a href="./index.html" class="header-logo">
+          <a href="./../index.html" class="header-logo">
             <svg class="header-logo__icon">
-              <use href="./icons/icons.svg#icon-logo"></use>
+              <use href="./../icons/icons.svg#icon-logo"></use>
             </svg>
             <span class="header-logo__website-name">Filmoteka</span>
           </a>
           <ul class="nav-list">
             <li class="nav-item">
-              <a class="nav-link" href="#" data-home>Home</a>
+              <a class="nav-link" href="./../index.html" data-home>Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./pages/library.html" data-library
+              <a class="nav-link" href="./library.html" data-library
                 >My Library</a
               >
             </li>
@@ -43,7 +43,7 @@
           />
           <button type="submit" name="submit" class="search-submit">
             <svg class="search-form__submit-icon">
-              <use href="./icons/icons.svg#icon-search"></use>
+              <use href="./../icons/icons.svg#icon-search"></use>
             </svg>
           </button>
         </form>
@@ -53,36 +53,19 @@
       </div>
     </header>
     <main>
-      <div class="container">
-        <h1 class="page-heading">Trending today</h1>
-        <ul class="movie-list">
-          <li class="movie-item">
-            <a href="#" class="movie-link">
-              <img
-                src="https://m.media-amazon.com/images/M/MV5BZTFkZjYxNWItZmE2MC00MGE4LWIxYTgtZmIzOWM1YmI2YWEzXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg"
-                alt=""
-                class="movie-image"
-              />
-              <div class="movie-info">
-                <p class="movie-title">Greyhound</p>
-                <p class="movie-description">Drama, Thriller | 2020</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
+      <div class="container"></div>
     </main>
     <footer class="footer">
       <div class="container">
         <p class="footer-text">
           © 2020 | All Rights Reserved | Developed with
           <svg class="footer-icon">
-            <use href="./icons/icons.svg#icon-heart"></use>
+            <use href="./../icons/icons.svg#icon-heart"></use>
           </svg>
           by <a class="footer-link" href="#">GoIT Students</a>
         </p>
       </div>
     </footer>
-    <script type="module" src="./js/index.js"></script>
+    <script type="module" src="./../js/index.js"></script>
   </body>
 </html>
