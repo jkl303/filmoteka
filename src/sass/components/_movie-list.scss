@@ -57,8 +57,34 @@
 .movie-title {
   color: black;
   text-transform: uppercase;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+      
 }
 
 .movie-description {
   color: $color-accent-orange;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #FF6B08;
 }
+
+.movie-conteiner {
+  display: flex;
+}
+.movie-ratting {
+  padding-left: 10px;
+  display: flex;
+  width: 40px;
+  height: 20px;
+  background-color: $color-accent-orange;
+  border-radius: 5px;
+  color: $color-white;
+  font: $main-font;
+  align-items: center;
+  text-align: center;
+  margin-left: 10px;
+}
+.movie-ratting.is-hidden {visibility: hidden;}
