@@ -25,38 +25,54 @@
   }
 
   @include desktop {
+   
     @include x1 {
       background-image: url('../images/header-home-desktop@1x.jpg');
     }
     @include x2 {
       background-image: url('../images/header-home-desktop@2x.jpg');
     }
+        
   }
 
   &__library {
+    width: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+       width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
     @include x1 {
-      background-image: url('../images/header-home-mob@1x.jpg');
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56))
+      ,url('../images/header-library-mobile@1x.jpeg');
     }
     @include x2 {
-      background-image: url('../images/header-home-mob@2x.jpg');
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56))
+      ,url('../images/header-library-dsc@1x.jpeg');
     }
 
     @include tablet-bg {
       padding-top: 40px;
       @include x1 {
-        background-image: url('../images/header-home-tablet@1x.jpg');
+        background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/header-library-tablet@1x.jpeg');
       }
       @include x2 {
-        background-image: url('../images/header-home-tablet@2x.jpg');
+        background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/header-library-tablet@2x.jpeg');
       }
     }
 
     @include desktop {
       @include x1 {
-        background-image: url('../images/header-home-desktop@1x.jpg');
+        background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/header-library-dsc@1x.jpeg');
       }
       @include x2 {
-        background-image: url('../images/header-home-desktop@2x.jpg');
+        background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('../images/header-library-dsc@2x.jpeg');
       }
     }
   }

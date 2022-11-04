@@ -1,0 +1,52 @@
+@use './../utilities/mixins' as *;
+@use './../utilities/variables' as *;
+
+.header-logo__website-name{
+    @include tablet-sm{
+        display: none;
+    }
+    @include tablet-bg{
+        display: block;
+    }
+}
+
+.main__myFilmLibraryPage{
+    display: flex;
+    justify-content: center;
+}
+.main__navigationLibrary{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 16px;
+
+    @include tablet-bg {
+        gap: 32px;
+    }
+}
+
+.main__navigationLibraryButton{
+    @include tablet-sm{
+        margin-top: 62px;
+    }
+    background-color: $color-accent-red;
+    width: 148px;
+    height: 42px;
+    margin-top: 40px;
+    border: none;
+    border-radius: 5px;
+
+    font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        color: #fff;
+
+        cursor: pointer;
+
+        transition:all ease-in-out 250ms;
+
+        &:hover{
+            box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+        }
+}
