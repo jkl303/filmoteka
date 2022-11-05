@@ -34,22 +34,14 @@
             </li>
           </ul>
         </nav>
-        <form class="search-form">
-          <input
-            type="text"
-            class="search-input"
-            name="query"
-            placeholder="Movie search"
-          />
-          <button type="submit" name="submit" class="search-submit">
-            <svg class="search-form__submit-icon">
-              <use href="./../icons/icons.svg#icon-search"></use>
-            </svg>
-          </button>
-        </form>
-        <p class="header-error">
-          Search result not successful. Enter the correct movie name and
-        </p>
+    <section id="js-libraryPage" class="main__myFilmLibraryPage">
+        <ul class="main__navigationLibrary">
+            <li><button id="js-navigationLibraryButtonQueue" class="main__navigationLibraryButton">Queue</button></li>
+            <li><button id="js-navigationLibraryButtonWatched" class="main__navigationLibraryButton">Watched</button></li>
+        </ul>
+        <ul id="js-libraryFilmList" class="main__libraryFilmList">
+        </ul>
+    </section>
       </div>
     </header>
     <main>

@@ -2,6 +2,7 @@ import { getCurrentPage } from './getCurrentPage';
 import { Fetchmovie } from './homepagerender';
 // import markupMovie from '../templates/movie-card.hbs';
 const list = document.querySelector('.movie-list');
+import { getGenresForMovies, getGenresForTv } from './fetchGenres';
 
 getCurrentPage();
 
@@ -38,3 +39,7 @@ Fetchmovie()
   .catch(error => {
     console.log(error.message);
   });
+// Fetches genres for movies and tv series;
+
+getGenresForMovies();
+getGenresForTv();
