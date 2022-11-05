@@ -10,3 +10,5 @@ renderUI();
 
 // Add modal-movie
 modalMovie();
+
+console.log(genres.then (data => console.log(data)));

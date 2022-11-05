@@ -50,8 +50,16 @@
         <p class="header-error">
           Search result not successful. Enter the correct movie name and
         </p>
+        <section class="filters js-filters">
+          <div class="divForFilters">
+            <select name="" id="" label="" class="select js-select" onfocus="this.size=4;" onblur="this.size=1;"
+            onchange="this.size=1; this.blur();"></select>
+          </div>
+        </section>
+        
       </div>
     </header>
+          
     <main>
       <div class="container">
         <h1 class="page-heading">Trending today</h1>
@@ -85,5 +93,6 @@
       </div>
     </footer>
     <script type="module" src="./js/index.js"></script>
+        <script type="module" src="./js/filter.js"></script>
   </body>
 </html>
