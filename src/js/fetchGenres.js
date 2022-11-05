@@ -1,11 +1,9 @@
-import { BASE_URL } from './api-service';
-import { API_KEY } from './api-service';
-
+import { API_KEY, BASE_URL } from './api-service';
 import axios from 'axios';
 
-export const movieGenresArray = [];
+const genresDictionary = {};
 
-export async function getGenresForMovies() {
+async function fetchMovieGenres() {
   try {
     const {
       data: { genres },
@@ -14,13 +12,13 @@ export async function getGenresForMovies() {
         api_key: API_KEY,
       },
     });
-    genres.map(elem => movieGenresArray.push(elem));
+    return genres;
   } catch (err) {
-    return err;
+    console.error(err);
   }
 }
 
-export async function getGenresForTv() {
+async function fetchTvGenres() {
   try {
     const {
       data: { genres },
@@ -29,8 +27,29 @@ export async function getGenresForTv() {
         api_key: API_KEY,
       },
     });
-    genres.map(elem => movieGenresArray.push(elem));
+    return genres;
   } catch (err) {
-    return err;
+    console.error(err);
+  }
+}
+
+export async function getGenres() {
+  try {
+    if (Object.entries(genresDictionary).length !== 0) {
+      return genresDictionary;
+    } else {
+      const movieGenres = await fetchMovieGenres();
+      const tvGenres = await fetchTvGenres();
+
+      const allGenresArray = [...movieGenres, ...tvGenres];
+
+      allGenresArray.forEach(elem => {
+        genresDictionary[elem.id] = elem;
+      });
+
+      return genresDictionary;
+    }
+  } catch (err) {
+    console.error(err);
   }
 }
