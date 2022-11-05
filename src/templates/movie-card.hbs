@@ -1,19 +1,9 @@
-Handlebars.registerHelper("year", date => {
-return date.slice(0, 4);
-});
-
-{{#each this}}
 <li class='movie-item'>
   <a href='{{id}}' class='movie-link'>
-    <img src='https://image.tmdb.org/t/p/w500/{{poster_path}}' alt='' class='movie-image' />
+    <img src='{{image}}' alt='' class='movie-image' />
     <div class='movie-info'>
       <p class='movie-title'>{{title}}</p>
-      <p class='movie-description'>{{genre_ids
-}} | {{year release_date}}</p>
-
+      <p class='movie-description'>{{genres}} | {{year}}</p>
     </div>
   </a>
 </li>
-{{/each}}
-
-
