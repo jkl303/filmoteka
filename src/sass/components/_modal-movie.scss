@@ -1,0 +1,60 @@
+@use './../utilities/variables'as *;
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    transition: width 2s;
+}
+
+.modal--show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__card {
+    background-color: #ffffff;
+    max-width: 600px;
+    padding: 16px;
+    box-shadow: 0 0 20px 0 rgba($color: #000000, $alpha: 0.5);
+    background-color: #1a191f;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal__movie-backdrop {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.modal__movie-info {
+    margin-left: 0 auto;
+}
+
+.modal__btn-close {
+    padding: 5px;
+    margin: 10px;
+    align-self: center;
+}
+
+.modal__movie-site {
+    color: #ffd80e;
+}
+
+ul li {
+    padding: 5px;
+}
+
+.stop-scroll {
+    height: 100%;
+    overflow: hidden;
+}
