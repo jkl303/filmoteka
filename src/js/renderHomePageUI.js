@@ -45,7 +45,7 @@ async function getInitialData(genresDictionary) {
 }
 
 export async function renderUI() {
-  genresList = await getGenres();
+  const genresList = await getGenres();
 
   getInitialData(genresList).then(data => {
     moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
