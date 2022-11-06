@@ -7,6 +7,3 @@ getCurrentPage();
 
 // UI render invocation
 renderUI();
-
-// Add modal-movie
-// modalMovie();
