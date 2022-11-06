@@ -4,19 +4,33 @@ import movieCardTpl from './../templates/movie-card.hbs';
 import axios from 'axios';
 import { openModal } from './modal-movie';
 
-
 const genresDictionary = {};
 const moviesList = document.querySelector('.movie-list');
+const guard = document.querySelector('.guard');
 
-async function getInitialData(genresDictionary) {
+const options = {
+  root: null,
+  rootMargin: '50px',
+  threshold: 1,
+};
+const observer = new IntersectionObserver(onLoad, options);
+let page = 1;
+
+// loadMore.addEventListener('click', onLoad);
+
+async function getInitialData(genresDictionary, page = 1) {
   try {
-    const { data } = await axios.get(`${BASE_URL}/trending/all/day`, {
-      params: {
-        api_key: API_KEY,
-      },
-    });
+    const { data } = await axios.get(
+      `${BASE_URL}/trending/all/day?page=${page}`,
+      {
+        params: {
+          api_key: API_KEY,
+        },
+      }
+    );
 
     return data.results.map(elem => {
+      // data.page += 1;
       return {
         title: elem.title ? elem.title : elem.name,
         id: elem.id,
@@ -51,26 +65,39 @@ export async function renderUI() {
 
   getInitialData(genresList).then(data => {
     moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
+    observer.observe(guard);
   });
 
   //addListeners to each MovieCard
 
-  const movieCards = document.querySelector(".movie-list");
+  const movieCards = document.querySelector('.movie-list');
   movieCards.addEventListener('click', evt => {
     evt.preventDefault();
     // console.log(evt)
     let t = evt.target;
-    while (t.nodeName !== "A" && t.parentNode !== null) {
+    while (t.nodeName !== 'A' && t.parentNode !== null) {
       t = t.parentNode;
-    };
-    
-    if (t.nodeName === "A") {
+    }
+
+    if (t.nodeName === 'A') {
       // console.log(t.id);
       const movieId = parseInt(t.id);
       const a = openModal(movieId);
     }
+  });
+}
 
-});
-  
-  
+//Infinite scroll for Homepage
+async function onLoad() {
+  const genresList = await getGenres();
+  if (page > 1) {
+    getInitialData(genresList, page).then(data => {
+      moviesList.insertAdjacentHTML(
+        'beforeend',
+        data.map(elem => movieCardTpl(elem)).join('')
+      );
+    });
+  }
+
+  page += 1;
 }
