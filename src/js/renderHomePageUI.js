@@ -2,6 +2,8 @@ import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 import { getGenres } from './fetchGenres';
 import movieCardTpl from './../templates/movie-card.hbs';
 import axios from 'axios';
+import { openModal } from './modal-movie';
+
 
 const genresDictionary = {};
 const moviesList = document.querySelector('.movie-list');
@@ -50,4 +52,25 @@ export async function renderUI() {
   getInitialData(genresList).then(data => {
     moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
   });
+
+  //addListeners to each MovieCard
+
+  const movieCards = document.querySelector(".movie-list");
+  movieCards.addEventListener('click', evt => {
+    evt.preventDefault();
+    // console.log(evt)
+    let t = evt.target;
+    while (t.nodeName !== "A" && t.parentNode !== null) {
+      t = t.parentNode;
+    };
+    
+    if (t.nodeName === "A") {
+      // console.log(t.id);
+      const movieId = parseInt(t.id);
+      const a = openModal(movieId);
+    }
+
+});
+  
+  
 }
