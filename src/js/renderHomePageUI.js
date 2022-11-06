@@ -68,36 +68,19 @@ export async function renderUI() {
     observer.observe(guard);
   });
 
-  //addListeners to each MovieCard
+  // Adds event listeners to the movies list DOM element
 
   const movieCards = document.querySelector('.movie-list');
   movieCards.addEventListener('click', evt => {
     evt.preventDefault();
-    // console.log(evt)
     let t = evt.target;
     while (t.nodeName !== 'A' && t.parentNode !== null) {
       t = t.parentNode;
     }
 
     if (t.nodeName === 'A') {
-      // console.log(t.id);
       const movieId = parseInt(t.id);
-      const a = openModal(movieId);
+      openModal(movieId);
     }
   });
-}
-
-//Infinite scroll for Homepage
-async function onLoad() {
-  const genresList = await getGenres();
-  if (page > 1) {
-    getInitialData(genresList, page).then(data => {
-      moviesList.insertAdjacentHTML(
-        'beforeend',
-        data.map(elem => movieCardTpl(elem)).join('')
-      );
-    });
-  }
-
-  page += 1;
 }
