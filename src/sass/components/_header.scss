@@ -8,10 +8,10 @@
   background-position: center;
   background-size: cover;
   @include x1 {
-    background-image: url('../images/header-home-mob@1x.jpg');
+    background-image: url('../images/header-home-mobile@1x.jpg');
   }
   @include x2 {
-    background-image: url('../images/header-home-mob@2x.jpg');
+    background-image: url('../images/header-home-mobile@2x.jpg');
   }
 
   @include tablet-bg {
@@ -36,21 +36,14 @@
   }
 
   &__library {
-    width: 100%;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-       width: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+
     @include x1 {
       background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56))
       ,url('../images/header-library-mobile@1x.jpeg');
     }
     @include x2 {
       background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56))
-      ,url('../images/header-library-dsc@1x.jpeg');
+      ,url('../images/header-library-mobile@2x.jpeg');
     }
 
     @include tablet-bg {
@@ -68,11 +61,11 @@
     @include desktop {
       @include x1 {
         background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url('../images/header-library-dsc@1x.jpeg');
+        url('../images/header-library-desctop@1x.jpeg');
       }
       @include x2 {
         background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url('../images/header-library-dsc@2x.jpeg');
+        url('../images/header-library-desctop@2x.jpeg');
       }
     }
   }

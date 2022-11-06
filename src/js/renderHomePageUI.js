@@ -4,73 +4,71 @@ import movieCardTpl from './../templates/movie-card.hbs';
 import axios from 'axios';
 import { openModal } from './modal-movie';
 
-
-const genresDictionary = {};
 const moviesList = document.querySelector('.movie-list');
 
-async function getInitialData(genresDictionary) {
+async function fetchInitialData() {
   try {
-    const { data } = await axios.get(`${BASE_URL}/trending/all/day`, {
+    const {
+      data: { results },
+    } = await axios.get(`${BASE_URL}/trending/all/day`, {
       params: {
         api_key: API_KEY,
       },
     });
 
-    return data.results.map(elem => {
-      return {
-        title: elem.title ? elem.title : elem.name,
-        id: elem.id,
-        image: `${IMG_URL + elem.poster_path}`,
-        year: new Date(
-          elem.first_air_date ? elem.first_air_date : elem.release_date
-        ).getFullYear(),
-
-        genres: elem.genre_ids
-          .map((genreId, index) => {
-            if (index < 2) {
-              return genresDictionary[genreId]?.name;
-            }
-            if (index === 2) {
-              return 'Other';
-            }
-            if (index > 2) {
-              return '';
-            }
-          })
-          .filter(elem => elem !== '')
-          .join(', '),
-      };
-    });
+    return results;
   } catch (err) {
     return err;
   }
 }
 
-export async function renderUI() {
-  const genresList = await getGenres();
-
-  getInitialData(genresList).then(data => {
-    moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
-  });
-
-  //addListeners to each MovieCard
-
-  const movieCards = document.querySelector(".movie-list");
-  movieCards.addEventListener('click', evt => {
-    evt.preventDefault();
-    // console.log(evt)
-    let t = evt.target;
-    while (t.nodeName !== "A" && t.parentNode !== null) {
-      t = t.parentNode;
+async function convertResponseDataToObject(results) {
+  const genresDictionary = await getGenres();
+  return results.map(elem => {
+    return {
+      title: elem.title ? elem.title : elem.name,
+      id: elem.id,
+      image: `${IMG_URL + elem.poster_path}`,
+      year: new Date(
+        elem.first_air_date ? elem.first_air_date : elem.release_date
+      ).getFullYear(),
+      genres: elem.genre_ids
+        .map((genreId, index) => {
+          if (index < 2) {
+            return genresDictionary[genreId]?.name;
+          }
+          if (index === 2) {
+            return 'Other';
+          }
+          if (index > 2) {
+            return '';
+          }
+        })
+        .filter(elem => elem !== '')
+        .join(', '),
     };
-    
-    if (t.nodeName === "A") {
-      // console.log(t.id);
-      const movieId = parseInt(t.id);
-      const a = openModal(movieId);
-    }
+  });
+}
 
-});
-  
-  
+export async function renderUI() {
+  fetchInitialData()
+    .then(convertResponseDataToObject)
+    .then(data => {
+      moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
+
+      // Adds event listeners to the movies list DOM element
+      const movieCards = document.querySelector('.movie-list');
+      movieCards.addEventListener('click', evt => {
+        evt.preventDefault();
+        let t = evt.target;
+        while (t.nodeName !== 'A' && t.parentNode !== null) {
+          t = t.parentNode;
+        }
+
+        if (t.nodeName === 'A') {
+          const movieId = parseInt(t.id);
+          openModal(movieId);
+        }
+      });
+    });
 }

@@ -18,8 +18,7 @@ export async function openModal(movie_id) {
   document.body.classList.add('stop-scroll');
   modalEl.innerHTML = `<div class="modal__card">
         <img src="${IMG_URL}${respData.poster_path}" alt="${IMG_URL}${
-    respData.backdrop_path
-  }" class="modal__movie-backdrop" width="375"/>
+    respData.backdrop_path}" class="modal__movie-backdrop" width="375"/>
     
         <div class="modal__wrap">
         <h2>
@@ -62,7 +61,6 @@ function closeModal() {
 }
 
 window.addEventListener('click', evt => {
-  // console.log(evt.target)
   const modalEl = document.querySelector('.modal');
   if (evt.target === modalEl) {
     closeModal();
