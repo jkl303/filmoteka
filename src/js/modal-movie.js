@@ -56,7 +56,6 @@ function closeModal() {
 }
 
 window.addEventListener('click', evt => {
-  // console.log(evt.target)
   const modalEl = document.querySelector('.modal');
   if (evt.target === modalEl) {
     closeModal();

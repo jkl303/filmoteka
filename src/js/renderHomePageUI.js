@@ -52,7 +52,7 @@ export async function renderUI() {
     moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
   });
 
-  //adds event listener to the movies list DOM element
+  // Adds event listeners to the movies list DOM element
 
   const movieCards = document.querySelector('.movie-list');
   movieCards.addEventListener('click', evt => {
