@@ -6,14 +6,22 @@ import { openModal } from './modal-movie';
 
 const moviesList = document.querySelector('.movie-list');
 const guard = document.querySelector('.guard');
+const options = {
+  root: null,
+  rootMargin: '50px',
+  threshold: 1,
+};
+const observer = new IntersectionObserver(renderUI, options);
+let page = 1;
 
-async function fetchInitialData() {
+async function fetchInitialData(page = 1) {
   try {
     const {
       data: { results },
     } = await axios.get(`${BASE_URL}/trending/all/day`, {
       params: {
         api_key: API_KEY,
+        page: page,
       },
     });
 
@@ -52,10 +60,20 @@ async function convertResponseDataToObject(results) {
 }
 
 export async function renderUI() {
-  fetchInitialData()
+  fetchInitialData(page)
     .then(convertResponseDataToObject)
     .then(data => {
-      moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
+      if (page > 1) {
+        moviesList.insertAdjacentHTML(
+          'beforeend',
+          data.map(elem => movieCardTpl(elem)).join('')
+        );
+      } else {
+        moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
+      }
+
+      observer.observe(guard);
+      page += 1;
 
       // Adds event listeners to the movies list DOM element
       const movieCards = document.querySelector('.movie-list');
