@@ -41,12 +41,16 @@ body {
 // COMMON
 
 .container {
+position: relative;
+
   margin-left: auto;
   margin-right: auto;
   padding-left: 15px;
   padding-right: 15px;
   max-width: 450px;
 
+  overflow: hidden;
+  
   @include tablet-bg {
     // width: 738px;
     max-width: 704px;
@@ -70,7 +74,7 @@ body {
 }
 
 
-.visually-hidden-title {
+.visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
