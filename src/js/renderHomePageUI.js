@@ -5,13 +5,13 @@ import axios from 'axios';
 import { openModal } from './modal-movie';
 
 const moviesList = document.querySelector('.movie-list');
-const guard = document.querySelector('.guard');
+export const guard = document.querySelector('.guard');
 const options = {
   root: null,
   rootMargin: '50px',
   threshold: 1,
 };
-const observer = new IntersectionObserver(renderUI, options);
+export const observer = new IntersectionObserver(renderUI, options);
 let page = 1;
 
 async function fetchInitialData(page = 1) {

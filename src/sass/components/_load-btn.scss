@@ -1,0 +1,34 @@
+@use './../utilities/mixins' as *;
+@use './../utilities/variables' as *;
+
+.load-btn{
+    display: block;
+    width: 150px;
+    height: 50px;
+    border: none;
+    outline: none;
+border-radius: 25px;
+
+margin-top: 5px;
+margin-bottom: 5px;
+margin-left: auto;
+
+font-size: medium;
+font-weight: 500;
+font-family: $main-font;
+
+background-color: $color-accent-orange;
+color: $color-white;
+
+position: absolute;
+right: -150px;
+bottom: 10px;
+transition: transform 500ms ease-in-out 500ms;  
+
+}
+
+.load-btn-visible{
+   
+transform: translateX(-150%);
+
+}
