@@ -32,6 +32,7 @@ async function fetchInitialData(page = 1) {
 }
 
 async function convertResponseDataToObject(results) {
+ 
   const genresDictionary = await getGenres();
   return results.map(elem => {
     return {

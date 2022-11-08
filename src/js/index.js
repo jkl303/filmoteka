@@ -9,7 +9,14 @@ getCurrentPage();
 renderUI();
 
 
+// Add modal-movie
+modalMovie();
+
+console.log(genres.then (data => console.log(data)));
+
+
 // searchInputLogic
 
 const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', onSubmit);
+
