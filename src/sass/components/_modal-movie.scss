@@ -1,0 +1,80 @@
+@use './../utilities/variables' as *;
+
+//modal
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  transition: width 2s;
+}
+
+.modal--show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__card {
+  position: relative;
+  background-color: #ffffff;
+  width: 320px;
+  margin-top: 350px;
+}
+
+.modal__movie-backdrop {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 10px;
+  width: 260px;
+  height: 404px;
+  border-radius: 5px;
+}
+.modal__wrap {
+  padding: 32px 20px 36px;
+}
+
+.modal__movie-title {
+  text-transform: uppercase;
+}
+
+.modal__movie-info {
+  margin-left: 0 auto;
+  color: #8d8d8d;
+}
+.movie-vote-upper {
+  color: #000000;
+}
+.movie-popularity-upper {
+  color: #000000;
+}
+.movie-title-upper {
+  text-transform: uppercase;
+  color: #000000;
+}
+.movie-genre-upper {
+  color: #000000;
+}
+.modal__movie-overview {
+  color: #000000;
+}
+.modal__btn-close {
+  align-items: center;
+  justify-content: center;
+}
+
+ul li {
+  padding: 5px;
+}
+
+.stop-scroll {
+  height: 100%;
+  overflow: hidden;
+}
