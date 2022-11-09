@@ -32,7 +32,6 @@ async function fetchInitialData(page = 1) {
 }
 
 async function convertResponseDataToObject(results) {
- 
   const genresDictionary = await getGenres();
   return results.map(elem => {
     return {
@@ -87,7 +86,11 @@ export async function renderUI() {
 
         if (t.nodeName === 'A') {
           const movieId = parseInt(t.id);
-          openModal(movieId);
+          const movieSmallPoster = t.getElementsByTagName('img')[0].src;
+          console.log(t);
+          console.log('Рендер:', movieId, ', ', movieSmallPoster);
+
+          openModal(movieId, movieSmallPoster);
         }
       });
     });

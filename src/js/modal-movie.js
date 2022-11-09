@@ -2,11 +2,11 @@ import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 
 //-----------MODAL-MOVIE---------------//
 
-export async function openModal(movie_id) {
+export async function openModal(movie_id, movieSmallPoster) {
   const movie_url_original = `${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`;
   const modalEl = document.querySelector('.modal');
-
-  //   console.log(movie_url_original);
+  console.log(movieSmallPoster);
+  console.log(movie_url_original);
   const resp = await fetch(movie_url_original, {
     headers: {
       'Content-Type': 'application/json',
@@ -17,9 +17,13 @@ export async function openModal(movie_id) {
   modalEl.classList.add('modal--show');
   document.body.classList.add('stop-scroll');
   modalEl.innerHTML = `<div class="modal__card">
-        <img src="${IMG_URL}${
-    respData.poster_path
-  }" alt="" class="modal__movie-backdrop"/>
+        <img src="${getImgPath(
+          respData.poster_path,
+          respData.backdrop_path,
+          IMG_URL,
+          movieSmallPoster
+        )}"
+          alt="" class="modal__movie-backdrop"/>
     
         <div class="modal__wrap">
         <h2>
@@ -110,5 +114,18 @@ function getClassByRate(vote) {
     return 'orange';
   } else {
     return 'red';
+  }
+}
+
+//проверка img
+
+function getImgPath(poster, backdrop, url, backupPoster) {
+  if (poster === null) {
+    if (backdrop === null) {
+      return backupPoster;
+    }
+    return url + backdrop;
+  } else {
+    return url + poster;
   }
 }

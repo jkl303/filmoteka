@@ -31,16 +31,18 @@
   @include tablet-bg {
     display: flex;
     margin: auto;
-    width: 704px;
     height: 552px;
-    padding: 42px 29px 40px 28px;
+    padding: 40px;
   }
 
   @include desktop {
     display: flex;
     width: 806px;
     height: 558px;
-    padding: 50px 30px 40px 30px;
+    padding: 40px;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50% -50%);
   }
 }
 
@@ -52,14 +54,19 @@
   margin-bottom: 20px;
   width: calc(100% - 40px);
   border-radius: 5px;
+
   @include tablet-bg {
     width: 264px;
     height: 373.55px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 68px;
   }
 
   @include desktop {
     width: 375px;
     height: 478px;
+    margin-right: 16px;
   }
 }
 .modal__wrap {
@@ -82,7 +89,6 @@
 .modal__movie-vote-cont {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-wrap: nowrap;
   flex-direction: row;
 }
@@ -145,6 +151,7 @@
   color: #000000;
 }
 .modal__movie-overview {
+  margin-top: 20px;
   margin-bottom: 8px;
   font-family: 'Roboto';
   font-style: normal;
@@ -185,6 +192,7 @@ ul li {
 }
 .modal__btn-list {
   display: flex;
+  margin-top: 20px;
 }
 .modal__btn-watched {
   width: 110px;
@@ -224,6 +232,15 @@ ul li {
   &:focus {
     background-color: #ff6b01;
     color: #ffffff;
+  }
+  @include tablet-bg {
+    width: 125px;
+    height: 44px;
+  }
+
+  @include desktop {
+    width: 136px;
+    height: 44px;
   }
 }
 
