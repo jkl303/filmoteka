@@ -2,7 +2,9 @@ import { getCurrentPage } from './getCurrentPage';
 // import { modalMovie } from './modal-movie';
 import { renderUI } from './renderHomePageUI';
 import { onSubmit } from './searchinputLogic';
-import {filterByGenres} from './filter'
+
+import { byName, byYear, setBubble } from './homePageSorting';
+
 // Adds a red line under active page in the website header
 getCurrentPage();
 
@@ -10,13 +12,8 @@ getCurrentPage();
 renderUI();
 
 
-// Add modal-movie
-// modalMovie();
+searchInputLogic();
 
-// console.log(genres.then (data => console.log(data)));
-
-
-// searchInputLogic
 
 
 const divForFilters = document.querySelector('.divForFilters')
@@ -31,4 +28,12 @@ divForFilters.addEventListener('change', e => {
 
 const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', onSubmit);
+
+
+const byNameSelect = document.querySelector('[name="by-name__select"]');
+byNameSelect.addEventListener('change', () => byName(byNameSelect.value));
+
+const byYearInput = document.querySelector('[name="by-year"]');
+byYearInput.addEventListener('input', setBubble);
+byYearInput.addEventListener('change', () => byYear(byYearInput.value));
 
