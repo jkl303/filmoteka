@@ -6,4 +6,6 @@
 @use './components/movie-list';
 @use './components/footer';
 @use './components/loader';
-@use './components/modal-movie'
+@use './components/modal-movie';
+@use './utilities/dark-theme';
+
