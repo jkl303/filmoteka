@@ -11,7 +11,7 @@ const options = {
   rootMargin: '50px',
   threshold: 1,
 };
-export const observer = new IntersectionObserver(renderUI, options);
+export const observer = new IntersectionObserver(renderUI, options); // двоит респ и разметку
 let page = 1;
 
 async function fetchInitialData(page = 1) {
@@ -72,26 +72,30 @@ export async function renderUI() {
         moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
       }
 
-      observer.observe(guard);
+      observer.observe(guard); // двоит респ и разметку
       page += 1;
 
-      // Adds event listeners to the movies list DOM element
-      const movieCards = document.querySelector('.movie-list');
-      movieCards.addEventListener('click', evt => {
-        evt.preventDefault();
-        let t = evt.target;
-        while (t.nodeName !== 'A' && t.parentNode !== null) {
-          t = t.parentNode;
-        }
+      // // Adds event listeners to the movies list DOM element
+      // const movieCards = document.querySelector('.movie-list');
+      // console.log('before add listener:');
+      // console.log(movieCards);
+      // movieCards.addEventListener('click', evt => {
+      //   evt.preventDefault();
+      //   let t = evt.target;
+      //   while (t.nodeName !== 'A' && t.parentNode !== null) {
+      //     t = t.parentNode;
+      //   }
 
-        if (t.nodeName === 'A') {
-          const movieId = parseInt(t.id);
-          const movieSmallPoster = t.getElementsByTagName('img')[0].src;
-          console.log(t);
-          console.log('Рендер:', movieId, ', ', movieSmallPoster);
+      //   if (t.nodeName === 'A') {
+      //     const movieId = parseInt(t.id);
+      //     const movieSmallPoster = t.getElementsByTagName('img')[0].src;
+      //     console.log(t);
+      //     console.log('Рендер:', movieId, ', ', movieSmallPoster);
 
-          openModal(movieId, movieSmallPoster);
-        }
-      });
+      //     openModal(movieId, movieSmallPoster);
+      //   }
+      // });
+      // console.log('after add listener:');
+      // console.log(movieCards);
     });
 }
