@@ -48,15 +48,12 @@
             </svg>
           </button>
         </form>
-        <div class="loader-cotainer"></div>
-        <!-- <p class="header-error">
-          Search result not successful. Enter the correct movie name and
-
-        </p> -->
+      
+     
      
         
 
-        </p>
+      
   <section class="filters js-filters">
     <div class="divForFilters">
       <select name="" id="" label="" class="select js-select" onfocus="this.size=4;" onblur="this.size=1;"
@@ -68,7 +65,31 @@
           
     <main>
       <div class="container">
+        <div class="sort">
+          <h2 class="sort__title">Sort:</h2>
+          <div class="by-name">
+            <label for="by-name" class="by-name__label">by name</label>
+            <select name="by-name__select" id="by-name" class="by-name__select">
+              <option value="empty" class="by-name__option">Select</option>
+              <option value="asc" class="by-name__option">A-z</option>
+              <option value="desc" class="by-name__option">Z-a</option>
+            </select>
+          </div>
+          <div class="by-year">
+            <output class="bubble"></output>
+            <input
+              type="range"
+              id="by-year"
+              name="by-year"
+              value="2022"
+              min="1878"
+              max="2022"
+            />
+            <label for="by-year" class="by-year__label">by year</label>
+          </div>
+        </div>
         <h1 class="page-heading">Trending today</h1>
+        <div class="loader-cotainer"></div>
         <ul class="movie-list">
           <li class="movie-item">
             <a href="#" class="movie-link">
