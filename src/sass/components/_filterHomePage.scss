@@ -1,0 +1,46 @@
+@use './../utilities/mixins' as *;
+@use './../utilities/variables' as *;
+
+.filters {
+    // background-color: grey;
+    margin-bottom: 0px;
+}
+
+.divForFilters {
+    overflow: hidden;
+    // position: absolute;
+    left: 16px;
+    top: 167px;
+    padding: 16px 0;
+
+    @include desktop {
+        left: 30%;
+    }
+}
+
+.select {
+    background-color: #333;
+    color: white;
+    width: 150px;
+
+    @include tablet-sm {
+        width: 200px;
+    }
+
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+select option:hover,
+select option:focus,
+select option:checked {
+    background-color: $color-accent-red;
+}
+
+.options {
+    border-radius: 10px;
+    color: #fff;
+    background-color: #333;
+    transition: color 250ms linear, background-color 250ms linear;
+}
