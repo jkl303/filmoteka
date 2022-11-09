@@ -1,4 +1,11 @@
 import { API_KEY, BASE_URL, IMG_URL } from './api-service';
+import {
+  LocalStorageWatchedUtil,
+  LocalStorageQueuedUtil,
+} from './localStorage';
+
+let addToQueuedBtn;
+let addToWatchedBtn;
 
 //-----------MODAL-MOVIE---------------//
 
@@ -21,7 +28,7 @@ export async function openModal(movie_id) {
     respData.poster_path
   }" alt="" class="modal__movie-backdrop"/>
     
-        <div class="modal__wrap">
+        <div class="modal__wrap" data-id=${movie_id}>
         <h2>
             <span class="modal__movie-title">${respData.title}</span>
         </h2>
@@ -76,6 +83,31 @@ export async function openModal(movie_id) {
         </div>
       </div>`;
   // console.log("это модалка", movie_id);
+
+  let myId = modalEl.querySelector('.modal__wrap').dataset.id;
+  console.log(myId);
+
+  addToWatchedBtn = document.querySelector('.modal__btn-watched');
+
+  addToWatchedBtn.addEventListener('click', onClickWatchedBtn);
+  function onClickWatchedBtn(e) {
+    e.preventDefault();
+    const storageClick = new LocalStorageWatchedUtil();
+    storageClick.addWatched(myId);
+  }
+
+  addToQueuedBtn = document.querySelector('.modal__btn-queue');
+
+  addToQueuedBtn.addEventListener('click', onClickQueuedBtn);
+  function onClickQueuedBtn(e) {
+    e.preventDefault();
+
+    const storageClickQ = new LocalStorageQueuedUtil();
+    storageClickQ.addQueued(myId);
+  }
+
+  const newCont = new LocalStorageQueuedUtil();
+  newCont.addQueued(myId);
 
   const btnClose = document.querySelector('.modal__btn-close');
   btnClose.addEventListener('click', () => closeModal());

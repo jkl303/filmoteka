@@ -11,24 +11,20 @@ getCurrentPage();
 // UI render invocation
 renderUI();
 
+// searchInputLogic();
 
-searchInputLogic();
-
-
-
-const divForFilters = document.querySelector('.divForFilters')
+const divForFilters = document.querySelector('.divForFilters');
 
 divForFilters.addEventListener('change', e => {
-  let selectValue = e.target.value
-    console.dir(selectValue);
-    if (selectValue !== '') {
-         filterByGenres(selectValue)
-    }
-})
+  let selectValue = e.target.value;
+  console.dir(selectValue);
+  if (selectValue !== '') {
+    filterByGenres(selectValue);
+  }
+});
 
 const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', onSubmit);
-
 
 const byNameSelect = document.querySelector('[name="by-name__select"]');
 byNameSelect.addEventListener('change', () => byName(byNameSelect.value));
@@ -36,4 +32,3 @@ byNameSelect.addEventListener('change', () => byName(byNameSelect.value));
 const byYearInput = document.querySelector('[name="by-year"]');
 byYearInput.addEventListener('input', setBubble);
 byYearInput.addEventListener('change', () => byYear(byYearInput.value));
-
