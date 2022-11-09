@@ -12,7 +12,7 @@ async function fetchData(endpoint, page, genres) {
     } = await axios.get(BASE_URL + endpoint, {
       params: {
         api_key: API_KEY,
-        page,
+        page: page,
         with_genres: genres,
       },
     });
