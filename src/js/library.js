@@ -19,6 +19,7 @@ const options = {
 movie_id.forEach(element => {
   apiLibraryWatched(element);
 });
+console.log(movie_id);
 
 const watchedList = document.querySelector('.movie-list');
 
