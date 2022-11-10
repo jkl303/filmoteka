@@ -1,42 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Filmoteka</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png" />
-  <link rel="stylesheet" href="./sass/main.scss" />
-</head>
 
-<body>
-  <header class="header">
-    <div class="container">
-      <nav class="header-menu">
-        <a href="./index.html" class="header-logo">
-          <svg class="header-logo__icon">
-            <use href="./icons/icons.svg#icon-logo"></use>
-          </svg>
-          <span class="header-logo__website-name">Filmoteka</span>
-        </a>
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-home>Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./pages/library.html" data-library>My Library</a>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filmoteka</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png" />
+    <link rel="stylesheet" href="./sass/main.scss" />
+    <!-- <link rel="stylesheet" title="theme" href="./sass/utilities/dark_theme.css" /> -->
+    <!-- <link rel="stylesheet" title="theme" href="./sass/utilities/light_theme.css" /> -->
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <nav class="header-menu">
+          <a href="./index.html" class="header-logo">
+            <svg class="header-logo__icon">
+              <use href="./icons/icons.svg#icon-logo"></use>
+            </svg>
+            <span class="header-logo__website-name">Filmoteka</span>
+          </a>
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-home>Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./pages/library.html" data-library
+                >My Library</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <form class="search-form">
+          <input
+            type="text"
+            class="search-input"
+            name="query"
+            placeholder="Movie search"
+          />
+          <button type="submit" name="submit" class="search-submit">
+            <svg class="search-form__submit-icon">
+              <use href="./icons/icons.svg#icon-search"></use>
+            </svg>
+          </button>
+        </form>
+
+        <div class="loader-cotainer"></div>
+        <!-- <p class="header-error">
+          Search result not successful. Enter the correct movie name and
+        </p> -->
+
+
+        <div class="theme">
+          <svg class="theme-icon" data-theme ="light" width = 20px height = 20px >
+            <use href="./icons/light_dark_svg.svg#icon-sun"></use></svg>
+          <svg class="theme-icon " data-theme="dark" width=20px height=20px>
+              <use href="./icons/light_dark_svg.svg#icon-moon"></use></svg>
+            
+           
+        </div>
+
+      
+     
+     
+        
+
+      
+  <section class="filters js-filters">
+    <div class="divForFilters">
+      <select name="" id="" label="" class="select js-select" onfocus="this.size=4;" onblur="this.size=1;"
+        onchange="this.size=1; this.blur();"></select>
+    </div>
+  </section>
+
+      </div>
+    </header>
+          
+    <main>
+      <div class="container">
+        <div class="sort">
+          <h2 class="sort__title">Sort:</h2>
+          <div class="by-name">
+            <label for="by-name" class="by-name__label">by name</label>
+            <select name="by-name__select" id="by-name" class="by-name__select">
+              <option value="empty" class="by-name__option">Select</option>
+              <option value="asc" class="by-name__option">A-z</option>
+              <option value="desc" class="by-name__option">Z-a</option>
+            </select>
+          </div>
+          <div class="by-year">
+            <output class="bubble"></output>
+            <input
+              type="range"
+              id="by-year"
+              name="by-year"
+              value="2022"
+              min="1878"
+              max="2022"
+            />
+            <label for="by-year" class="by-year__label">by year</label>
+          </div>
+        </div>
+        <h1 class="page-heading">Trending today</h1>
+        <div class="loader-cotainer"></div>
+        <ul class="movie-list">
+          <li class="movie-item">
+            <a href="#" class="movie-link">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BZTFkZjYxNWItZmE2MC00MGE4LWIxYTgtZmIzOWM1YmI2YWEzXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg"
+                alt=""
+                class="movie-image"
+              />
+              <div class="movie-info">
+                <p class="movie-title">Greyhound</p>
+                <p class="movie-description">Drama, Thriller | 2020</p>
+              </div>
+            </a>
           </li>
         </ul>
-      </nav>
-      <form class="search-form">
-        <input type="text" class="search-input" name="query" placeholder="Movie search" />
-        <button type="submit" name="submit" class="search-submit">
-          <svg class="search-form__submit-icon">
-            <use href="./icons/icons.svg#icon-search"></use>
+        <div class="guard"></div>
+        <button class="load-btn" type="button">Load more</button>
+      </div>
+      <div class="modal"></div>
+    
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-text">
+          © 2020 | All Rights Reserved | Developed with
+          <svg class="footer-icon" width="14" height="13">
+            <use href="./icons/icons.svg#icon-heart"></use>
+          </svg>
+          by <a href="#" class="footer-link"  data-modal-open>GoIT Students</a>
+        </p>
+      </div>
+    </footer>
+
+    <!--Modal footerGalleryItems-->
+    <div class="modal__overlay is-hidden" tabindex="-1" data-micromodal-close=""  data-modal>
+      
+      <div class="modal__container__footer" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <button type="button" class="modal-about-btn" data-modal-close>
+          <svg class="about-icon" width="12" height="12">
+            <use href="./icons/icons.svg#icon-close-mob"></use>
+
           </svg>
         </button>
       </form>
