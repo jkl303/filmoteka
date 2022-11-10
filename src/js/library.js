@@ -19,8 +19,12 @@ const options = {
 movie_id.forEach(element => {
   apiLibraryWatched(element);
 });
-console.log(movie_id);
 
+const renderList = function renderLibrary(movie_id) {
+  for (let movie of movie_id) {
+  }
+};
+console.log(renderList(movie_id));
 const watchedList = document.querySelector('.movie-list');
 
 function apiLibraryWatched(movie_id) {
@@ -66,7 +70,7 @@ function apiLibraryWatched(movie_id) {
       //     data.first_air_date ? data.first_air_date : data.release_date
       //   ).getFullYear(),
       // };
-      console.log(data);
+      // console.log(data);
       watchedList.insertAdjacentHTML('beforeend', movieCardTpl(data));
     });
 }
