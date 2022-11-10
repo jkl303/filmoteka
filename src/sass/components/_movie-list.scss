@@ -1,7 +1,8 @@
 @use './../utilities/variables' as *;
 @use './../utilities/mixins' as *;
 
-.movie-list {
+.movie-list,
+.movie-list-queue {
   display: flex;
   flex-wrap: wrap;
   margin-top: 30px;
@@ -103,4 +104,4 @@
   visibility: hidden;
 }
 
-// 
+//

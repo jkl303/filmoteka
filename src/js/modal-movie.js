@@ -1,7 +1,19 @@
 import { API_KEY, BASE_URL, IMG_URL } from './api-service';
+
+
+import {
+  LocalStorageWatchedUtil,
+  LocalStorageQueuedUtil,
+} from './localStorage';
+
+let addToQueuedBtn;
+let addToWatchedBtn;
+
 // import SimpleLightbox from 'simplelightbox';
+
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import movieModalTpl from './../templates/movie-modal.hbs';
+
 
 //-----------MODAL-MOVIE---------------//
 
@@ -35,6 +47,7 @@ export async function openModal(movie_id, movieSmallPoster) {
     // console.log(respData);
     modalEl.classList.add('modal--show');
     document.body.classList.add('stop-scroll');
+
     modalEl.innerHTML = movieModalTpl(respData);
     // `<div class="modal__card">
     //     <img src="${getImgPath(
@@ -96,6 +109,7 @@ export async function openModal(movie_id, movieSmallPoster) {
     //     </div>
     //     </div>
     //   </div>`;
+
     //   console.log('это модалка', movie_id);
     // console.log(resp);
   } else {
@@ -110,6 +124,31 @@ export async function openModal(movie_id, movieSmallPoster) {
   // captionDelay: '250',
   //   });
   //   console.log(modal);
+
+  let myId = modalEl.querySelector('.modal__wrap').dataset.id;
+  console.log(myId);
+
+  addToWatchedBtn = document.querySelector('.modal__btn-watched');
+
+  addToWatchedBtn.addEventListener('click', onClickWatchedBtn);
+  function onClickWatchedBtn(e) {
+    e.preventDefault();
+    const storageClick = new LocalStorageWatchedUtil();
+    storageClick.addWatched(myId);
+  }
+
+  addToQueuedBtn = document.querySelector('.modal__btn-queue');
+
+  addToQueuedBtn.addEventListener('click', onClickQueuedBtn);
+  function onClickQueuedBtn(e) {
+    e.preventDefault();
+
+    const storageClickQ = new LocalStorageQueuedUtil();
+    storageClickQ.addQueued(myId);
+  }
+
+  const newCont = new LocalStorageQueuedUtil();
+  newCont.addQueued(myId);
 
   const btnClose = document.querySelector('.modal__btn-close');
   btnClose.addEventListener('click', () => closeModal());
