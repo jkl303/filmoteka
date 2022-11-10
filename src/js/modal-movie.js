@@ -1,7 +1,7 @@
 import { API_KEY, BASE_URL, IMG_URL } from './api-service';
-import SimpleLightbox from 'simplelightbox';
+// import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-// console.log(SimpleLightbox);
+import movieModalTpl from './../templates/movie-modal.hbs';
 
 //-----------MODAL-MOVIE---------------//
 
@@ -19,75 +19,83 @@ export async function openModal(movie_id, movieSmallPoster) {
 
   if (resp.status === 200) {
     const respData = await resp.json();
+    respData.imgPath = getImgPath(
+      respData.poster_path,
+      respData.backdrop_path,
+      IMG_URL,
+      movieSmallPoster
+    );
+    respData.byRate = getClassByRate(respData.vote_average.toFixed(1));
+    respData.rate = respData.vote_average.toFixed(1);
+    respData.byPopularity = respData.popularity.toFixed(1);
+    respData.byGenres = respData.genres.map(elem => `${elem.name}`).join(', ');
 
     // console.log('response data:');
     // console.log(resp);
     // console.log(respData);
     modalEl.classList.add('modal--show');
     document.body.classList.add('stop-scroll');
-    modalEl.innerHTML = `<div class="modal__card">
-        <img src="${getImgPath(
-          respData.poster_path,
-          respData.backdrop_path,
-          IMG_URL,
-          movieSmallPoster
-        )}"
-          alt="" class="modal__movie-backdrop"/>
-    
-        <div class="modal__wrap">
-        <h2>
-            <span class="modal__movie-title">${respData.title}</span>
-        </h2>
-        <ul class="modal__movie-info">
-          <li>
-            <div class="modal__movie-vote-cont">          
-                <p class="modal__movie-vote">Vote / Votes: </p>
-                    <div class="movie-vote-upper">${
-                      //   respData.vote_average.toFixed(1) &&
-                      `<div class="movie-vote-upper movie__average--${getClassByRate(
-                        respData.vote_average.toFixed(1)
-                      )}">
-                      ${respData.vote_average.toFixed(1)}
-                        </div>`
-                    } / ${respData.vote_count}
-                    </div>
-                
-            </div>
-          </li>
-          <li>
-          <div class="modal__movie-popularity-cont">
-          <p class="modal__movie-popularity">Popularity:
-          <span class="movie-popularity-upper">${respData.popularity.toFixed(
-            1
-          )}</span>
-          </p>
-          </div>
+    modalEl.innerHTML = movieModalTpl(respData);
+    // `<div class="modal__card">
+    //     <img src="${getImgPath(
+    //       respData.poster_path,
+    //       respData.backdrop_path,
+    //       IMG_URL,
+    //       movieSmallPoster
+    //     )}"
+    //       alt="" class="modal__movie-backdrop"/>
 
-         </li>
-          <li> 
-          <p class="modal__movie-original-title">Original Title: <span class="movie-title-upper">${
-            respData.original_title
-          }</span></p>  
-          </li>
-          <li>
-          <p class="modal__movie-genre">Genre: <span class="movie-genre-upper">${respData.genres
-            .map(elem => `${elem.name}`)
-            .join(', ')}</span></p>
-         
-            </li>
-          <li>
-          <p class="modal__movie-overview">ABOUT</p>
-          <span class="movie-overview-upper">${respData.overview}</span>
-          </li>
-        </ul>
-        
-        <button type="button" class="modal__btn-close"></button>
-        <div class="modal__btn-list">
-        <button type="button" class="modal__btn-watched">ADD TO WATCHED</button>
-        <button type="button" class="modal__btn-queue">ADD TO QUEUE</button>
-        </div>
-        </div>
-      </div>`;
+    //     <div class="modal__wrap">
+    //     <h2>
+    //         <span class="modal__movie-title">${respData.title}</span>
+    //     </h2>
+    //     <ul class="modal__movie-info">
+    //       <li>
+    //         <div class="modal__movie-vote-cont">
+    //             <p class="modal__movie-vote">Vote / Votes: </p>
+    //                 <div class="movie-vote-upper">${`<div class="movie-vote-upper movie__average--${getClassByRate(
+    //                   respData.vote_average.toFixed(1)
+    //                 )}">
+    //                   ${respData.vote_average.toFixed(1)}
+    //                     </div>`} / ${respData.vote_count}
+    //                 </div>
+
+    //         </div>
+    //       </li>
+    //       <li>
+    //       <div class="modal__movie-popularity-cont">
+    //       <p class="modal__movie-popularity">Popularity:
+    //       <span class="movie-popularity-upper">${respData.popularity.toFixed(
+    //         1
+    //       )}</span>
+    //       </p>
+    //       </div>
+
+    //      </li>
+    //       <li>
+    //       <p class="modal__movie-original-title">Original Title: <span class="movie-title-upper">${
+    //         respData.original_title
+    //       }</span></p>
+    //       </li>
+    //       <li>
+    //       <p class="modal__movie-genre">Genre: <span class="movie-genre-upper">${respData.genres
+    //         .map(elem => `${elem.name}`)
+    //         .join(', ')}</span></p>
+
+    //         </li>
+    //       <li>
+    //       <p class="modal__movie-overview">ABOUT</p>
+    //       <span class="movie-overview-upper">${respData.overview}</span>
+    //       </li>
+    //     </ul>
+
+    //     <button type="button" class="modal__btn-close"></button>
+    //     <div class="modal__btn-list">
+    //     <button type="button" class="modal__btn-watched">ADD TO WATCHED</button>
+    //     <button type="button" class="modal__btn-queue">ADD TO QUEUE</button>
+    //     </div>
+    //     </div>
+    //   </div>`;
     //   console.log('это модалка', movie_id);
     // console.log(resp);
   } else {
@@ -97,10 +105,10 @@ export async function openModal(movie_id, movieSmallPoster) {
      <div class="modal-plug""></div>
     <button type="button" class="modal__btn-close"></button></div>`;
   }
-  let modal = new SimpleLightbox('.modal div', {
-    captionsData: 'h2',
-    captionDelay: '250',
-  });
+  //   let modal = new SimpleLightbox('.modal a', {
+  // captionsData: 'h2',
+  // captionDelay: '250',
+  //   });
   //   console.log(modal);
 
   const btnClose = document.querySelector('.modal__btn-close');
@@ -153,6 +161,7 @@ function getImgPath(poster, backdrop, url, backupPoster) {
 }
 
 // Adds event listeners to the movies list DOM element
+
 export function AddListenerToMovieList() {
   const movieCards = document.querySelector('.movie-list');
   //   console.log('before add listener:');

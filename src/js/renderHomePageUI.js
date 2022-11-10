@@ -2,7 +2,7 @@ import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 import { getGenres } from './fetchGenres';
 import movieCardTpl from './../templates/movie-card.hbs';
 import axios from 'axios';
-import { openModal } from './modal-movie';
+// import { openModal } from './modal-movie';
 
 const moviesList = document.querySelector('.movie-list');
 export const guard = document.querySelector('.guard');
@@ -11,7 +11,7 @@ const options = {
   rootMargin: '50px',
   threshold: 1,
 };
-export const observer = new IntersectionObserver(renderUI, options); // двоит респ и разметку
+export const observer = new IntersectionObserver(renderUI, options);
 let page = 1;
 
 async function fetchInitialData(page = 1) {
@@ -72,30 +72,7 @@ export async function renderUI() {
         moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
       }
 
-      observer.observe(guard); // двоит респ и разметку
+      observer.observe(guard);
       page += 1;
-
-      // // Adds event listeners to the movies list DOM element
-      // const movieCards = document.querySelector('.movie-list');
-      // console.log('before add listener:');
-      // console.log(movieCards);
-      // movieCards.addEventListener('click', evt => {
-      //   evt.preventDefault();
-      //   let t = evt.target;
-      //   while (t.nodeName !== 'A' && t.parentNode !== null) {
-      //     t = t.parentNode;
-      //   }
-
-      //   if (t.nodeName === 'A') {
-      //     const movieId = parseInt(t.id);
-      //     const movieSmallPoster = t.getElementsByTagName('img')[0].src;
-      //     console.log(t);
-      //     console.log('Рендер:', movieId, ', ', movieSmallPoster);
-
-      //     openModal(movieId, movieSmallPoster);
-      //   }
-      // });
-      // console.log('after add listener:');
-      // console.log(movieCards);
     });
 }
