@@ -1,5 +1,5 @@
 import { getCurrentPage } from './getCurrentPage';
-// import { modalMovie } from './modal-movie';
+import { AddListenerToMovieList } from './modal-movie';
 import { renderUI } from './renderHomePageUI';
 import { onSubmit } from './searchinputLogic';
 
@@ -18,12 +18,21 @@ getCurrentPage();
 renderUI();
 
 
+
+// Add modal-movie
+AddListenerToMovieList();
+
+
+
+
 // searchInputLogic
 
 
 
 
+
 const divForFilters = document.querySelector('.divForFilters')
+
 
 divForFilters.addEventListener('change', e => {
   let selectValue = e.target.value
@@ -36,6 +45,7 @@ divForFilters.addEventListener('change', e => {
 
 const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', onSubmit);
+
 
 
 // change themes
