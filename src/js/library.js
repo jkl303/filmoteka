@@ -3,12 +3,10 @@ import movieCardTpl from './../templates/movie-card.hbs';
 import { getCurrentPage } from './getCurrentPage';
 import { openModal } from './modal-movie';
 import { fetchInitialData } from './renderHomePageUI';
-// import { getGenres } from './fetchGenres';
 
 getCurrentPage();
 
 const movie_id = JSON.parse(localStorage.getItem('WatchedList'));
-// console.log(movie_id);
 
 const options = {
   headers: {
@@ -20,14 +18,9 @@ movie_id.forEach(element => {
   apiLibraryWatched(element);
 });
 
-const renderList = function renderLibrary(movie_id) {
-  for (let movie of movie_id) {
-  }
-};
-console.log(renderList(movie_id));
 const watchedList = document.querySelector('.movie-list');
 
-function apiLibraryWatched(movie_id) {
+export function apiLibraryWatched(movie_id) {
   return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`, options)
     .then(response => {
       if (!response.ok) {
@@ -36,64 +29,44 @@ function apiLibraryWatched(movie_id) {
       return response.json();
     })
     .then(data => {
-      // console.log(data);
-      // data.map(elem => {
-      //   return {
-      //     title: elem.title ? elem.title : elem.name,
-      //     id: elem.id,
-      //     image: `${IMG_URL + elem.poster_path}`,
-      //     year: new Date(
-      //       elem.first_air_date ? elem.first_air_date : elem.release_date
-      //     ).getFullYear(),
-      //     genres: elem.genre_ids
-      //       .map((genreId, index) => {
-      //         if (index < 2) {
-      //           return genresDictionary[genreId]?.name;
-      //         }
-      //         if (index === 2) {
-      //           return 'Other';
-      //         }
-      //         if (index > 2) {
-      //           return '';
-      //         }
-      //       })
-      //       .filter(elem => elem !== '')
-      //       .join(', '),
-      //   };
-      // });
-
-      // return {
-      //   title: data.title ? data.title : data.name,
-      //   id: data.id,
-      //   image: `${IMG_URL + data.poster_path}`,
-      //   year: new Date(
-      //     data.first_air_date ? data.first_air_date : data.release_date
-      //   ).getFullYear(),
-      // };
-      // console.log(data);
-      watchedList.insertAdjacentHTML('beforeend', movieCardTpl(data));
+      const libraryWatchedListEl = document.createElement('li');
+      libraryWatchedListEl.classList.add('movie-item');
+      libraryWatchedListEl.innerHTML = `
+      <a href='${data.id}' id = '${data.id}' class='movie-link'>
+    <img src='${IMG_URL}${data.poster_path}' alt='' class='movie-image' />
+    <div class='movie-info'>
+      <p class='movie-title'>${data.original_title}</p>
+      <p class='movie-description'>${data.genres
+        .map(elem => `${elem.name}`)
+        .join(', ')} | ${data.release_date}</p>
+    </div>
+  </a>
+      `;
+      watchedList.appendChild(libraryWatchedListEl);
     });
 }
-apiLibraryWatched(movie_id);
+const queuedListForClick = document.querySelector('.movie-list-queue');
+const watchedListForClick = document.querySelector('.movie-list');
 
 const queuedBtnLibrary = document.getElementById(
   'js-navigationLibraryButtonQueue'
 );
-queuedBtnLibrary.addEventListener('click', onClickQueuedBtn);
-function onClickQueuedBtn(e) {
+queuedBtnLibrary.addEventListener('click', e => {
   e.preventDefault();
-  const queuedList = document.querySelector('.movie-list');
-  queuedList.classList.add('hidden');
-}
+  queuedBtnLibrary.disabled = true;
+  watchedListForClick.style.display = 'none';
+  queuedListForClick.style.display = 'flex';
+  watchedBtnLibrary.disabled = false;
+});
 
 const watchedBtnLibrary = document.getElementById(
   'js-navigationLibraryButtonWatched'
 );
-watchedBtnLibrary.addEventListener('click', onClickWathedBtn);
-function onClickWathedBtn(e) {
+
+watchedBtnLibrary.addEventListener('click', e => {
   e.preventDefault();
-  const watchedBtn = document.querySelector('.movie-list-queued');
-  watchedBtn.classList.add('hidden');
-  const queuedList = document.querySelector('.movie-list');
-  queuedList.classList.remove('hidden');
-}
+  watchedBtnLibrary.disabled = true;
+  queuedListForClick.style.display = 'none';
+  watchedListForClick.style.display = 'flex';
+  queuedBtnLibrary.disabled = false;
+});
