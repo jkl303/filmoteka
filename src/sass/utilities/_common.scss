@@ -36,6 +36,7 @@ picture {
 
 body {
   font-family: $main-font;
+ 
 }
 
 // COMMON
@@ -48,6 +49,7 @@ position: relative;
   padding-left: 15px;
   padding-right: 15px;
   max-width: 450px;
+  
 
   overflow: hidden;
   
@@ -68,7 +70,7 @@ position: relative;
   font-family: $main-font;
   font-weight: 500;
   font-size: 24px;
-  margin-top: 30px;
+  padding-top: 30px;
   text-align: center;
   text-transform: uppercase;
 }
@@ -85,4 +87,16 @@ position: relative;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+.theme-icon {margin-top: 50px;
+margin-right: 20px;
+margin-left: auto;
+fill:white}
+
+.theme-icon[data-theme="light"] {
+  display:none;
+}
+
+.theme-icon[data-theme="dark"] {
+  display: block;
 }

@@ -3,7 +3,13 @@ import { getCurrentPage } from './getCurrentPage';
 import { renderUI } from './renderHomePageUI';
 import { onSubmit } from './searchinputLogic';
 
+import { becomeDark } from './changeTheme';
+import { becomeLight } from './changeTheme';
+import { storageChecker } from './changeTheme';
+
+
 import { byName, byYear, setBubble } from './homePageSorting';
+
 
 // Adds a red line under active page in the website header
 getCurrentPage();
@@ -12,7 +18,8 @@ getCurrentPage();
 renderUI();
 
 
-searchInputLogic();
+// searchInputLogic
+
 
 
 
@@ -26,8 +33,17 @@ divForFilters.addEventListener('change', e => {
     }
 })
 
+
 const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', onSubmit);
+
+
+// change themes
+storageChecker();
+const dark = document.querySelector('[data-theme ="dark"]');
+dark.addEventListener('click', becomeDark);
+const light = document.querySelector('[data-theme ="light"]');
+light.addEventListener('click', becomeLight);
 
 
 const byNameSelect = document.querySelector('[name="by-name__select"]');

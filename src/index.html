@@ -13,6 +13,8 @@
     />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png" />
     <link rel="stylesheet" href="./sass/main.scss" />
+    <!-- <link rel="stylesheet" title="theme" href="./sass/utilities/dark_theme.css" /> -->
+    <!-- <link rel="stylesheet" title="theme" href="./sass/utilities/light_theme.css" /> -->
   </head>
   <body>
     <header class="header">
@@ -48,6 +50,22 @@
             </svg>
           </button>
         </form>
+
+        <div class="loader-cotainer"></div>
+        <!-- <p class="header-error">
+          Search result not successful. Enter the correct movie name and
+        </p> -->
+
+
+        <div class="theme">
+          <svg class="theme-icon" data-theme ="light" width = 20px height = 20px >
+            <use href="./icons/light_dark_svg.svg#icon-sun"></use></svg>
+          <svg class="theme-icon " data-theme="dark" width=20px height=20px>
+              <use href="./icons/light_dark_svg.svg#icon-moon"></use></svg>
+            
+           
+        </div>
+
       
      
      
@@ -60,6 +78,7 @@
         onchange="this.size=1; this.blur();"></select>
     </div>
   </section>
+
       </div>
     </header>
           
