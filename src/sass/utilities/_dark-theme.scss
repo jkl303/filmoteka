@@ -1,0 +1,29 @@
+body.dark {
+    background-image:linear-gradient(to bottom, rgb(51, 17, 18), rgb(136, 49, 49));
+}
+
+body.dark .movie-title {
+    color: rgb(27, 9, 187);
+
+}
+
+body.dark .theme-icon[data-theme="light"] {
+    display: block;
+}
+
+body.dark .theme-icon[data-theme="dark"] {
+    display: none;
+}
+
+body.dark .footer {
+    
+    background-color:rgb(136, 49, 49);
+}
+
+body.dark .footer-text {
+        color: black;
+  }
+
+  .page-heading {
+      color: rgb(27, 9, 187);
+  }
