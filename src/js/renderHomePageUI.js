@@ -3,15 +3,16 @@ import { getGenres } from './fetchGenres';
 import movieCardTpl from './../templates/movie-card.hbs';
 import axios from 'axios';
 import { openModal } from './modal-movie';
+import { main } from './pagination-homepage';
 
 const moviesList = document.querySelector('.movie-list');
-export const guard = document.querySelector('.guard');
-const options = {
-  root: null,
-  rootMargin: '50px',
-  threshold: 1,
-};
-export const observer = new IntersectionObserver(renderUI, options); // двоит респ и разметку
+// export const guard = document.querySelector('.guard');
+// const options = {
+//   root: null,
+//   rootMargin: '50px',
+//   threshold: 1,
+// };
+// export const observer = new IntersectionObserver(renderUI, options); // двоит респ и разметку
 let page = 1;
 
 async function fetchInitialData(page = 1) {
@@ -63,16 +64,17 @@ export async function renderUI() {
   fetchInitialData(page)
     .then(convertResponseDataToObject)
     .then(data => {
-      if (page > 1) {
-        moviesList.insertAdjacentHTML(
-          'beforeend',
-          data.map(elem => movieCardTpl(elem)).join('')
-        );
-      } else {
-        moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
-      }
+      // if (page > 1) {
+      //   moviesList.insertAdjacentHTML(
+      //     'beforeend',
+      //     data.map(elem => movieCardTpl(elem)).join('')
+      //   );
+      // } else {
+      //   moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
+      // }
+      moviesList.innerHTML = data.map(elem => movieCardTpl(elem)).join('');
+      // observer.observe(guard); // двоит респ и разметку
 
-      observer.observe(guard); // двоит респ и разметку
       page += 1;
 
       // // Adds event listeners to the movies list DOM element
@@ -99,3 +101,32 @@ export async function renderUI() {
       // console.log(movieCards);
     });
 }
+
+// function displayPagination() {
+//   const paginationEl = document.querySelector('.pagination');
+//   const pagesCount = 10;
+//   const ulEl = document.createElement('ul');
+//   ulEl.classList.add('pagination__list');
+//   ulEl.style.display = 'flex';
+//   ulEl.style.justifyContent = 'center';
+
+//   for (let i = 0; i < pagesCount; i++) {
+//     const liEl = displayPaginationBtn(i + 1);
+//     ulEl.appendChild(liEl);
+//   }
+//   paginationEl.appendChild(ulEl);
+// }
+
+// function displayPaginationBtn(pageNumber) {
+//   const liEl = document.createElement('li');
+//   liEl.classList.add('pagination__item');
+//   liEl.innerText = pageNumber;
+//   liEl.addEventListener('click', () => {
+//     currentPaginationPage = pageNumber;
+//     renderUI();
+//   });
+//   return liEl;
+// }
+
+// displayPagination();
+main();
