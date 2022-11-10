@@ -8,7 +8,7 @@ import { fetchInitialData } from './renderHomePageUI';
 getCurrentPage();
 
 const movie_id = JSON.parse(localStorage.getItem('WatchedList'));
-console.log(movie_id);
+// console.log(movie_id);
 
 const options = {
   headers: {
@@ -57,7 +57,6 @@ function apiLibraryWatched(movie_id) {
       //   };
       // });
 
-      console.log(data);
       // return {
       //   title: data.title ? data.title : data.name,
       //   id: data.id,
@@ -66,7 +65,7 @@ function apiLibraryWatched(movie_id) {
       //     data.first_air_date ? data.first_air_date : data.release_date
       //   ).getFullYear(),
       // };
-
+      console.log(data);
       watchedList.insertAdjacentHTML('beforeend', movieCardTpl(data));
     });
 }
