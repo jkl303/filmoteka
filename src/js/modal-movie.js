@@ -1,6 +1,5 @@
 import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 
-
 import {
   LocalStorageWatchedUtil,
   LocalStorageQueuedUtil,
@@ -14,12 +13,12 @@ let addToWatchedBtn;
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import movieModalTpl from './../templates/movie-modal.hbs';
 
-
 //-----------MODAL-MOVIE---------------//
 
 export async function openModal(movie_id, movieSmallPoster) {
   const movie_url_original = `${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`;
   const modalEl = document.querySelector('.modal');
+  console.log(modalEl);
   //   console.log(movieSmallPoster);
   //   console.log(movie_url_original);
 
@@ -124,31 +123,31 @@ export async function openModal(movie_id, movieSmallPoster) {
   // captionDelay: '250',
   //   });
   //   console.log(modal);
+  const modalCard = document.querySelector('.modal__card');
+  modalCard.dataset.id = movie_id;
 
-  let myId = modalEl.querySelector('.modal__wrap').dataset.id;
-  console.log(myId);
-
-  addToWatchedBtn = document.querySelector('.modal__btn-watched');
+  const addToWatchedBtn = document.querySelector('.modal__btn-watched');
 
   addToWatchedBtn.addEventListener('click', onClickWatchedBtn);
   function onClickWatchedBtn(e) {
     e.preventDefault();
+    let myId = modalCard.dataset.id;
     const storageClick = new LocalStorageWatchedUtil();
     storageClick.addWatched(myId);
   }
 
-  addToQueuedBtn = document.querySelector('.modal__btn-queue');
+  const addToQueuedBtn = document.querySelector('.modal__btn-queue');
 
   addToQueuedBtn.addEventListener('click', onClickQueuedBtn);
   function onClickQueuedBtn(e) {
     e.preventDefault();
-
+    let myId = modalCard.dataset.id;
     const storageClickQ = new LocalStorageQueuedUtil();
     storageClickQ.addQueued(myId);
   }
 
-  const newCont = new LocalStorageQueuedUtil();
-  newCont.addQueued(myId);
+  // const newCont = new LocalStorageQueuedUtil();
+  // newCont.addQueued(myId);
 
   const btnClose = document.querySelector('.modal__btn-close');
   btnClose.addEventListener('click', () => closeModal());
