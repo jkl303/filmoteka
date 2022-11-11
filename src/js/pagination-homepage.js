@@ -37,6 +37,7 @@ async function renderPages() {
     moviesList.innerHTML = '';
 
     // const paginatedData = arrData.slice(start, end);
+    console.log('Page: ', page);
     fetchInitialData(page)
       .then(convertResponseDataToObject)
       .then(data => {
@@ -47,7 +48,7 @@ async function renderPages() {
   function displayPagination() {
     const paginationEl = document.querySelector('.pagination');
     const ulEl = document.createElement('ul');
-    const pagesCount = 10;
+    const pagesCount = totalPages;
     ulEl.classList.add('pagination__list');
     ulEl.style.display = 'flex';
     ulEl.style.justifyContent = 'center';
