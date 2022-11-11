@@ -4,6 +4,15 @@ import { getCurrentPage } from './getCurrentPage';
 import { openModal } from './modal-movie';
 import { fetchInitialData } from './renderHomePageUI';
 
+function storageLibraryChecker() {
+  if (localStorage.getItem('theme') !== null) {
+    document.body.classList.add('dark');
+  } else {
+    document.body.classList.remove('dark');
+  }
+}
+storageLibraryChecker();
+
 getCurrentPage();
 
 const movie_id = JSON.parse(localStorage.getItem('WatchedList'));
