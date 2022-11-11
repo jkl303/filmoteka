@@ -60,16 +60,9 @@ light.addEventListener('click', becomeLight);
 
 
 // // sort by name
-// const loadBtn = document.querySelector('.load-btn');
-// const title = document.querySelector('.page-heading');
-// const movieListEl = document.querySelector('.movie-list');
 
 // const byNameSelect = document.querySelector('[name="by-name__select"]');
 // byNameSelect.addEventListener('change', () => {
-//   movieListEl.innerHTML = '';
-//   title.textContent = `Sorted by title(${byNameSelect.value}ending)`;
-//   removeBubble();
-//   loadBtn.addEventListener('click', seeMoreByName);
 //   byName(byNameSelect.value);
 // });
 
@@ -77,9 +70,7 @@ light.addEventListener('click', becomeLight);
 // const byYearInput = document.querySelector('[name="by-year"]');
 // byYearInput.addEventListener('input', setBubble);
 // byYearInput.addEventListener('change', () => {
-//   movieListEl.innerHTML = '';
-//   title.textContent = `Movies released in ${byYearInput.value}`;
-//   loadBtn.addEventListener('click', seeMoreByDate);
+  
 //   byYear(byYearInput.value)
 // });
 

@@ -6,10 +6,18 @@ const range = document.querySelector("input[type='range']");
 const bubble = document.querySelector('.bubble');
 const byNameSelect = document.querySelector('[name="by-name__select"]');
 const byYearInput = document.querySelector('[name="by-year"]');
+const loadBtn = document.querySelector('.load-btn');
+const title = document.querySelector('.page-heading');
+const movieListEl = document.querySelector('.movie-list');
+
+
 
 let page = 1;
 
-export async function byName(value) {
+export async function byName(value) {movieListEl.innerHTML = '';
+  title.textContent = `Sorted by title(${byNameSelect.value}ending)`;
+  removeBubble();
+  loadBtn.addEventListener('click', seeMoreByName);
   try {
     await fetchData(`/discover/movie?sort_by=title.${value}`, page).then(formatResponseData).then(renderUI);
   }
@@ -17,7 +25,9 @@ export async function byName(value) {
     console.log(error);
   }
 }
-export async function byYear(year) {
+export async function byYear(year) {movieListEl.innerHTML = '';
+  title.textContent = `Movies released in ${byYearInput.value}`;
+  loadBtn.addEventListener('click', seeMoreByDate);
   try {
   await fetchData(`/discover/movie?primary_release_year=${year}`, page).then(formatResponseData).then(renderUI);
     }
@@ -41,13 +51,23 @@ export function removeBubble() {
   bubble.style.visibility = 'hidden';
 }
 
-export function seeMoreByName() {
+async function seeMoreByName() {
   page += 1;
-  byName(byNameSelect.value, page);
+  try {
+    await fetchData(`/discover/movie?sort_by=title.${byNameSelect.value}`, page).then(formatResponseData).then(renderUI);
+  }
+  catch (error) {
+    console.log(error);
+  }
 }
     
-export function seeMoreByDate() {
+async function seeMoreByDate() {
   page += 1;
-  byYear(byYearInput.value, page);
+  try {
+  await fetchData(`/discover/movie?primary_release_year=${byYearInput.value}`, page).then(formatResponseData).then(renderUI);
+    }
+  catch (error) {
+    console.log(error);
+  }
 }
 
