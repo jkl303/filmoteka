@@ -16,7 +16,7 @@ async function getData(page) {
         page: page,
       },
     });
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (err) {
     return err;
@@ -25,7 +25,7 @@ async function getData(page) {
 
 async function renderPages() {
   const filmData = await getData(page);
-  console.log(filmData);
+  // console.log(filmData);
   const totalPages = filmData.total_pages;
   //   const totalResults = filmData.total_results;
   //   const resultsArr = filmData.results;
@@ -46,7 +46,7 @@ async function renderPages() {
     const moviesList = document.querySelector('.movie-list');
     moviesList.innerHTML = '';
 
-    console.log('Page: ', page);
+    // console.log('Page: ', page);
     fetchInitialData(page)
       .then(convertResponseDataToObject)
       .then(data => {
@@ -75,7 +75,7 @@ async function renderPages() {
 
       if (pagesCount < totalPages) {
         for (let i = initialPageNumber; i <= pagesCount; i++) {
-          console.log(i);
+          // console.log(i);
 
           const liEl = displayPaginationBtn(i);
           ulEl.appendChild(liEl);
@@ -97,7 +97,7 @@ async function renderPages() {
 
       if (pagesCount < totalPages) {
         for (let i = initialPageNumber; i <= pagesCount; i++) {
-          console.log(i);
+          // console.log(i);
 
           const liEl = displayPaginationBtn(i);
           ulEl.appendChild(liEl);
@@ -121,7 +121,7 @@ async function renderPages() {
     }
     liEl.addEventListener('click', evt => {
       let clickedPage = Number(evt.target.innerHTML);
-      console.log(clickedPage);
+      // console.log(clickedPage);
       displayFilmsList(clickedPage);
       page = clickedPage;
 
