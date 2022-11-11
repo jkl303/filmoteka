@@ -18,7 +18,7 @@ const refs = {
   container: document.querySelector('main .container'),
 };
 
-console.log(refs.container);
+
 const defaultImg = "https://www.gulftoday.ae/-/media/gulf-today/images/articles/opinion/2022/8/7/cinema.ashx?h=450&la=en&w=750&hash=EB12327C59FAEB577FBED56AF6BF2E12";
 let searchQuery = '';
 let genresList = null;
