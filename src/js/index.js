@@ -8,7 +8,7 @@ import { becomeLight } from './changeTheme';
 import { storageChecker } from './changeTheme';
 
 
-import { byName, byYear, seeMoreByName, seeMoreByDate, setBubble, removeBubble } from './homePageSorting';
+import { byName, byYear, setBubble, removeBubble } from './homePageSorting';
 // Adds a red line under active page in the website header
 getCurrentPage();
 
@@ -59,18 +59,18 @@ light.addEventListener('click', becomeLight);
 
 
 
-// // sort by name
+// sort by name
 
-// const byNameSelect = document.querySelector('[name="by-name__select"]');
-// byNameSelect.addEventListener('change', () => {
-//   byName(byNameSelect.value);
-// });
+const byNameSelect = document.querySelector('[name="by-name__select"]');
+byNameSelect.addEventListener('change', () => {
+  byName(byNameSelect.value);
+});
 
-// // filter by year
-// const byYearInput = document.querySelector('[name="by-year"]');
-// byYearInput.addEventListener('input', setBubble);
-// byYearInput.addEventListener('change', () => {
+// filter by year
+const byYearInput = document.querySelector('[name="by-year"]');
+byYearInput.addEventListener('input', setBubble);
+byYearInput.addEventListener('change', () => {
   
-//   byYear(byYearInput.value)
-// });
+  byYear(byYearInput.value)
+});
 
