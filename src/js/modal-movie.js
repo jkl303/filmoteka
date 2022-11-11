@@ -131,6 +131,12 @@ export async function openModal(movie_id, movieSmallPoster) {
   addToWatchedBtn.addEventListener('click', onClickWatchedBtn);
   function onClickWatchedBtn(e) {
     e.preventDefault();
+    console.dir(addToWatchedBtn);
+    if (addToWatchedBtn.innerHTML === 'ADD TO WATCHED') {
+      addToWatchedBtn.innerHTML = 'REMOVE FROM WATCHED';
+    } else {
+      addToWatchedBtn.innerHTML = 'ADD TO WATCHED';
+    }
     let myId = modalCard.dataset.id;
     const storageClick = new LocalStorageWatchedUtil();
     storageClick.addWatched(myId);
@@ -141,6 +147,11 @@ export async function openModal(movie_id, movieSmallPoster) {
   addToQueuedBtn.addEventListener('click', onClickQueuedBtn);
   function onClickQueuedBtn(e) {
     e.preventDefault();
+    if (addToQueuedBtn.innerHTML === 'ADD TO QUEUED') {
+      addToQueuedBtn.innerHTML = 'REMOVE FROM QUEUED';
+    } else {
+      addToQueuedBtn.innerHTML = 'ADD TO QUEUED';
+    }
     let myId = modalCard.dataset.id;
     const storageClickQ = new LocalStorageQueuedUtil();
     storageClickQ.addQueued(myId);
