@@ -16,6 +16,21 @@
   }
 }
 
+.movie-list-queue {
+  display: none;
+  flex-wrap: wrap;
+  margin-top: 30px;
+
+  @include tablet-bg {
+    column-gap: 32px;
+    row-gap: 32px;
+  }
+
+  @include desktop {
+    column-gap: 16px;
+  }
+}
+
 .movie-item {
   max-width: 100%;
 
@@ -103,4 +118,4 @@
   visibility: hidden;
 }
 
-// 
+//

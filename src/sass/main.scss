@@ -8,11 +8,6 @@
 @use './components/footer';
 @use './components/loader';
 @use './components/modal-movie';
-
-@use './utilities/dark-theme';
-
-
 @use './components/sort';
-
-
-
+@use './components/pagination-buttons';
+@use './utilities/dark-theme';

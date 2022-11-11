@@ -9,7 +9,11 @@ const defaultImg = "https://www.gulftoday.ae/-/media/gulf-today/images/articles/
 let genresDictionary = {};
 let page = 1;
 
-async function fetchData(endpoint, page, genres ) {
+
+// async function fetchData(endpoint, page, genres ) {
+
+export async function fetchData(endpoint, page, genres) {
+
   try {
     const {
       data: { results },
@@ -58,7 +62,7 @@ async function composeGenresDictionary() {
   }
 }
 
-async function formatResponseData(results) {
+export async function formatResponseData(results) {
   genresDictionary = await composeGenresDictionary();
   try {
     const processedObject = await results.map(elem => {
@@ -93,8 +97,13 @@ async function formatResponseData(results) {
   }
 }
 
-function renderUI(data) {
-  movieListEl.innerHTML += data.map(elem => movieCardTpl(elem)).join('');
+
+// function renderUI(data) {
+//  movieListEl.innerHTML += data.map(elem => movieCardTpl(elem)).join('');
+
+export async function renderUI(data) {
+  movieListEl.innerHTML += data.map(elem => movieCardTemplate(elem)).join('');
+
 }
 
 export { fetchData, formatResponseData, renderUI };

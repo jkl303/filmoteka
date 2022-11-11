@@ -1,0 +1,16 @@
+.pagination__list {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination__item--active {
+  background-color: #ff6b08;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+.arrow-right,
+.arrow-left {
+  border-color: transparent;
+  border-radius: 4px;
+}
