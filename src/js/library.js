@@ -27,7 +27,7 @@ movie_id.forEach(element => {
   apiLibraryWatched(element);
 });
 
-const watchedList = document.querySelector('.movie-list');
+const watchedList = document.querySelector('.movie-list-watched');
 
 export function apiLibraryWatched(movie_id) {
   return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`, options)
@@ -56,7 +56,7 @@ export function apiLibraryWatched(movie_id) {
     });
 }
 const queuedListForClick = document.querySelector('.movie-list-queue');
-const watchedListForClick = document.querySelector('.movie-list');
+const watchedListForClick = document.querySelector('.movie-list-watched');
 const queuedTitleOnClick = document.querySelector('.page-heading-queued');
 const watchedTitleOnClick = document.querySelector('.page-heading');
 

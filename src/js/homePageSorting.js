@@ -1,5 +1,7 @@
 import {
-  fetchData, formatResponseData, renderUI
+  fetchData,
+  formatResponseData,
+  renderUI,
 } from './newDataFetchFunction';
 
 const range = document.querySelector("input[type='range']");
@@ -10,31 +12,33 @@ const loadBtn = document.querySelector('.load-btn');
 const title = document.querySelector('.page-heading');
 const movieListEl = document.querySelector('.movie-list');
 
-
-
 let page = 1;
 
-export async function byName(value) {movieListEl.innerHTML = '';
+export async function byName(value) {
+  movieListEl.innerHTML = '';
   title.textContent = `Sorted by title(${byNameSelect.value}ending)`;
   removeBubble();
   loadBtn.addEventListener('click', seeMoreByName);
   try {
-    await fetchData(`/discover/movie?sort_by=title.${value}`, page).then(formatResponseData).then(renderUI);
-  }
-  catch (error) {
+    await fetchData(`/discover/movie?sort_by=title.${value}`, page)
+      .then(formatResponseData)
+      .then(renderUI);
+  } catch (error) {
     console.log(error);
   }
 }
-export async function byYear(year) {movieListEl.innerHTML = '';
+export async function byYear(year) {
+  movieListEl.innerHTML = '';
   title.textContent = `Movies released in ${byYearInput.value}`;
   loadBtn.addEventListener('click', seeMoreByDate);
   try {
-  await fetchData(`/discover/movie?primary_release_year=${year}`, page).then(formatResponseData).then(renderUI);
-    }
-  catch (error) {
+    await fetchData(`/discover/movie?primary_release_year=${year}`, page)
+      .then(formatResponseData)
+      .then(renderUI);
+  } catch (error) {
     console.log(error);
   }
-  }
+}
 
 export function setBubble() {
   bubble.style.visibility = 'visible';
@@ -54,20 +58,24 @@ export function removeBubble() {
 async function seeMoreByName() {
   page += 1;
   try {
-    await fetchData(`/discover/movie?sort_by=title.${byNameSelect.value}`, page).then(formatResponseData).then(renderUI);
-  }
-  catch (error) {
-    console.log(error);
-  }
-}
-    
-async function seeMoreByDate() {
-  page += 1;
-  try {
-  await fetchData(`/discover/movie?primary_release_year=${byYearInput.value}`, page).then(formatResponseData).then(renderUI);
-    }
-  catch (error) {
+    await fetchData(`/discover/movie?sort_by=title.${byNameSelect.value}`, page)
+      .then(formatResponseData)
+      .then(renderUI);
+  } catch (error) {
     console.log(error);
   }
 }
 
+async function seeMoreByDate() {
+  page += 1;
+  try {
+    await fetchData(
+      `/discover/movie?primary_release_year=${byYearInput.value}`,
+      page
+    )
+      .then(formatResponseData)
+      .then(renderUI);
+  } catch (error) {
+    console.log(error);
+  }
+}

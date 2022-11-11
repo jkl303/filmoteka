@@ -16,6 +16,21 @@
   }
 }
 
+.movie-list-watched {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+
+  @include tablet-bg {
+    column-gap: 32px;
+    row-gap: 32px;
+  }
+
+  @include desktop {
+    column-gap: 16px;
+  }
+}
+
 .movie-list-queue {
   display: none;
   flex-wrap: wrap;
