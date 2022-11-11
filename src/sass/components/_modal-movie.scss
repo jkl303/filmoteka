@@ -27,22 +27,22 @@
   top: 20px;
   left: 20px;
   right: 20px;
+  justify-content: center;
 
   @include tablet-bg {
     display: flex;
     margin: auto;
-    height: 552px;
+    min-height: 300px;
     padding: 40px;
+    top: 55px;
   }
 
   @include desktop {
     display: flex;
     width: 806px;
     height: 558px;
-    padding: 40px;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50% -50%);
+    padding: 40px 12px 40px 12px;
+    top: 55px;
   }
 }
 
@@ -61,16 +61,39 @@
     margin-top: 0;
     margin-bottom: 0;
     margin-right: 68px;
+    object-fit: cover;
   }
 
   @include desktop {
-    width: 375px;
+    width: 400px;
     height: 478px;
     margin-right: 16px;
+    object-fit: cover;
+  }
+}
+.modal-plug {
+  background-image: url('../images/plug.jpg');
+  background-size: cover;
+  width: 250px;
+  height: 50vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  @include tablet-bg {
+    width: 100%;
+    min-height: 300px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 }
 .modal__wrap {
   padding: 0px 20px 20px;
+  @include desktop {
+    width: 390px;
+    padding: 0px 0px 20px;
+  }
 }
 
 .modal__movie-title {
@@ -100,6 +123,7 @@
   font-size: 12px;
   line-height: 1.33;
   color: #8c8c8c;
+  margin-right: 5px;
 }
 .movie-vote-upper {
   color: #000000;
@@ -272,13 +296,4 @@ ul li {
   text-align: center;
   font-size: 12px;
   line-height: 14px;
-}
-.modal-plug {
-  background-image: url('../images/plug.jpg');
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
 }

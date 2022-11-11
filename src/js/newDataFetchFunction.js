@@ -5,7 +5,7 @@ const movieListEl = document.querySelector('.movie-list');
 
 let genresDictionary = {};
 
-async function fetchData(endpoint, page, genres) {
+export async function fetchData(endpoint, page, genres) {
   try {
     const {
       data: { results },
@@ -36,7 +36,7 @@ async function composeGenresDictionary() {
   }
 }
 
-async function formatResponseData(results) {
+export async function formatResponseData(results) {
   genresDictionary = await composeGenresDictionary();
   try {
     const processedObject = await results.map(elem => {
@@ -71,7 +71,7 @@ async function formatResponseData(results) {
   }
 }
 
-async function renderUI(data) {
+export async function renderUI(data) {
   movieListEl.innerHTML += data.map(elem => movieCardTemplate(elem)).join('');
 }
 

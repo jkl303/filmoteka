@@ -1,0 +1,52 @@
+<div class='modal__card'>
+  <img src='{{imgPath}}' alt='' class='modal__movie-backdrop' />
+
+  <div class='modal__wrap'>
+    <h2>
+      <span class='modal__movie-title'>{{title}}</span>
+    </h2>
+    <ul class='modal__movie-info'>
+      <li>
+        <div class='modal__movie-vote-cont'>
+          <p class='modal__movie-vote'>Vote / Votes: </p>
+          <div class='movie-vote-upper'><div
+              class='movie-vote-upper movie__average--{{byRate}}'
+            >
+              {{rate}}
+            </div>
+            /
+            {{vote_count}}
+          </div>
+
+        </div>
+      </li>
+      <li>
+        <div class='modal__movie-popularity-cont'>
+          <p class='modal__movie-popularity'>Popularity:
+            <span class='movie-popularity-upper'>{{byPopularity}}</span>
+          </p>
+        </div>
+
+      </li>
+      <li>
+        <p class='modal__movie-original-title'>Original Title:
+          <span class='movie-title-upper'>{{original_title}}</span></p>
+      </li>
+      <li>
+        <p class='modal__movie-genre'>Genre:
+          <span class='movie-genre-upper'>{{byGenres}}</span></p>
+
+      </li>
+      <li>
+        <p class='modal__movie-overview'>ABOUT</p>
+        <span class='movie-overview-upper'>{{overview}}</span>
+      </li>
+    </ul>
+
+    <button type='button' class='modal__btn-close'></button>
+    <div class='modal__btn-list'>
+      <button type='button' class='modal__btn-watched'>ADD TO WATCHED</button>
+      <button type='button' class='modal__btn-queue'>ADD TO QUEUE</button>
+    </div>
+  </div>
+</div>
