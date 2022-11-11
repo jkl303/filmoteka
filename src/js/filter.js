@@ -3,10 +3,11 @@ import { addLoader, removeLoader } from './loader';
 import movieCardTpl from '../templates/movie-card.hbs';
 import options from './../templates/options.hbs'
 import {
-  fetchInitialData,
-  convertResponseDataToObject,
+  fetchData,
+  formatResponseData,
   renderUI,
 } from './renderHomePageUI';
+import axios from 'axios';
 import { getGenres } from './fetchGenres';
 const moviesList = document.querySelector('.movie-list');
 const select = document.querySelector('.js-select')
@@ -24,7 +25,6 @@ async function getOptions() {
 
 async function getOptionsGenres() {
   const genres = await getOptions();
-  console.log(genres);
   return genres;
 }
 
@@ -32,7 +32,6 @@ export async function generateOptions() {
   let emptyObj = {};
 
   const dataForGenerationOfOptions = await getOptionsGenres();
-console.log(dataForGenerationOfOptions);
   const array = dataForGenerationOfOptions.genres.map(el => el);
   array.push(emptyObj);
   const markup = array.map(el => options({ el }));
@@ -61,31 +60,19 @@ export async function filterByGenres(genre,page) {
       moviesList.innerHTML = '';
     }
     const genresDictionary = await getGenres();
-    console.log(genresDictionary);
+
     genresArr = Object.values(genresDictionary);
     const targetGenre = genresArr.find(g => g.name === genre).id;
     console.log(targetGenre);
-    const results = await sortByGenre(targetGenre);
-console.log(results);
+    const results = await sortByGenre(targetGenre,1);
+    console.log(results);
+renderUI(results.results)
   } catch (err) {
     console.error(err);
 
   }
 }
  
-// async function render(data) {
-//   const genres = await getGenres().then(list => {
-// console.log(list);
-//     return list.genres;
-//   });
-//   const resultsGenre = await convertResponseDataToObject(data);
-//   resultsGenre.map(res => {console.log(res.genres); res.genres})
-//   const cardsGallery = movieCardTpl({ resultsGenre });
-//   console.log(resultsGenre);
-//   moviesList.insertAdjacentHTML('beforeend', cardsGallery);
-// }
 
 
 
-
- 
