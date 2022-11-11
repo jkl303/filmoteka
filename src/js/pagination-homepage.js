@@ -23,7 +23,7 @@ async function getData(page) {
   }
 }
 
-async function renderPages() {
+export async function renderPages() {
   const filmData = await getData(page);
   // console.log(filmData);
   const totalPages = filmData.total_pages;
@@ -137,5 +137,3 @@ async function renderPages() {
   displayFilmsList(currentPageNumber);
   displayPagination();
 }
-
-renderPages();
