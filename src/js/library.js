@@ -39,6 +39,7 @@ export function apiLibraryWatched(movie_id) {
     })
     .then(data => {
       const libraryWatchedListEl = document.createElement('li');
+
       libraryWatchedListEl.classList.add('movie-item');
       libraryWatchedListEl.innerHTML = `
       <a href='${data.id}' id = '${data.id}' class='movie-link'>
@@ -56,6 +57,8 @@ export function apiLibraryWatched(movie_id) {
 }
 const queuedListForClick = document.querySelector('.movie-list-queue');
 const watchedListForClick = document.querySelector('.movie-list');
+const queuedTitleOnClick = document.querySelector('.page-heading-queued');
+const watchedTitleOnClick = document.querySelector('.page-heading');
 
 const queuedBtnLibrary = document.getElementById(
   'js-navigationLibraryButtonQueue'
@@ -64,7 +67,9 @@ queuedBtnLibrary.addEventListener('click', e => {
   e.preventDefault();
   queuedBtnLibrary.disabled = true;
   watchedListForClick.style.display = 'none';
+  watchedTitleOnClick.style.display = 'none';
   queuedListForClick.style.display = 'flex';
+  queuedTitleOnClick.style.display = 'block';
   watchedBtnLibrary.disabled = false;
 });
 
@@ -76,6 +81,8 @@ watchedBtnLibrary.addEventListener('click', e => {
   e.preventDefault();
   watchedBtnLibrary.disabled = true;
   queuedListForClick.style.display = 'none';
+  queuedTitleOnClick.style.display = 'none';
   watchedListForClick.style.display = 'flex';
+  watchedTitleOnClick.style.display = 'block';
   queuedBtnLibrary.disabled = false;
 });

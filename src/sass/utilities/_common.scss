@@ -36,23 +36,21 @@ picture {
 
 body {
   font-family: $main-font;
- 
 }
 
 // COMMON
 
 .container {
-position: relative;
+  position: relative;
 
   margin-left: auto;
   margin-right: auto;
   padding-left: 15px;
   padding-right: 15px;
   max-width: 450px;
-  
 
   overflow: hidden;
-  
+
   @include tablet-bg {
     // width: 738px;
     max-width: 704px;
@@ -66,7 +64,8 @@ position: relative;
   }
 }
 
-.page-heading {
+.page-heading,
+.page-heading-queued {
   font-family: $main-font;
   font-weight: 500;
   font-size: 24px;
@@ -75,6 +74,9 @@ position: relative;
   text-transform: uppercase;
 }
 
+.page-heading-queued {
+  display: none;
+}
 
 .visually-hidden {
   position: absolute;
@@ -88,15 +90,17 @@ position: relative;
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
-.theme-icon {margin-top: 50px;
-margin-right: 20px;
-margin-left: auto;
-fill:white}
-
-.theme-icon[data-theme="light"] {
-  display:none;
+.theme-icon {
+  margin-top: 50px;
+  margin-right: 20px;
+  margin-left: auto;
+  fill: white;
 }
 
-.theme-icon[data-theme="dark"] {
+.theme-icon[data-theme='light'] {
+  display: none;
+}
+
+.theme-icon[data-theme='dark'] {
   display: block;
 }
