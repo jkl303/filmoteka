@@ -2,7 +2,7 @@ import { getCurrentPage } from './getCurrentPage';
 import { AddListenerToMovieList } from './modal-movie';
 import { renderUI } from './renderHomePageUI';
 import { onSubmit } from './searchinputLogic';
-import {filterByGenres} from './filter'
+import { filterByGenres } from './filter';
 
 import { becomeDark } from './changeTheme';
 import { becomeLight } from './changeTheme';
@@ -14,7 +14,7 @@ import { byName, byYear, setBubble } from './homePageSorting';
 getCurrentPage();
 
 // UI render invocation
-renderUI();
+// renderUI();
 
 // searchInputLogic();
 
@@ -26,9 +26,7 @@ AddListenerToMovieList();
 const divForFilters = document.querySelector('.divForFilters');
 
 divForFilters.addEventListener('change', e => {
-
-    filterByGenres(e.target.value,1);
-  
+  filterByGenres(e.target.value, 1);
 });
 
 const searchForm = document.querySelector('.search-form');
