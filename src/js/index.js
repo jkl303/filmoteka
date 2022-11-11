@@ -7,9 +7,7 @@ import { becomeDark } from './changeTheme';
 import { becomeLight } from './changeTheme';
 import { storageChecker } from './changeTheme';
 
-
 import { byName, byYear, setBubble } from './homePageSorting';
-
 
 // Adds a red line under active page in the website header
 getCurrentPage();
@@ -19,23 +17,12 @@ renderUI();
 
 // searchInputLogic();
 
-
-
 // Add modal-movie
 AddListenerToMovieList();
 
-
-
-
 // searchInputLogic
 
-
-
-
-
-const divForFilters = document.querySelector('.divForFilters')
-
-
+const divForFilters = document.querySelector('.divForFilters');
 
 divForFilters.addEventListener('change', e => {
   let selectValue = e.target.value;
@@ -45,13 +32,8 @@ divForFilters.addEventListener('change', e => {
   }
 });
 
-
 const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', onSubmit);
-
-
-
-
 
 // change themes
 storageChecker();
@@ -59,8 +41,6 @@ const dark = document.querySelector('[data-theme ="dark"]');
 dark.addEventListener('click', becomeDark);
 const light = document.querySelector('[data-theme ="light"]');
 light.addEventListener('click', becomeLight);
-
-
 
 const byNameSelect = document.querySelector('[name="by-name__select"]');
 byNameSelect.addEventListener('change', () => byName(byNameSelect.value));
