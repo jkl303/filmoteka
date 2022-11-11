@@ -8,9 +8,7 @@ import { becomeLight } from './changeTheme';
 import { storageChecker } from './changeTheme';
 
 
-import { byName, byYear, setBubble } from './homePageSorting';
-
-
+import { byName, byYear, seeMoreByName, seeMoreByDate, setBubble, removeBubble } from './homePageSorting';
 // Adds a red line under active page in the website header
 getCurrentPage();
 
@@ -31,10 +29,12 @@ AddListenerToMovieList();
 
 
 
-const divForFilters = document.querySelector('.divForFilters')
+const divForFilters = document.querySelector('.divForFilters');
+
 
 
 divForFilters.addEventListener('change', e => {
+  removeBubble();
   let selectValue = e.target.value
     console.dir(selectValue);
     if (selectValue !== '') {
@@ -56,10 +56,30 @@ const light = document.querySelector('[data-theme ="light"]');
 light.addEventListener('click', becomeLight);
 
 
-const byNameSelect = document.querySelector('[name="by-name__select"]');
-byNameSelect.addEventListener('change', () => byName(byNameSelect.value));
 
-const byYearInput = document.querySelector('[name="by-year"]');
-byYearInput.addEventListener('input', setBubble);
-byYearInput.addEventListener('change', () => byYear(byYearInput.value));
+
+
+// // sort by name
+// const loadBtn = document.querySelector('.load-btn');
+// const title = document.querySelector('.page-heading');
+// const movieListEl = document.querySelector('.movie-list');
+
+// const byNameSelect = document.querySelector('[name="by-name__select"]');
+// byNameSelect.addEventListener('change', () => {
+//   movieListEl.innerHTML = '';
+//   title.textContent = `Sorted by title(${byNameSelect.value}ending)`;
+//   removeBubble();
+//   loadBtn.addEventListener('click', seeMoreByName);
+//   byName(byNameSelect.value);
+// });
+
+// // filter by year
+// const byYearInput = document.querySelector('[name="by-year"]');
+// byYearInput.addEventListener('input', setBubble);
+// byYearInput.addEventListener('change', () => {
+//   movieListEl.innerHTML = '';
+//   title.textContent = `Movies released in ${byYearInput.value}`;
+//   loadBtn.addEventListener('click', seeMoreByDate);
+//   byYear(byYearInput.value)
+// });
 

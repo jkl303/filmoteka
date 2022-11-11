@@ -1,50 +1,30 @@
-import { API_KEY, BASE_URL, IMG_URL } from './api-service';
-import axios from 'axios';
-import { addLoader, removeLoader } from './loader';
-const container = document.querySelector('main .container');
+import {
+  fetchData, formatResponseData, renderUI
+} from './newDataFetchFunction';
+
 const range = document.querySelector("input[type='range']");
 const bubble = document.querySelector('.bubble');
-const title = document.querySelector('.page-heading');
+const byNameSelect = document.querySelector('[name="by-name__select"]');
+const byYearInput = document.querySelector('[name="by-year"]');
+
+let page = 1;
 
 export async function byName(value) {
   try {
-    if (value === 'empty') {
-    } else {
-      title.textContent = `Sorted by title(${value}ending)`;
-      const {
-        data: { results },
-      } = await axios.get(`${BASE_URL}/discover/movie?sort_by=title.${value}`, {
-        params: {
-          api_key: API_KEY,
-        },
-      });
-
-      console.log(results);
-    }
-  } catch (err) {
-    return err;
+    await fetchData(`/discover/movie?sort_by=title.${value}`, page).then(formatResponseData).then(renderUI);
+  }
+  catch (error) {
+    console.log(error);
   }
 }
-
 export async function byYear(year) {
   try {
-    title.textContent = `Movies released in ${year}`;
-    const {
-      data: { results },
-    } = await axios.get(
-      `${BASE_URL}/discover/movie?primary_release_year=${year}`,
-      {
-        params: {
-          api_key: API_KEY,
-        },
-      }
-    );
-
-    console.log(results);
-  } catch (err) {
-    return err;
+  await fetchData(`/discover/movie?primary_release_year=${year}`, page).then(formatResponseData).then(renderUI);
+    }
+  catch (error) {
+    console.log(error);
   }
-}
+  }
 
 export function setBubble() {
   bubble.style.visibility = 'visible';
@@ -55,3 +35,19 @@ export function setBubble() {
   bubble.innerHTML = val;
   bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
 }
+
+export function removeBubble() {
+  const bubble = document.querySelector('.bubble');
+  bubble.style.visibility = 'hidden';
+}
+
+export function seeMoreByName() {
+  page += 1;
+  byName(byNameSelect.value, page);
+}
+    
+export function seeMoreByDate() {
+  page += 1;
+  byYear(byYearInput.value, page);
+}
+
