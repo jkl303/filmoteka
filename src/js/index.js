@@ -13,7 +13,7 @@ import { byName, byYear, setBubble } from './homePageSorting';
 getCurrentPage();
 
 // UI render invocation
-renderUI();
+// renderUI();
 
 // Add modal-movie
 AddListenerToMovieList();
