@@ -4,6 +4,15 @@ import { getCurrentPage } from './getCurrentPage';
 import { openModal } from './modal-movie';
 import { fetchInitialData } from './renderHomePageUI';
 
+function storageLibraryChecker() {
+  if (localStorage.getItem('theme') !== null) {
+    document.body.classList.add('dark');
+  } else {
+    document.body.classList.remove('dark');
+  }
+}
+storageLibraryChecker();
+
 getCurrentPage();
 
 const movie_id = JSON.parse(localStorage.getItem('WatchedList'));
@@ -18,7 +27,7 @@ movie_id.forEach(element => {
   apiLibraryWatched(element);
 });
 
-const watchedList = document.querySelector('.movie-list');
+const watchedList = document.querySelector('.movie-list-watched');
 
 export function apiLibraryWatched(movie_id) {
   return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`, options)
@@ -30,6 +39,7 @@ export function apiLibraryWatched(movie_id) {
     })
     .then(data => {
       const libraryWatchedListEl = document.createElement('li');
+
       libraryWatchedListEl.classList.add('movie-item');
       libraryWatchedListEl.innerHTML = `
       <a href='${data.id}' id = '${data.id}' class='movie-link'>
@@ -46,7 +56,9 @@ export function apiLibraryWatched(movie_id) {
     });
 }
 const queuedListForClick = document.querySelector('.movie-list-queue');
-const watchedListForClick = document.querySelector('.movie-list');
+const watchedListForClick = document.querySelector('.movie-list-watched');
+const queuedTitleOnClick = document.querySelector('.page-heading-queued');
+const watchedTitleOnClick = document.querySelector('.page-heading');
 
 const queuedBtnLibrary = document.getElementById(
   'js-navigationLibraryButtonQueue'
@@ -55,7 +67,9 @@ queuedBtnLibrary.addEventListener('click', e => {
   e.preventDefault();
   queuedBtnLibrary.disabled = true;
   watchedListForClick.style.display = 'none';
+  watchedTitleOnClick.style.display = 'none';
   queuedListForClick.style.display = 'flex';
+  queuedTitleOnClick.style.display = 'block';
   watchedBtnLibrary.disabled = false;
 });
 
@@ -67,6 +81,8 @@ watchedBtnLibrary.addEventListener('click', e => {
   e.preventDefault();
   watchedBtnLibrary.disabled = true;
   queuedListForClick.style.display = 'none';
+  queuedTitleOnClick.style.display = 'none';
   watchedListForClick.style.display = 'flex';
+  watchedTitleOnClick.style.display = 'block';
   queuedBtnLibrary.disabled = false;
 });
