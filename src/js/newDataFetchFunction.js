@@ -98,6 +98,8 @@ export async function formatResponseData(results) {
 
 export async function renderUI(data) {
   movieListEl.innerHTML += data.map(elem => movieCardTpl(elem)).join('');
+
+
 }
 
 // EXAMPLE OF HOW TO RENDER UI

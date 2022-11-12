@@ -13,7 +13,7 @@ const moviesList = document.querySelector('.movie-list');
 //   threshold: 1,
 // };
 // export const observer = new IntersectionObserver(renderUI, options);
-// let page = 1;
+let page = 1;
 
 export async function fetchInitialData(page = 1) {
   try {

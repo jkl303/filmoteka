@@ -20,19 +20,45 @@ export async function byName(value) {
   removeBubble();
   loadBtn.addEventListener('click', seeMoreByName);
   try {
-    await fetchData(`/discover/movie?sort_by=title.${value}`, page)
+    await fetchData(`/discover/movie?sort_by=title.${value}`)
       .then(formatResponseData)
       .then(renderUI);
   } catch (error) {
     console.log(error);
   }
 }
+
+async function seeMoreByName() {
+  page += 1;
+  try {
+    await fetchData(`/discover/movie?sort_by=title.${byNameSelect.value}`, page)
+      .then(formatResponseData)
+      .then(renderUI);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function byYear(year) {
   movieListEl.innerHTML = '';
   title.textContent = `Movies released in ${byYearInput.value}`;
-  loadBtn.addEventListener('click', seeMoreByDate);
+  loadBtn.addEventListener('click', seeMoreByYear);
   try {
-    await fetchData(`/discover/movie?primary_release_year=${year}`, page)
+    await fetchData(`/discover/movie?primary_release_year=${year}`)
+      .then(formatResponseData)
+      .then(renderUI);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function seeMoreByYear() {
+  page += 1;
+  try {
+    await fetchData(
+      `/discover/movie?primary_release_year=${byYearInput.value}`,
+      page
+    )
       .then(formatResponseData)
       .then(renderUI);
   } catch (error) {
@@ -55,27 +81,5 @@ export function removeBubble() {
   bubble.style.visibility = 'hidden';
 }
 
-async function seeMoreByName() {
-  page += 1;
-  try {
-    await fetchData(`/discover/movie?sort_by=title.${byNameSelect.value}`, page)
-      .then(formatResponseData)
-      .then(renderUI);
-  } catch (error) {
-    console.log(error);
-  }
-}
 
-async function seeMoreByDate() {
-  page += 1;
-  try {
-    await fetchData(
-      `/discover/movie?primary_release_year=${byYearInput.value}`,
-      page
-    )
-      .then(formatResponseData)
-      .then(renderUI);
-  } catch (error) {
-    console.log(error);
-  }
-}
+
