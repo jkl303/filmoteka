@@ -139,8 +139,10 @@ export function AddListenerToMovieList() {
   //   console.log(movieCards);
   movieCards.addEventListener('click', evt => {
     evt.preventDefault();
-    mediaType = evt.composedPath().find(elem => elem.tagName === 'A')
-      .dataset.type;
+    mediaType = evt.composedPath().find(elem => elem.tagName === 'A').dataset
+      .type
+      ? evt.composedPath().find(elem => elem.tagName === 'A').dataset.type
+      : 'movie';
     let t = evt.target;
     while (t.nodeName !== 'A' && t.parentNode !== null) {
       t = t.parentNode;
