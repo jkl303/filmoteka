@@ -1,13 +1,18 @@
 body.dark {
   background-image: linear-gradient(
     to bottom,
-    rgb(51, 17, 18),
-    rgb(136, 49, 49)
+    rgb(53, 53, 53),
+    rgb(32, 32, 32)
   );
+
+  .pagination{
+    color: #fff;
+  }
+
 }
 
 body.dark .movie-title {
-  color: rgb(27, 9, 187);
+  color: rgb(255, 255, 255);
 }
 
 body.dark .theme-icon[data-theme='light'] {
@@ -19,7 +24,7 @@ body.dark .theme-icon[data-theme='dark'] {
 }
 
 body.dark .footer {
-  background-color: rgb(136, 49, 49);
+  background-color: rgb(148, 148, 148);
 }
 
 body.dark .footer-text {
@@ -28,5 +33,5 @@ body.dark .footer-text {
 
 .page-heading,
 .page-heading-queued {
-  color: rgb(27, 9, 187);
+  color: rgb(255, 255, 255);
 }
