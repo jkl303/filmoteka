@@ -9,6 +9,10 @@ body.dark {
     color: #fff;
   }
 
+  .page-heading,
+  .page-heading-queued {
+    color: rgb(255, 255, 255);
+}
 }
 
 body.dark .movie-title {
@@ -31,7 +35,4 @@ body.dark .footer-text {
   color: black;
 }
 
-.page-heading,
-.page-heading-queued {
-  color: rgb(255, 255, 255);
-}
+
