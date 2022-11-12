@@ -16,12 +16,14 @@ const loadBtn = document.querySelector('.load-btn');
 const title = document.querySelector('.page-heading');
 const movieListEl = document.querySelector('.movie-list');
 const loaderContainer = document.querySelector('.loader-container');
+const pagination = document.querySelector('.pagination');
 
 let page = 1;
 
 export async function byName(value) {
   movieListEl.innerHTML = '';
   addLoader(loaderContainer);
+  pagination.classList.add('visually-hidden');
   addObserver();
   title.textContent = `Sorted by title(${byNameSelect.value}ending)`;
   removeBubble();
@@ -38,6 +40,7 @@ export async function byName(value) {
 export async function seeMoreByName() {
   page += 1;
   addLoader(loaderContainer);
+  loadBtn.classList.remove('load-btn-visible');
   try {
     await fetchData(`/discover/movie?sort_by=title.${byNameSelect.value}`, page)
       .then(formatResponseData)
@@ -49,6 +52,7 @@ export async function seeMoreByName() {
 
 export async function byYear(year) {
   addLoader(loaderContainer);
+  pagination.classList.add('visually-hidden');
   addObserver();
   removeEventListeners();
   movieListEl.innerHTML = '';
@@ -65,6 +69,7 @@ export async function byYear(year) {
 
 export async function seeMoreByYear() {
   addLoader(loaderContainer);
+  loadBtn.classList.remove('load-btn-visible');
   page += 1;
   try {
     await fetchData(
