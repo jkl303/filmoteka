@@ -5,33 +5,29 @@ import { getGenres } from './fetchGenres';
 import movieCardTpl from './../templates/movie-card.hbs';
 import axios from 'axios';
 import { addLoader, removeLoader } from './loader';
-// import { guard, observer } from './renderHomePageUI';
+import { addObserver, removeObserver } from './intersectionObserver';
+import { removeEventListeners } from './removeBtnEventlisteners';
 
-const refs = {
+
+export const refs = {
   input: document.querySelector('.search-input'),
   list: document.querySelector('.movie-list'),
   pageHeading: document.querySelector('.page-heading'),
-  loaderContainer: document.querySelector('.loader-cotainer'),
+  loaderContainer: document.querySelector('.loader-container'),
   loadBtn: document.querySelector('.load-btn'),
   container: document.querySelector('main .container'),
+  guard: document.querySelector('.guard'),
+  pagination: document.querySelector('.pagination'),
+  filter: document.querySelector('.filters'),
+  sort: document.querySelector('.sort'),
 };
 
-console.log(refs.container);
 const defaultImg =
   'https://www.gulftoday.ae/-/media/gulf-today/images/articles/opinion/2022/8/7/cinema.ashx?h=450&la=en&w=750&hash=EB12327C59FAEB577FBED56AF6BF2E12';
 let searchQuery = '';
 let genresList = null;
 let page = 1;
 
-const observerOpions = {
-  root: null,
-  rootMargin: '0px',
-  threshold: 1.0,
-};
-const searchResultsObserver = new IntersectionObserver(
-  onBtnShow,
-  observerOpions
-);
 
 refs.loadBtn.addEventListener('click', onLoadBtnClick);
 
@@ -54,10 +50,10 @@ export async function onSubmit(evt) {
   refs.pageHeading.textContent = 'Searching results';
   searchRenderUI();
 
-  // observer from first render
-  observer.unobserve(guard);
-
-  searchResultsObserver.observe(guard);
+  refs.pagination.classList.add('visually-hidden');
+  refs.sort.classList.add('visually-hidden');
+  refs.filter.classList.add('visually-hidden');
+  addObserver();
 }
 
 function searchRenderUI() {
@@ -77,7 +73,7 @@ async function fetchSearchedMovies(genresDictionary) {
     );
 
     if (data.page === data.total_pages) {
-      searchResultsObserver.unobserve(guard);
+      removeObserver();
     }
 
     if (data.results.length !== 0) {
@@ -121,20 +117,11 @@ async function fetchSearchedMovies(genresDictionary) {
   } finally {
     refs.input.value = '';
     removeLoader(refs.loaderContainer);
-    removeLoader(guard);
   }
 }
 
-function onBtnShow(entries) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      refs.list.style.marginBottom = '75px';
-      refs.loadBtn.classList.add('load-btn-visible');
-    }
-  });
-}
 
-function onLoadBtnClick(evt) {
+export function onLoadBtnClick(evt) {
   refs.loadBtn.classList.remove('load-btn-visible');
   page += 1;
 
@@ -142,7 +129,7 @@ function onLoadBtnClick(evt) {
 }
 
 function upgradeUI() {
-  addLoader(guard);
+  addLoader(refs.loaderContainer);
 
   fetchSearchedMovies(genresList)
     .then(data => {
@@ -153,3 +140,5 @@ function upgradeUI() {
     })
     .catch(console.log);
 }
+
+
