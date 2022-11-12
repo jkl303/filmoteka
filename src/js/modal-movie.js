@@ -7,6 +7,7 @@ import {
 
 let addToQueuedBtn;
 let addToWatchedBtn;
+let mediaType;
 
 // import SimpleLightbox from 'simplelightbox';
 
@@ -16,7 +17,7 @@ import movieModalTpl from './../templates/movie-modal.hbs';
 //-----------MODAL-MOVIE---------------//
 
 export async function openModal(movie_id, movieSmallPoster) {
-  const movie_url_original = `${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`;
+  const movie_url_original = `${BASE_URL}/${mediaType}/${movie_id}?api_key=${API_KEY}`;
   const modalEl = document.querySelector('.modal');
 
   const resp = await fetch(movie_url_original, {
@@ -138,6 +139,8 @@ export function AddListenerToMovieList() {
   //   console.log(movieCards);
   movieCards.addEventListener('click', evt => {
     evt.preventDefault();
+    mediaType = evt.composedPath().find(elem => elem.tagName === 'A')
+      .dataset.type;
     let t = evt.target;
     while (t.nodeName !== 'A' && t.parentNode !== null) {
       t = t.parentNode;
