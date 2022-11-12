@@ -38,6 +38,7 @@ export async function convertResponseDataToObject(results) {
     return {
       title: elem.title ? elem.title : elem.name,
       id: elem.id,
+      media_type: elem.media_type,
       image: `${IMG_URL + elem.poster_path}`,
       year: new Date(
         elem.first_air_date ? elem.first_air_date : elem.release_date
