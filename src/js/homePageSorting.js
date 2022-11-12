@@ -4,6 +4,10 @@ import {
   renderUI,
 } from './newDataFetchFunction';
 
+import { removeEventListeners } from './removeBtnEventlisteners';
+import { addLoader } from './loader';
+import { addObserver } from './intersectionObserver';
+
 const range = document.querySelector("input[type='range']");
 const bubble = document.querySelector('.bubble');
 const byNameSelect = document.querySelector('[name="by-name__select"]');
@@ -11,11 +15,14 @@ const byYearInput = document.querySelector('[name="by-year"]');
 const loadBtn = document.querySelector('.load-btn');
 const title = document.querySelector('.page-heading');
 const movieListEl = document.querySelector('.movie-list');
+const loaderContainer = document.querySelector('.loader-container');
 
 let page = 1;
 
 export async function byName(value) {
   movieListEl.innerHTML = '';
+  addLoader(loaderContainer);
+  addObserver();
   title.textContent = `Sorted by title(${byNameSelect.value}ending)`;
   removeBubble();
   loadBtn.addEventListener('click', seeMoreByName);
@@ -28,8 +35,9 @@ export async function byName(value) {
   }
 }
 
-async function seeMoreByName() {
+export async function seeMoreByName() {
   page += 1;
+  addLoader(loaderContainer);
   try {
     await fetchData(`/discover/movie?sort_by=title.${byNameSelect.value}`, page)
       .then(formatResponseData)
@@ -40,6 +48,9 @@ async function seeMoreByName() {
 }
 
 export async function byYear(year) {
+  addLoader(loaderContainer);
+  addObserver();
+  removeEventListeners();
   movieListEl.innerHTML = '';
   title.textContent = `Movies released in ${byYearInput.value}`;
   loadBtn.addEventListener('click', seeMoreByYear);
@@ -52,7 +63,8 @@ export async function byYear(year) {
   }
 }
 
-async function seeMoreByYear() {
+export async function seeMoreByYear() {
+  addLoader(loaderContainer);
   page += 1;
   try {
     await fetchData(
@@ -80,6 +92,3 @@ export function removeBubble() {
   const bubble = document.querySelector('.bubble');
   bubble.style.visibility = 'hidden';
 }
-
-
-
