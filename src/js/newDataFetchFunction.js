@@ -102,11 +102,9 @@ export async function formatResponseData(results) {
 //  movieListEl.innerHTML += data.map(elem => movieCardTpl(elem)).join('');
 
 export async function renderUI(data) {
-  movieListEl.innerHTML += data.map(elem => movieCardTemplate(elem)).join('');
+  movieListEl.innerHTML += data.map(elem => movieCardTpl(elem)).join('');
 
 }
-
-export { fetchData, formatResponseData, renderUI };
 
 // EXAMPLE OF HOW TO RENDER UI
 

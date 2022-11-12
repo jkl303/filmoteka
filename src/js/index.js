@@ -14,7 +14,7 @@ import { byName, byYear, setBubble } from './homePageSorting';
 getCurrentPage();
 
 // UI render invocation
-// renderUI();
+renderUI();
 
 // searchInputLogic();
 
@@ -51,7 +51,6 @@ const light = document.querySelector('[data-theme ="light"]');
 light.addEventListener('click', becomeLight);
 
 // sort by name
-
 const byNameSelect = document.querySelector('[name="by-name__select"]');
 byNameSelect.addEventListener('change', () => {
   byName(byNameSelect.value);
@@ -65,4 +64,3 @@ byYearInput.addEventListener('change', () => {
   byYear(byYearInput.value);
 });
 
-// byYearInput.addEventListener('change', () => byYear(byYearInput.value));
