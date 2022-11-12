@@ -2,11 +2,13 @@ import { API_KEY } from './api-service';
 import { addLoader, removeLoader } from './loader';
 import movieCardTpl from '../templates/movie-card.hbs';
 import options from './../templates/options.hbs';
-import { fetchData, formatResponseData, renderUI } from './renderHomePageUI';
+import { fetchData, formatResponseData, renderUI } from './newDataFetchFunction';
 import axios from 'axios';
 import { getGenres } from './fetchGenres';
+import { removeBubble } from './homePageSorting';
 const moviesList = document.querySelector('.movie-list');
 const select = document.querySelector('.js-select');
+const title = document.querySelector('.page-heading');
 
 async function getOptions() {
   const response = await fetch(
@@ -36,32 +38,40 @@ export async function generateOptions() {
 }
 
 generateOptions();
-async function sortByGenre(genre) {
-  const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genre}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false`
-  );
+// {
+//   const response = await fetch(
+//     `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genre}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false`
+//   );
 
-  if (response.ok) {
-    return await response.json();
-  }
+//   if (response.ok) {
+//     return await response.json();
+//   }
 
-  throw new Error(await response.text());
-}
+//   throw new Error(await response.text());
+// }
 
-export async function filterByGenres(genre, page) {
+export async function filterByGenres(genre) {
+  moviesList.innerHTML = '';
+  title.textContent = `${genre} genre)`;
+  removeBubble();
+  console.log(genre);
+  // loadBtn.addEventListener('click', seeMoreByName);
   try {
-    if (page === 1) {
-      moviesList.innerHTML = '';
-    }
-    const genresDictionary = await getGenres();
-
-    genresArr = Object.values(genresDictionary);
-    const targetGenre = genresArr.find(g => g.name === genre).id;
-    console.log(targetGenre);
-    const results = await sortByGenre(targetGenre, 1);
-    console.log(results);
-    renderUI(results.results);
-  } catch (err) {
-    console.error(err);
+    await fetchData(`/discover/movie?sort_by=title.&with_genres=${genre}`)
+      .then(formatResponseData)
+      .then(renderUI);
+  } catch (error) {
+    console.log(error);
   }
 }
+// async function test() {try
+//   {
+//     const r = await fetchData(`/discover/movie?sort_by=title.&with_genres=18`)
+//   console.log(r);
+//   } catch (error) {
+//     console.log(error);
+//   }
+
+// }
+
+// test()

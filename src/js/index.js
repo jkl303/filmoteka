@@ -14,7 +14,7 @@ import { byName, byYear, setBubble } from './homePageSorting';
 getCurrentPage();
 
 // UI render invocation
-renderUI();
+// renderUI();
 
 // searchInputLogic();
 
@@ -23,22 +23,21 @@ AddListenerToMovieList();
 
 // searchInputLogic
 
-const divForFilters = document.querySelector('.divForFilters');
-
-divForFilters.addEventListener('change', e => {
-  removeBubble();
-  let selectValue = e.target.value;
-  console.dir(selectValue);
-  if (selectValue !== '') {
-    filterByGenres(selectValue);
-  }
-});
-
 // const divForFilters = document.querySelector('.divForFilters');
 
 // divForFilters.addEventListener('change', e => {
-//  filterByGenres(e.target.value, 1);
+//   let selectValue = e.target.value;
+//   console.dir(selectValue);
+//   if (selectValue !== '') {
+//     filterByGenres(selectValue);
+//   }
 // });
+
+const divForFilters = document.querySelector('.divForFilters');
+
+divForFilters.addEventListener('change', e => {
+ filterByGenres(e.target.value);
+});
 
 const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', onSubmit);
