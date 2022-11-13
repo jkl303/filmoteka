@@ -11,13 +11,13 @@ export class LocalStorageWatchedUtil {
     return [];
   }
 
-  addWatched(myId) {
+  addWatched(movieObj) {
     let movieInWatched = this.getMovieToWatched();
     let pushMovie = false;
-    const index = movieInWatched.indexOf(myId);
+    const index = movieInWatched.indexOf(movieObj);
 
     if (index === -1) {
-      movieInWatched.push(myId);
+      movieInWatched.push(movieObj);
       pushMovie = true;
     } else {
       movieInWatched.splice(index, 1);
@@ -42,13 +42,13 @@ export class LocalStorageQueuedUtil {
     return [];
   }
 
-  addQueued(myId) {
+  addQueued(movieObj) {
     let movieInQueued = this.getMovieToQueued();
     let pushQueuedMovie = false;
-    const index = movieInQueued.indexOf(myId);
+    const index = movieInQueued.indexOf(movieObj);
 
     if (index === -1) {
-      movieInQueued.push(myId);
+      movieInQueued.push(movieObj);
       pushQueuedMovie = true;
     } else {
       movieInQueued.splice(index, 1);
