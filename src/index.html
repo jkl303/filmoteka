@@ -73,7 +73,15 @@
 
     <main>
       <div class="container">
+
+            <section class="filters js-filters">
+              <div class="divForFilters">
+                <select name="" id="" label="" class="select js-select" onfocus="this.size=4;" onblur="this.size=1;"
+                  onchange="this.size=1; this.blur();"></select>
+              </div>
+            </section>
         <div class="sort">
+
           <h2 class="sort__title">Sort:</h2>
           <div class="by-name">
             <label for="by-name" class="by-name__label">by name</label>
@@ -96,19 +104,7 @@
             <label for="by-year" class="by-year__label">by year</label>
           </div>
         </div>
-        <section class="filters js-filters">
-          <div class="divForFilters">
-            <select
-              name=""
-              id=""
-              label=""
-              class="select js-select"
-              onfocus="this.size=4;"
-              onblur="this.size=1;"
-              onchange="this.size=1; this.blur();"
-            ></select>
-          </div>
-        </section>
+   
         <h1 class="page-heading">Trending today</h1>
 
         <ul class="movie-list">

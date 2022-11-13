@@ -44,7 +44,7 @@ generateOptions();
 
 export async function filterByGenres(genre) {
   moviesList.innerHTML = '';
-  // title.textContent = `${divForFilters.value} genre)`;
+  title.textContent = `Movies of the ${select.options[select.selectedIndex].textContent} genre`;
   addLoader(loaderContainer);
   removeBubble();
   try {
