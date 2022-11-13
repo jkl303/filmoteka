@@ -8,7 +8,6 @@ import { addLoader, removeLoader } from './loader';
 import { addObserver, removeObserver } from './intersectionObserver';
 import { removeEventListeners } from './removeBtnEventlisteners';
 
-
 export const refs = {
   input: document.querySelector('.search-input'),
   list: document.querySelector('.movie-list'),
@@ -27,7 +26,6 @@ const defaultImg =
 let searchQuery = '';
 let genresList = null;
 let page = 1;
-
 
 refs.loadBtn.addEventListener('click', onLoadBtnClick);
 
@@ -120,7 +118,6 @@ async function fetchSearchedMovies(genresDictionary) {
   }
 }
 
-
 export function onLoadBtnClick(evt) {
   refs.loadBtn.classList.remove('load-btn-visible');
   page += 1;
@@ -140,5 +137,3 @@ function upgradeUI() {
     })
     .catch(console.log);
 }
-
-
