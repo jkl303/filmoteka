@@ -56,6 +56,8 @@
 
 .bubble {
   margin-left: 6px;
+  position: absolute;
+  right: -35px;
 }
 
 .filters-item::after {
@@ -103,6 +105,7 @@
 
 .slider-container {
   display: flex;
+  position: relative;
 }
 
 .slider {
