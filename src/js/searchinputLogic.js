@@ -8,6 +8,9 @@ import { addLoader, removeLoader } from './loader';
 import { addObserver, removeObserver } from './intersectionObserver';
 import { removeEventListeners } from './removeBtnEventlisteners';
 
+import { seeMoreByName, seeMoreByYear } from './homePageSorting';
+
+
 export const refs = {
   input: document.querySelector('.search-input'),
   list: document.querySelector('.movie-list'),
@@ -27,7 +30,9 @@ let searchQuery = '';
 let genresList = null;
 let page = 1;
 
+
 refs.loadBtn.addEventListener('click', onLoadBtnClick);
+
 
 getGenresListData();
 async function getGenresListData() {
@@ -38,6 +43,8 @@ async function getGenresListData() {
 
 export async function onSubmit(evt) {
   evt.preventDefault();
+  removeEventListeners();
+  refs.loadBtn.addEventListener('click', onLoadBtnClick);
 
   if (refs.input.value.trim() === '') {
     Notify.failure('Please enter the keyword', notifyParams);
