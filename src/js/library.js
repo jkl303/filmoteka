@@ -1,6 +1,11 @@
 import { API_KEY, BASE_URL, IMG_URL } from './api-service';
+import movieCardTpl from './../templates/movie-card.hbs';
 import { getCurrentPage } from './getCurrentPage';
+import { openModal } from './modal-movie';
+import Notiflix from 'notiflix';
+import { queuedListHandler } from './queuedList';
 import { AddListenerToMovieList } from './modal-movie';
+
 import { apiLibraryQueued } from './queuedList.js';
 
 const options = {
@@ -8,6 +13,7 @@ const options = {
     'Content-Type': 'application/json',
   },
 };
+
 
 function storageLibraryChecker() {
   if (localStorage.getItem('theme') !== null) {
@@ -21,6 +27,7 @@ storageLibraryChecker();
 getCurrentPage();
 
 const movie_id = JSON.parse(localStorage.getItem('WatchedList'));
+
 const watchedList = document.querySelector('.movie-list');
 const titleOnClick = document.querySelector('.page-heading');
 const queuedBtnLibrary = document.getElementById(
@@ -82,6 +89,7 @@ export function apiLibraryWatched(movie_id) {
       const libraryWatchedListEl = document.createElement('li');
       libraryWatchedListEl.classList.add('movie-item');
       libraryWatchedListEl.innerHTML = `
+
       <a href='${element.id}' id = '${element.id}' class='movie-link'>
     <img src='${IMG_URL}${element.poster_path}' alt='' class='movie-image' />
     <div class='movie-info'>
@@ -92,6 +100,7 @@ export function apiLibraryWatched(movie_id) {
     </div>
   </a>
       `;
+
       watchedList.appendChild(libraryWatchedListEl);
     })
     .catch();
