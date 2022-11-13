@@ -1,14 +1,13 @@
 import { API_KEY } from './api-service';
-import { addLoader, removeLoader } from './loader';
-import movieCardTpl from '../templates/movie-card.hbs';
+import { addLoader } from './loader';
+import { addObserver } from './intersectionObserver';
 import options from './../templates/options.hbs';
 import { fetchData, formatResponseData, renderUI } from './newDataFetchFunction';
-import axios from 'axios';
-import { getGenres } from './fetchGenres';
 import { removeBubble } from './homePageSorting';
 const moviesList = document.querySelector('.movie-list');
 const select = document.querySelector('.js-select');
 const title = document.querySelector('.page-heading');
+const loaderContainer = document.querySelector('.loader-container');
 
 async function getOptions() {
   const response = await fetch(
@@ -38,24 +37,13 @@ export async function generateOptions() {
 }
 
 generateOptions();
-// {
-//   const response = await fetch(
-//     `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genre}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false`
-//   );
-
-//   if (response.ok) {
-//     return await response.json();
-//   }
-
-//   throw new Error(await response.text());
-// }
 
 export async function filterByGenres(genre) {
   moviesList.innerHTML = '';
-  title.textContent = `${genre} genre)`;
+  // title.textContent = `${divForFilters.value} genre)`;
+  addLoader(loaderContainer);
+   addObserver();
   removeBubble();
-  console.log(genre);
-  // loadBtn.addEventListener('click', seeMoreByName);
   try {
     await fetchData(`/discover/movie?sort_by=title.&with_genres=${genre}`)
       .then(formatResponseData)
@@ -64,14 +52,3 @@ export async function filterByGenres(genre) {
     console.log(error);
   }
 }
-// async function test() {try
-//   {
-//     const r = await fetchData(`/discover/movie?sort_by=title.&with_genres=18`)
-//   console.log(r);
-//   } catch (error) {
-//     console.log(error);
-//   }
-
-// }
-
-// test()

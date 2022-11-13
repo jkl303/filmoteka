@@ -1,12 +1,11 @@
 import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 
-const movie_idQ = JSON.parse(localStorage.getItem('QueuedList'));
 
-const options = {
-  headers: {
-    'Content-Type': 'application/json',
-  },
-};
+const movie_obj = JSON.parse(localStorage.getItem('QueuedList'));
+
+movie_obj.forEach(element => {
+  const queuedList = document.querySelector('.movie-list-queue');
+
 
 const queuedList = document.querySelector('.movie-list');
 
@@ -24,11 +23,12 @@ export function apiLibraryQueued(movie_idQ) {
       libraryQueuedListEl.innerHTML = `
       <a href='${data.id}' id = '${data.id}' class='movie-link'>
     <img src='${IMG_URL}${data.poster_path}' alt='' class='movie-image' />
+
     <div class='movie-info'>
-      <p class='movie-title'>${data.original_title}</p>
-      <p class='movie-description'>${data.genres
+      <p class='movie-title'>${element.original_title}</p>
+      <p class='movie-description'>${element.genres
         .map(elem => `${elem.name}`)
-        .join(', ')} | ${data.release_date}</p>
+        .join(', ')} | ${element.release_date}</p>
     </div>
   </a>
       `;

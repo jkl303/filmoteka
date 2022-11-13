@@ -9,6 +9,7 @@ const options = {
   },
 };
 
+
 function storageLibraryChecker() {
   if (localStorage.getItem('theme') !== null) {
     document.body.classList.add('dark');
@@ -29,6 +30,7 @@ const queuedBtnLibrary = document.getElementById(
 const watchedBtnLibrary = document.getElementById(
   'js-navigationLibraryButtonWatched'
 );
+
 
 watchedBtnLibrary.disabled = true;
 queuedBtnLibrary.disabled = false;
@@ -52,21 +54,23 @@ export function apiLibraryWatched(movie_id) {
       const watchedList = document.querySelector('.movie-list');
       const libraryWatchedListEl = document.createElement('li');
 
-      libraryWatchedListEl.classList.add('movie-item');
-      libraryWatchedListEl.innerHTML = `
-      <a href='${data.id}' id = '${data.id}' class='movie-link'>
-    <img src='${IMG_URL}${data.poster_path}' alt='' class='movie-image' />
+
+  libraryWatchedListEl.classList.add('movie-item');
+  libraryWatchedListEl.innerHTML = `
+      <a href='${element.id}' id = '${element.id}' class='movie-link'>
+    <img src='${IMG_URL}${element.poster_path}' alt='' class='movie-image' />
     <div class='movie-info'>
-      <p class='movie-title'>${data.original_title}</p>
-      <p class='movie-description'>${data.genres
+      <p class='movie-title'>${element.original_title}</p>
+      <p class='movie-description'>${element.genres
         .map(elem => `${elem.name}`)
-        .join(', ')} | ${data.release_date}</p>
+        .join(', ')} | ${element.release_date}</p>
     </div>
   </a>
       `;
       watchedList.appendChild(libraryWatchedListEl);
     });
 }
+
 
 queuedBtnLibrary.addEventListener('click', e => {
   e.preventDefault();
@@ -97,4 +101,4 @@ watchedBtnLibrary.addEventListener('click', e => {
 });
 
 // Add modal-movie
-AddListenerToMovieList();
+// AddListenerToMovieList();
