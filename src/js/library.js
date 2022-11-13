@@ -1,9 +1,13 @@
 import { API_KEY, BASE_URL, IMG_URL } from './api-service';
-import movieCardTpl from './../templates/movie-card.hbs';
 import { getCurrentPage } from './getCurrentPage';
-import { openModal } from './modal-movie';
-import { fetchInitialData } from './renderHomePageUI';
 import { AddListenerToMovieList } from './modal-movie';
+import { apiLibraryQueued } from './queuedList.js';
+
+const options = {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
 
 function storageLibraryChecker() {
   if (localStorage.getItem('theme') !== null) {
@@ -17,18 +21,24 @@ storageLibraryChecker();
 getCurrentPage();
 
 const movie_id = JSON.parse(localStorage.getItem('WatchedList'));
+const watchedList = document.querySelector('.movie-list');
+const titleOnClick = document.querySelector('.page-heading');
+const queuedBtnLibrary = document.getElementById(
+  'js-navigationLibraryButtonQueue'
+);
+const watchedBtnLibrary = document.getElementById(
+  'js-navigationLibraryButtonWatched'
+);
 
-const options = {
-  headers: {
-    'Content-Type': 'application/json',
-  },
-};
+watchedBtnLibrary.disabled = true;
+queuedBtnLibrary.disabled = false;
+titleOnClick.innerHTML = 'Watched movie';
+
+watchedList.innerHTML = '';
 
 movie_id.forEach(element => {
   apiLibraryWatched(element);
 });
-
-const watchedList = document.querySelector('.movie-list-watched');
 
 export function apiLibraryWatched(movie_id) {
   return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`, options)
@@ -39,6 +49,7 @@ export function apiLibraryWatched(movie_id) {
       return response.json();
     })
     .then(data => {
+      const watchedList = document.querySelector('.movie-list');
       const libraryWatchedListEl = document.createElement('li');
 
       libraryWatchedListEl.classList.add('movie-item');
@@ -56,36 +67,33 @@ export function apiLibraryWatched(movie_id) {
       watchedList.appendChild(libraryWatchedListEl);
     });
 }
-const queuedListForClick = document.querySelector('.movie-list-queue');
-const watchedListForClick = document.querySelector('.movie-list-watched');
-const queuedTitleOnClick = document.querySelector('.page-heading-queued');
-const watchedTitleOnClick = document.querySelector('.page-heading');
 
-const queuedBtnLibrary = document.getElementById(
-  'js-navigationLibraryButtonQueue'
-);
 queuedBtnLibrary.addEventListener('click', e => {
   e.preventDefault();
   queuedBtnLibrary.disabled = true;
-  watchedListForClick.style.display = 'none';
-  watchedTitleOnClick.style.display = 'none';
-  queuedListForClick.style.display = 'flex';
-  queuedTitleOnClick.style.display = 'block';
   watchedBtnLibrary.disabled = false;
-});
+  titleOnClick.innerHTML = 'Queued movie';
+  const movieList = document.querySelector('.movie-list');
+  movieList.innerHTML = '';
 
-const watchedBtnLibrary = document.getElementById(
-  'js-navigationLibraryButtonWatched'
-);
+  const movie_idQ = JSON.parse(localStorage.getItem('QueuedList'));
+  movie_idQ.forEach(element => {
+    apiLibraryQueued(element);
+  });
+});
 
 watchedBtnLibrary.addEventListener('click', e => {
   e.preventDefault();
   watchedBtnLibrary.disabled = true;
-  queuedListForClick.style.display = 'none';
-  queuedTitleOnClick.style.display = 'none';
-  watchedListForClick.style.display = 'flex';
-  watchedTitleOnClick.style.display = 'block';
   queuedBtnLibrary.disabled = false;
+  titleOnClick.innerHTML = 'Watched movie';
+
+  const movieList = document.querySelector('.movie-list');
+  movieList.innerHTML = '';
+  const movie_id = JSON.parse(localStorage.getItem('WatchedList'));
+  movie_id.forEach(element => {
+    apiLibraryWatched(element);
+  });
 });
 
 // Add modal-movie

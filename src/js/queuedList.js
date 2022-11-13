@@ -1,8 +1,4 @@
 import { API_KEY, BASE_URL, IMG_URL } from './api-service';
-import movieCardTpl from './../templates/movie-card.hbs';
-import { getCurrentPage } from './getCurrentPage';
-import { openModal } from './modal-movie';
-import { AddListenerToMovieList } from './modal-movie';
 
 const movie_idQ = JSON.parse(localStorage.getItem('QueuedList'));
 
@@ -12,11 +8,7 @@ const options = {
   },
 };
 
-movie_idQ.forEach(element => {
-  apiLibraryQueued(element);
-});
-
-const queuedList = document.querySelector('.movie-list-queue');
+const queuedList = document.querySelector('.movie-list');
 
 export function apiLibraryQueued(movie_idQ) {
   return fetch(`${BASE_URL}/movie/${movie_idQ}?api_key=${API_KEY}`, options)
@@ -43,6 +35,3 @@ export function apiLibraryQueued(movie_idQ) {
       queuedList.appendChild(libraryQueuedListEl);
     });
 }
-
-// Add modal-movie
-AddListenerToMovieList();
