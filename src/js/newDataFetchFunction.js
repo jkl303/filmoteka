@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 import movieCardTpl from './../templates/movie-card.hbs';
 import { removeLoader } from './loader';
-import { removeObserver } from './intersectionObserver';
+import { addObserver, removeObserver } from './intersectionObserver';
 
 const movieListEl = document.querySelector('.movie-list');
 const defaultImg =
@@ -26,7 +26,10 @@ export async function fetchData(endpoint, page, genres) {
     if (data.total_pages === 0) {
       movieListEl.innerHTML = '<p class="nothing-p">Nothing to show</p>';
     }
-    if (data.page === data.total_pages || data.total_pages <= 1) {
+    if (data.total_pages > 1) {
+      addObserver();
+    }
+    if (data.page === data.total_pages) {
       removeObserver();
     }
     return data.results;

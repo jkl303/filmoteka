@@ -10,6 +10,8 @@ import { storageChecker } from './changeTheme';
 
 import { byName, byYear, setBubble } from './homePageSorting';
 
+import debounce from 'debounce';
+
 // Adds a red line under active page in the website header
 getCurrentPage();
 
@@ -23,13 +25,10 @@ AddListenerToMovieList();
 
 // searchInputLogic
 
-
-
 const divForFilters = document.querySelector('.js-select');
 
-divForFilters.addEventListener('change', (e) => {
+divForFilters.addEventListener('change', e => {
   filterByGenres(divForFilters.value);
-  
 });
 
 const searchForm = document.querySelector('.search-form');
@@ -52,7 +51,9 @@ byNameSelect.addEventListener('change', () => {
 const byYearInput = document.querySelector('[name="by-year"]');
 byYearInput.addEventListener('input', setBubble);
 
-byYearInput.addEventListener('change', () => {
-  byYear(byYearInput.value);
-});
-
+byYearInput.addEventListener(
+  'change',
+  debounce(() => {
+    byYear(byYearInput.value);
+  }, 300)
+);

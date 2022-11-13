@@ -2,7 +2,11 @@ import { API_KEY } from './api-service';
 import { addLoader } from './loader';
 import { addObserver } from './intersectionObserver';
 import options from './../templates/options.hbs';
-import { fetchData, formatResponseData, renderUI } from './newDataFetchFunction';
+import {
+  fetchData,
+  formatResponseData,
+  renderUI,
+} from './newDataFetchFunction';
 import { removeBubble } from './homePageSorting';
 const moviesList = document.querySelector('.movie-list');
 const select = document.querySelector('.js-select');
@@ -42,7 +46,6 @@ export async function filterByGenres(genre) {
   moviesList.innerHTML = '';
   // title.textContent = `${divForFilters.value} genre)`;
   addLoader(loaderContainer);
-   addObserver();
   removeBubble();
   try {
     await fetchData(`/discover/movie?sort_by=title.&with_genres=${genre}`)
