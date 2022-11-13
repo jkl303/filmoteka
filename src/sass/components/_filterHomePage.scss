@@ -4,24 +4,29 @@
 .filters {
     // background-color: grey;
     margin-bottom: 0px;
+
 }
 
 .divForFilters {
     overflow: hidden;
+    display: flex;
+    // top: 130px;
+    margin-top: 45px;
     position: absolute;
-    // left: 16px;
-    // top: 38px;
-    // padding: 16px 0;
+    justify-content: flex-start;
 
-    @include tablet-bg {
-        top: 38px;
-    }
+    @include tablet-sm {
+margin-bottom: 30px;
+            }
+    
 }
 
 .select {
+
     background-color: #333;
     color: white;
-    width: 80px;
+    width: 120px;
+    top: 50px;
 
     @include tablet-sm {
         width: 130px;
