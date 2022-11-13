@@ -3,6 +3,7 @@ import movieCardTpl from './../templates/movie-card.hbs';
 import { getCurrentPage } from './getCurrentPage';
 import { openModal } from './modal-movie';
 import { fetchInitialData } from './renderHomePageUI';
+import { AddListenerToMovieList } from './modal-movie';
 
 function storageLibraryChecker() {
   if (localStorage.getItem('theme') !== null) {
@@ -86,3 +87,6 @@ watchedBtnLibrary.addEventListener('click', e => {
   watchedTitleOnClick.style.display = 'block';
   queuedBtnLibrary.disabled = false;
 });
+
+// Add modal-movie
+AddListenerToMovieList();
