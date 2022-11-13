@@ -1,29 +1,29 @@
 import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 
+//const movie_idQ = JSON.parse(localStorage.getItem('QueuedList'));
 
-const movie_obj = JSON.parse(localStorage.getItem('QueuedList'));
+const options = {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
 
-movie_obj.forEach(element => {
-  const queuedList = document.querySelector('.movie-list-queue');
-
-
-const queuedList = document.querySelector('.movie-list');
-
-export function apiLibraryQueued(movie_idQ) {
-  return fetch(`${BASE_URL}/movie/${movie_idQ}?api_key=${API_KEY}`, options)
+export function apiLibraryQueued(movie_id) {
+  return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`, options)
     .then(response => {
-      if (!response.ok) {
-        throw new Error('fail');
+      if (response.ok) {
+        return response.json();
       }
       return response.json();
+      //throw new Error('fail');
     })
-    .then(data => {
+    .then(element => {
+      const queuedList = document.querySelector('.movie-list');
       const libraryQueuedListEl = document.createElement('li');
       libraryQueuedListEl.classList.add('movie-item');
       libraryQueuedListEl.innerHTML = `
-      <a href='${data.id}' id = '${data.id}' class='movie-link'>
-    <img src='${IMG_URL}${data.poster_path}' alt='' class='movie-image' />
-
+      <a href='${element.id}' id = '${element.id}' class='movie-link'>
+    <img src='${IMG_URL}${element.poster_path}' alt='' class='movie-image' />
     <div class='movie-info'>
       <p class='movie-title'>${element.original_title}</p>
       <p class='movie-description'>${element.genres
@@ -33,5 +33,6 @@ export function apiLibraryQueued(movie_idQ) {
   </a>
       `;
       queuedList.appendChild(libraryQueuedListEl);
-    });
+    })
+    .catch();
 }
