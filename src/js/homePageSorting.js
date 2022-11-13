@@ -7,6 +7,7 @@ import {
 import { removeEventListeners } from './removeBtnEventlisteners';
 import { addLoader } from './loader';
 import { addObserver } from './intersectionObserver';
+import { onLoadBtnClick } from './searchinputLogic';
 
 const range = document.querySelector("input[type='range']");
 const bubble = document.querySelector('.bubble');
@@ -27,6 +28,7 @@ export async function byName(value) {
   addObserver();
   title.textContent = `Sorted by title(${byNameSelect.value}ending)`;
   removeBubble();
+  removeEventListeners();
   loadBtn.addEventListener('click', seeMoreByName);
   try {
     await fetchData(`/discover/movie?sort_by=title.${value}`)
@@ -54,9 +56,9 @@ export async function byYear(year) {
   addLoader(loaderContainer);
   pagination.classList.add('visually-hidden');
   addObserver();
-  removeEventListeners();
   movieListEl.innerHTML = '';
   title.textContent = `Movies released in ${byYearInput.value}`;
+  removeEventListeners();
   loadBtn.addEventListener('click', seeMoreByYear);
   try {
     await fetchData(`/discover/movie?primary_release_year=${year}`)
