@@ -1,12 +1,12 @@
 @use './../utilities/mixins' as *;
 @use './../utilities/variables' as *;
 
-.nothing-title {
+.nothing-p {
   margin-left: auto;
   margin-right: auto;
   font-family: $main-font;
   font-weight: 500;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.16;
   text-transform: uppercase;
   color: $color-accent-red;
@@ -14,7 +14,7 @@
 
 .sort {
   display: flex;
-  // flex-wrap: wrap;
+  flex-wrap: wrap;
   justify-content: flex-end;
 
   gap: 30px 66px;
