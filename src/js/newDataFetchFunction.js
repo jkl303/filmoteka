@@ -5,11 +5,13 @@ import { removeLoader } from './loader';
 import { addObserver, removeObserver } from './intersectionObserver';
 
 const movieListEl = document.querySelector('.movie-list');
+const loaderContainer = document.querySelector('.loader-container');
+const loadBtn = document.querySelector('.load-btn');
+
 const defaultImg =
   'https://www.gulftoday.ae/-/media/gulf-today/images/articles/opinion/2022/8/7/cinema.ashx?h=450&la=en&w=750&hash=EB12327C59FAEB577FBED56AF6BF2E12';
 const defaultYear = 'Year unknown';
 const defaultGenre = 'Genre unknown';
-const loaderContainer = document.querySelector('.loader-container');
 
 let genresDictionary = {};
 let page = 1;
@@ -26,10 +28,13 @@ export async function fetchData(endpoint, page, genres) {
     if (data.total_pages === 0) {
       movieListEl.innerHTML = '<p class="nothing-p">Nothing to show</p>';
     }
+    if (data.total_pages <= 1) {
+      loadBtn.classList.remove('load-btn-visible');
+    }
     if (data.total_pages > 1) {
       addObserver();
     }
-    if (data.page === data.total_pages) {
+    if (data.page === data.total_pages || data.total_pages <= 1) {
       removeObserver();
     }
     return data.results;
