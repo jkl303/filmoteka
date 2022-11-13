@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -55,35 +52,35 @@
         </form>
 
         <div class="loader-container"></div>
-      
-        <div class="theme">
-          <svg class="theme-icon" data-theme ="light" width = 20px height = 20px >
-            <use href="./icons/light_dark_svg.svg#icon-sun"></use></svg>
-          <svg class="theme-icon " data-theme="dark" width=20px height=20px>
-              <use href="./icons/light_dark_svg.svg#icon-moon"></use></svg>
-            
-           </div>
 
-    <!-- <section class="filters js-filters">
+        <div class="theme">
+          <svg class="theme-icon" data-theme="light" width="20px" height="20px">
+            <use href="./icons/light_dark_svg.svg#icon-sun"></use>
+          </svg>
+          <svg class="theme-icon" data-theme="dark" width="20px" height="20px">
+            <use href="./icons/light_dark_svg.svg#icon-moon"></use>
+          </svg>
+        </div>
+
+        <!-- <section class="filters js-filters">
     <div class="divForFilters">
       <select name="" id="" label="" class="select js-select" onfocus="this.size=4;" onblur="this.size=1;"
         onchange="this.size=1; this.blur();"></select>
     </div>
   </section> -->
-
       </div>
     </header>
-          
+
     <main>
       <div class="container">
-        <div class="sort">
-          
+
             <section class="filters js-filters">
               <div class="divForFilters">
                 <select name="" id="" label="" class="select js-select" onfocus="this.size=4;" onblur="this.size=1;"
                   onchange="this.size=1; this.blur();"></select>
               </div>
             </section>
+        <div class="sort">
 
           <h2 class="sort__title">Sort:</h2>
           <div class="by-name">
@@ -106,11 +103,10 @@
             />
             <label for="by-year" class="by-year__label">by year</label>
           </div>
-         
         </div>
-        
+   
         <h1 class="page-heading">Trending today</h1>
-        
+
         <ul class="movie-list">
           <li class="movie-item">
             <a href="#" class="movie-link">
@@ -126,15 +122,11 @@
             </a>
           </li>
         </ul>
-        <div class="pagination">
-          
-        </div>
+        <div class="pagination"></div>
         <div class="guard"></div>
         <button class="load-btn" type="button">Load more</button>
       </div>
       <div class="modal"></div>
-      
-    
     </main>
 
     <footer class="footer">
@@ -144,463 +136,462 @@
           <svg class="footer-icon" width="14" height="13">
             <use href="./icons/icons.svg#icon-heart"></use>
           </svg>
-          by <a href="#" class="footer-link"  data-modal-open>GoIT Students</a>
+          by <a href="#" class="footer-link" data-modal-open>GoIT Students</a>
         </p>
       </div>
     </footer>
 
     <!--Modal footerGalleryItems-->
     <div
-    class="modal__overlay is-hidden"
-    tabindex="-1"
-    data-micromodal-close=""
-    data-modal
-  >
-    <div class="modal__container__footer" role="dialog" aria-modal="true">
-      <button type="button" class="modal-about-btn" data-modal-close>
-        <svg class="about-icon" width="12" height="12">
-          <use href="./icons/icons.svg#icon-close-mob"></use>
-        </svg>
-      </button>
-      <h2 class="team-name-header">Our team</h2>
-      <div class="modal__content modal__content__footer" id="modal-1-content">
-        <ul class="footer-team-link">
-          <li class="footer-team-link-list">
-            <div class="footer-photo-links">
-              <img
-                class="footer-team-img"
-                src="./images/team-photo/Dmitry_Tauzhnianskyi-min.jpg"
-                alt="Dima"
-              />
-              <div>
-                <p class="team-name">Dmitry Tauzhnianskyi</p>
-                <p class="team-doing">Team-lead</p>
-                <ul class="sosial-links">
-                  <li class="link-img">
-                    <a
-                      href="https://www.linkedin.com/in/dmitriy-tauzhnianskyi-90349166"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-linkedin2"></use>
-                      </svg>
-                      <i class="fab fa-linkedin-in i-link"></i>
-                    </a>
-                  </li>
+      class="modal__overlay is-hidden"
+      tabindex="-1"
+      data-micromodal-close=""
+      data-modal
+    >
+      <div class="modal__container__footer" role="dialog" aria-modal="true">
+        <button type="button" class="modal-about-btn" data-modal-close>
+          <svg class="about-icon" width="12" height="12">
+            <use href="./icons/icons.svg#icon-close-mob"></use>
+          </svg>
+        </button>
+        <h2 class="team-name-header">Our team</h2>
+        <div class="modal__content modal__content__footer" id="modal-1-content">
+          <ul class="footer-team-link">
+            <li class="footer-team-link-list">
+              <div class="footer-photo-links">
+                <img
+                  class="footer-team-img"
+                  src="./images/team-photo/Dmitry_Tauzhnianskyi-min.jpg"
+                  alt="Dima"
+                />
+                <div>
+                  <p class="team-name">Dmitry Tauzhnianskyi</p>
+                  <p class="team-doing">Team-lead</p>
+                  <ul class="sosial-links">
+                    <li class="link-img">
+                      <a
+                        href="https://www.linkedin.com/in/dmitriy-tauzhnianskyi-90349166"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-linkedin2"></use>
+                        </svg>
+                        <i class="fab fa-linkedin-in i-link"></i>
+                      </a>
+                    </li>
 
-                  <li class="link-img">
-                    <a
-                      href="https://github.com/Tauzhnianskyi"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-github"></use>
-                      </svg>
-                      <i class="fab fa-github i-link"></i>
-                    </a>
-                  </li>
-                </ul>
+                    <li class="link-img">
+                      <a
+                        href="https://github.com/Tauzhnianskyi"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-github"></use>
+                        </svg>
+                        <i class="fab fa-github i-link"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
 
-          <li class="footer-team-link-list">
-            <div class="footer-photo-links">
-              <img
-                class="footer-team-img"
-                src="./images/team-photo/Alexandr_Tanets-min.jpg"
-                alt="Sasha"
-              />
-              <div>
-                <p class="team-name">Alexandr Tanets</p>
-                <p class="team-doing">Scrum master</p>
-                <ul class="sosial-links">
-                  <li class="link-img">
-                    <a
-                      href="https://www.linkedin.com/in/alexandr-tanets-557515243/"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-linkedin2"></use>
-                      </svg>
-                      <i class="fab fa-linkedin-in i-link"></i>
-                    </a>
-                  </li>
+            <li class="footer-team-link-list">
+              <div class="footer-photo-links">
+                <img
+                  class="footer-team-img"
+                  src="./images/team-photo/Alexandr_Tanets-min.jpg"
+                  alt="Sasha"
+                />
+                <div>
+                  <p class="team-name">Alexandr Tanets</p>
+                  <p class="team-doing">Scrum master</p>
+                  <ul class="sosial-links">
+                    <li class="link-img">
+                      <a
+                        href="https://www.linkedin.com/in/alexandr-tanets-557515243/"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-linkedin2"></use>
+                        </svg>
+                        <i class="fab fa-linkedin-in i-link"></i>
+                      </a>
+                    </li>
 
-                  <li class="link-img">
-                    <a
-                      href="https://github.com/AlexTanetsDev"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-github"></use>
-                      </svg>
-                      <i class="fab fa-github i-link"></i>
-                    </a>
-                  </li>
-                </ul>
+                    <li class="link-img">
+                      <a
+                        href="https://github.com/AlexTanetsDev"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-github"></use>
+                        </svg>
+                        <i class="fab fa-github i-link"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
 
-          <li class="footer-team-link-list">
-            <div class="footer-photo-links">
-              <img
-                class="footer-team-img"
-                src="./images/team-photo/Igor_Chemeris-min.jpg"
-                alt="Igor"
-              />
-              <div>
-                <p class="team-name">Igor Chemeris</p>
-                <p class="team-doing">Developer</p>
-                <ul class="sosial-links">
-                  <li class="link-img">
-                    <a
-                      href="https://www.linkedin.com/in/igor-chemeris-609124256/"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-linkedin2"></use>
-                      </svg>
-                      <i class="fab fa-linkedin-in i-link"></i>
-                    </a>
-                  </li>
+            <li class="footer-team-link-list">
+              <div class="footer-photo-links">
+                <img
+                  class="footer-team-img"
+                  src="./images/team-photo/Igor_Chemeris-min.jpg"
+                  alt="Igor"
+                />
+                <div>
+                  <p class="team-name">Igor Chemeris</p>
+                  <p class="team-doing">Developer</p>
+                  <ul class="sosial-links">
+                    <li class="link-img">
+                      <a
+                        href="https://www.linkedin.com/in/igor-chemeris-609124256/"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-linkedin2"></use>
+                        </svg>
+                        <i class="fab fa-linkedin-in i-link"></i>
+                      </a>
+                    </li>
 
-                  <li class="link-img">
-                    <a
-                      href="https://github.com/ChemerysIgor"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-github"></use>
-                      </svg>
-                      <i class="fab fa-github i-link"></i>
-                    </a>
-                  </li>
-                </ul>
+                    <li class="link-img">
+                      <a
+                        href="https://github.com/ChemerysIgor"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-github"></use>
+                        </svg>
+                        <i class="fab fa-github i-link"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
 
-          <li class="footer-team-link-list">
-            <div class="footer-photo-links">
-              <img
-                class="footer-team-img"
-                src="./images/team-photo/Anastasia_Kovalchuk-min.jpg"
-                alt="Nastya"
-              />
-              <div>
-                <p class="team-name">Anastasia Kovalchuk</p>
-                <p class="team-doing">Developer</p>
-                <ul class="sosial-links">
-                  <li class="link-img">
-                    <a
-                      href="https://www.linkedin.com/in/kovalchuk-anastasia-b0320a256/"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-linkedin2"></use>
-                      </svg>
-                      <i class="fab fa-linkedin-in i-link"></i>
-                    </a>
-                  </li>
+            <li class="footer-team-link-list">
+              <div class="footer-photo-links">
+                <img
+                  class="footer-team-img"
+                  src="./images/team-photo/Anastasia_Kovalchuk-min.jpg"
+                  alt="Nastya"
+                />
+                <div>
+                  <p class="team-name">Anastasia Kovalchuk</p>
+                  <p class="team-doing">Developer</p>
+                  <ul class="sosial-links">
+                    <li class="link-img">
+                      <a
+                        href="https://www.linkedin.com/in/kovalchuk-anastasia-b0320a256/"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-linkedin2"></use>
+                        </svg>
+                        <i class="fab fa-linkedin-in i-link"></i>
+                      </a>
+                    </li>
 
-                  <li class="link-img">
-                    <a
-                      href="https://github.com/KovalchukAnastasia"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-github"></use>
-                      </svg>
-                      <i class="fab fa-github i-link"></i>
-                    </a>
-                  </li>
-                </ul>
+                    <li class="link-img">
+                      <a
+                        href="https://github.com/KovalchukAnastasia"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-github"></use>
+                        </svg>
+                        <i class="fab fa-github i-link"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
 
-          <li class="footer-team-link-list">
-            <div class="footer-photo-links">
-              <img
-                class="footer-team-img"
-                src="./images/team-photo/Nazar-min.jpg"
-                alt="Nazar"
-              />
-              <div>
-                <p class="team-name">Nazar D</p>
-                <p class="team-doing">Developer</p>
-                <ul class="sosial-links">
-                  <li class="link-img">
-                    <a
-                      href="https://www.linkedin.com/in/nazar-donets/"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-linkedin2"></use>
-                      </svg>
-                      <i class="fab fa-linkedin-in i-link"></i>
-                    </a>
-                  </li>
+            <li class="footer-team-link-list">
+              <div class="footer-photo-links">
+                <img
+                  class="footer-team-img"
+                  src="./images/team-photo/Nazar-min.jpg"
+                  alt="Nazar"
+                />
+                <div>
+                  <p class="team-name">Nazar D</p>
+                  <p class="team-doing">Developer</p>
+                  <ul class="sosial-links">
+                    <li class="link-img">
+                      <a
+                        href="https://www.linkedin.com/in/nazar-donets/"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-linkedin2"></use>
+                        </svg>
+                        <i class="fab fa-linkedin-in i-link"></i>
+                      </a>
+                    </li>
 
-                  <li class="link-img">
-                    <a
-                      href="https://github.com/nazardonets"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-github"></use>
-                      </svg>
-                      <i class="fab fa-github i-link"></i>
-                    </a>
-                  </li>
-                </ul>
+                    <li class="link-img">
+                      <a
+                        href="https://github.com/nazardonets"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-github"></use>
+                        </svg>
+                        <i class="fab fa-github i-link"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
 
-          <li class="footer-team-link-list">
-            <div class="footer-photo-links">
-              <img
-                class="footer-team-img"
-                src="./images/team-photo/Roman_Stelmakh-min.jpg"
-                alt="Roma"
-              />
-              <div>
-                <p class="team-name">Roman Stelmakh</p>
-                <p class="team-doing">Developer</p>
-                <ul class="sosial-links">
-                  <li class="link-img">
-                    <a
-                      href="https://www.linkedin.com/in/roman777stelmakh/"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-linkedin2"></use>
-                      </svg>
-                      <i class="fab fa-linkedin-in i-link"></i>
-                    </a>
-                  </li>
+            <li class="footer-team-link-list">
+              <div class="footer-photo-links">
+                <img
+                  class="footer-team-img"
+                  src="./images/team-photo/Roman_Stelmakh-min.jpg"
+                  alt="Roma"
+                />
+                <div>
+                  <p class="team-name">Roman Stelmakh</p>
+                  <p class="team-doing">Developer</p>
+                  <ul class="sosial-links">
+                    <li class="link-img">
+                      <a
+                        href="https://www.linkedin.com/in/roman777stelmakh/"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-linkedin2"></use>
+                        </svg>
+                        <i class="fab fa-linkedin-in i-link"></i>
+                      </a>
+                    </li>
 
-                  <li class="link-img">
-                    <a
-                      href="https://github.com/Roman0407"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-github"></use>
-                      </svg>
-                      <i class="fab fa-github i-link"></i>
-                    </a>
-                  </li>
-                </ul>
+                    <li class="link-img">
+                      <a
+                        href="https://github.com/Roman0407"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-github"></use>
+                        </svg>
+                        <i class="fab fa-github i-link"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
 
-          <li class="footer-team-link-list">
-            <div class="footer-photo-links">
-              <img
-                class="footer-team-img"
-                src="./images/team-photo/Ganna_Shalia-min.jpg"
-                alt="Ganna"
-              />
-              <div>
-                <p class="team-name">Ganna Shalia</p>
-                <p class="team-doing">Developer</p>
-                <ul class="sosial-links">
-                  <li class="link-img">
-                    <a
-                      href="https://www.linkedin.com/in/gannashalia/"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-linkedin2"></use>
-                      </svg>
-                      <i class="fab fa-linkedin-in i-link"></i>
-                    </a>
-                  </li>
+            <li class="footer-team-link-list">
+              <div class="footer-photo-links">
+                <img
+                  class="footer-team-img"
+                  src="./images/team-photo/Ganna_Shalia-min.jpg"
+                  alt="Ganna"
+                />
+                <div>
+                  <p class="team-name">Ganna Shalia</p>
+                  <p class="team-doing">Developer</p>
+                  <ul class="sosial-links">
+                    <li class="link-img">
+                      <a
+                        href="https://www.linkedin.com/in/gannashalia/"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-linkedin2"></use>
+                        </svg>
+                        <i class="fab fa-linkedin-in i-link"></i>
+                      </a>
+                    </li>
 
-                  <li class="link-img">
-                    <a
-                      href="https://github.com/Annaivv"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-github"></use>
-                      </svg>
-                      <i class="fab fa-github i-link"></i>
-                    </a>
-                  </li>
-                </ul>
+                    <li class="link-img">
+                      <a
+                        href="https://github.com/Annaivv"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-github"></use>
+                        </svg>
+                        <i class="fab fa-github i-link"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
 
-          <li class="footer-team-link-list">
-            <div class="footer-photo-links">
-              <img
-                class="footer-team-img"
-                src="./images/team-photo/Vladislav-min.jpg"
-                alt="Vladislav"
-              />
-              <div>
-                <p class="team-name">Vladyslav Zoz</p>
-                <p class="team-doing">Developer</p>
-                <ul class="sosial-links">
-                  <li class="link-img">
-                    <a
-                      href="https://www.linkedin.com/in/%D0%B2%D0%BB%D0%B0%D0%B4-%D0%B7%D0%BE%D0%B7-15a8ba1a8/"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-linkedin2"></use>
-                      </svg>
-                      <i class="fab fa-linkedin-in i-link"></i>
-                    </a>
-                  </li>
+            <li class="footer-team-link-list">
+              <div class="footer-photo-links">
+                <img
+                  class="footer-team-img"
+                  src="./images/team-photo/Vladislav-min.jpg"
+                  alt="Vladislav"
+                />
+                <div>
+                  <p class="team-name">Vladyslav Zoz</p>
+                  <p class="team-doing">Developer</p>
+                  <ul class="sosial-links">
+                    <li class="link-img">
+                      <a
+                        href="https://www.linkedin.com/in/%D0%B2%D0%BB%D0%B0%D0%B4-%D0%B7%D0%BE%D0%B7-15a8ba1a8/"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-linkedin2"></use>
+                        </svg>
+                        <i class="fab fa-linkedin-in i-link"></i>
+                      </a>
+                    </li>
 
-                  <li class="link-img">
-                    <a
-                      href="https://github.com/jkl303"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-github"></use>
-                      </svg>
-                      <i class="fab fa-github i-link"></i>
-                    </a>
-                  </li>
-                </ul>
+                    <li class="link-img">
+                      <a
+                        href="https://github.com/jkl303"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-github"></use>
+                        </svg>
+                        <i class="fab fa-github i-link"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
 
-          <li class="footer-team-link-list">
-            <div class="footer-photo-links">
-              <img
-                class="footer-team-img"
-                src="./images/team-photo/Mihail-min.jpg"
-                alt="Mykhail"
-              />
-              <div>
-                <p class="team-name">Mykhail Illo</p>
-                <p class="team-doing">Developer</p>
-                <ul class="sosial-links">
-                  <li class="link-img">
-                    <a
-                      href="https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D0%B8%D0%BB%D0%BB%D0%BE-a31b66242/"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-linkedin2"></use>
-                      </svg>
-                      <i class="fab fa-linkedin-in i-link"></i>
-                    </a>
-                  </li>
+            <li class="footer-team-link-list">
+              <div class="footer-photo-links">
+                <img
+                  class="footer-team-img"
+                  src="./images/team-photo/Mihail-min.jpg"
+                  alt="Mykhail"
+                />
+                <div>
+                  <p class="team-name">Mykhail Illo</p>
+                  <p class="team-doing">Developer</p>
+                  <ul class="sosial-links">
+                    <li class="link-img">
+                      <a
+                        href="https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D0%B8%D0%BB%D0%BB%D0%BE-a31b66242/"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-linkedin2"></use>
+                        </svg>
+                        <i class="fab fa-linkedin-in i-link"></i>
+                      </a>
+                    </li>
 
-                  <li class="link-img">
-                    <a
-                      href="https://github.com/Mykhail92"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-github"></use>
-                      </svg>
-                      <i class="fab fa-github i-link"></i>
-                    </a>
-                  </li>
-                </ul>
+                    <li class="link-img">
+                      <a
+                        href="https://github.com/Mykhail92"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-github"></use>
+                        </svg>
+                        <i class="fab fa-github i-link"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
 
-          <li class="footer-team-link-list">
-            <div class="footer-photo-links">
-              <img
-                class="footer-team-img"
-                src="./images/team-photo/Mykhailo_Lytvynets-min.jpg"
-                alt="Mykhailo"
-              />
-              <div>
-                <p class="team-name">Mykhailo Lytvynets</p>
-                <p class="team-doing">Developer</p>
-                <ul class="sosial-links">
-                  <li class="link-img">
-                    <a
-                      href="https://www.linkedin.com/in/mike-lytvynets-885bbb61/?msgControlName=reply_to_sender&msgConversationId=6704851705823072256&msgOverlay=true"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-linkedin2"></use>
-                      </svg>
-                      <i class="fab fa-linkedin-in i-link"></i>
-                    </a>
-                  </li>
+            <li class="footer-team-link-list">
+              <div class="footer-photo-links">
+                <img
+                  class="footer-team-img"
+                  src="./images/team-photo/Mykhailo_Lytvynets-min.jpg"
+                  alt="Mykhailo"
+                />
+                <div>
+                  <p class="team-name">Mykhailo Lytvynets</p>
+                  <p class="team-doing">Developer</p>
+                  <ul class="sosial-links">
+                    <li class="link-img">
+                      <a
+                        href="https://www.linkedin.com/in/mike-lytvynets-885bbb61/?msgControlName=reply_to_sender&msgConversationId=6704851705823072256&msgOverlay=true"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-linkedin2"></use>
+                        </svg>
+                        <i class="fab fa-linkedin-in i-link"></i>
+                      </a>
+                    </li>
 
-                  <li class="link-img">
-                    <a
-                      href="https://github.com/Liettualainen"
-                      onclick="window.open(href +'')"
-                      target="_blank"
-                      class="sosial-link"
-                    >
-                      <svg width="20" height="15">
-                        <use href="./icons/icons.svg#icon-github"></use>
-                      </svg>
-                      <i class="fab fa-github i-link"></i>
-                    </a>
-                  </li>
-                </ul>
+                    <li class="link-img">
+                      <a
+                        href="https://github.com/Liettualainen"
+                        onclick="window.open(href +'')"
+                        target="_blank"
+                        class="sosial-link"
+                      >
+                        <svg width="20" height="15">
+                          <use href="./icons/icons.svg#icon-github"></use>
+                        </svg>
+                        <i class="fab fa-github i-link"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script type="module" src="./js/index.js"></script>
-  <script type="module" src="./js/modal-footer.js"></script>
-</body>
-
+    <script type="module" src="./js/index.js"></script>
+    <script type="module" src="./js/modal-footer.js"></script>
+  </body>
 </html>

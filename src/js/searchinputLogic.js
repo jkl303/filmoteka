@@ -8,6 +8,8 @@ import { addLoader, removeLoader } from './loader';
 import { addObserver, removeObserver } from './intersectionObserver';
 import { removeEventListeners } from './removeBtnEventlisteners';
 
+import { seeMoreByName, seeMoreByYear } from './homePageSorting';
+
 
 export const refs = {
   input: document.querySelector('.search-input'),
@@ -31,6 +33,7 @@ let page = 1;
 
 refs.loadBtn.addEventListener('click', onLoadBtnClick);
 
+
 getGenresListData();
 async function getGenresListData() {
   const genresData = await getGenres();
@@ -40,6 +43,8 @@ async function getGenresListData() {
 
 export async function onSubmit(evt) {
   evt.preventDefault();
+  removeEventListeners();
+  refs.loadBtn.addEventListener('click', onLoadBtnClick);
 
   if (refs.input.value.trim() === '') {
     Notify.failure('Please enter the keyword', notifyParams);
@@ -120,7 +125,6 @@ async function fetchSearchedMovies(genresDictionary) {
   }
 }
 
-
 export function onLoadBtnClick(evt) {
   refs.loadBtn.classList.remove('load-btn-visible');
   page += 1;
@@ -140,5 +144,3 @@ function upgradeUI() {
     })
     .catch(console.log);
 }
-
-

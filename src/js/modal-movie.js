@@ -53,7 +53,7 @@ export async function openModal(movie_id, movieSmallPoster) {
       } else {
         addToWatchedBtn.innerHTML = 'ADD TO WATCHED';
       }
-      let movieObj = respData;
+      let movieObj = respData.id;
       console.log(movieObj);
       const storageClick = new LocalStorageWatchedUtil();
       storageClick.addWatched(movieObj);
@@ -68,7 +68,7 @@ export async function openModal(movie_id, movieSmallPoster) {
       } else {
         addToQueuedBtn.innerHTML = 'ADD TO QUEUED';
       }
-      let movieObj = respData;
+      let movieObj = respData.id;
       console.log(movieObj);
       const storageClickQ = new LocalStorageQueuedUtil();
       storageClickQ.addQueued(movieObj);
@@ -137,22 +137,26 @@ export function AddListenerToMovieList() {
   //   console.log(movieCards);
   movieCards.addEventListener('click', evt => {
     evt.preventDefault();
-    mediaType = evt.composedPath().find(elem => elem.tagName === 'A').dataset
-      .type
-      ? evt.composedPath().find(elem => elem.tagName === 'A').dataset.type
-      : 'movie';
-    let t = evt.target;
-    while (t.nodeName !== 'A' && t.parentNode !== null) {
-      t = t.parentNode;
-    }
+    try {
+      mediaType = evt.composedPath().find(elem => elem.tagName === 'A').dataset
+        .type
+        ? evt.composedPath().find(elem => elem.tagName === 'A').dataset.type
+        : 'movie';
+      let t = evt.target;
+      while (t.nodeName !== 'A' && t.parentNode !== null) {
+        t = t.parentNode;
+      }
 
-    if (t.nodeName === 'A') {
-      const movieId = parseInt(t.id);
-      const movieSmallPoster = t.getElementsByTagName('img')[0].src;
-      //   console.log(t);
-      //   console.log('Рендер:', movieId, ', ', movieSmallPoster);
+      if (t.nodeName === 'A') {
+        const movieId = parseInt(t.id);
+        const movieSmallPoster = t.getElementsByTagName('img')[0].src;
+        //   console.log(t);
+        //   console.log('Рендер:', movieId, ', ', movieSmallPoster);
 
-      openModal(movieId, movieSmallPoster);
+        openModal(movieId, movieSmallPoster);
+      }
+    } catch {
+      console.log('click empty fild ))');
     }
   });
   //   console.log('after add listener:');
