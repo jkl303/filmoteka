@@ -25,47 +25,62 @@
   }
 
   @include desktop {
-   
     @include x1 {
       background-image: url('../images/header-home-desktop@1x.jpg');
     }
     @include x2 {
       background-image: url('../images/header-home-desktop@2x.jpg');
     }
-        
   }
 
   &__library {
-
     @include x1 {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56))
-      ,url('../images/header-library-mobile@1x.jpeg');
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url('../images/header-library-mobile@1x.jpeg');
     }
     @include x2 {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56))
-      ,url('../images/header-library-mobile@2x.jpeg');
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url('../images/header-library-mobile@2x.jpeg');
     }
 
     @include tablet-bg {
       padding-top: 40px;
       @include x1 {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url('../images/header-library-tablet@1x.jpeg');
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.56),
+            rgba(0, 0, 0, 0.56)
+          ),
+          url('../images/header-library-tablet@1x.jpeg');
       }
       @include x2 {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url('../images/header-library-tablet@2x.jpeg');
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.56),
+            rgba(0, 0, 0, 0.56)
+          ),
+          url('../images/header-library-tablet@2x.jpeg');
       }
     }
 
     @include desktop {
       @include x1 {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url('../images/header-library-desctop@1x.jpeg');
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.56),
+            rgba(0, 0, 0, 0.56)
+          ),
+          url('../images/header-library-desctop@1x.jpeg');
       }
       @include x2 {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url('../images/header-library-desctop@2x.jpeg');
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.56),
+            rgba(0, 0, 0, 0.56)
+          ),
+          url('../images/header-library-desctop@2x.jpeg');
       }
     }
   }

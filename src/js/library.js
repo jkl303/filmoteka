@@ -2,7 +2,8 @@ import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 import movieCardTpl from './../templates/movie-card.hbs';
 import { getCurrentPage } from './getCurrentPage';
 import { openModal } from './modal-movie';
-import { fetchInitialData } from './renderHomePageUI';
+import Notiflix from 'notiflix';
+import { queuedListHandler } from './queuedList';
 import { AddListenerToMovieList } from './modal-movie';
 
 function storageLibraryChecker() {
@@ -18,48 +19,31 @@ getCurrentPage();
 
 const movie_id = JSON.parse(localStorage.getItem('WatchedList'));
 
-const options = {
-  headers: {
-    'Content-Type': 'application/json',
-  },
-};
-
 movie_id.forEach(element => {
-  apiLibraryWatched(element);
-});
+  const watchedList = document.querySelector('.movie-list.watched');
 
-const watchedList = document.querySelector('.movie-list-watched');
+  const libraryWatchedListEl = document.createElement('li');
 
-export function apiLibraryWatched(movie_id) {
-  return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`, options)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('fail');
-      }
-      return response.json();
-    })
-    .then(data => {
-      const libraryWatchedListEl = document.createElement('li');
-
-      libraryWatchedListEl.classList.add('movie-item');
-      libraryWatchedListEl.innerHTML = `
-      <a href='${data.id}' id = '${data.id}' class='movie-link'>
-    <img src='${IMG_URL}${data.poster_path}' alt='' class='movie-image' />
+  libraryWatchedListEl.classList.add('movie-item');
+  libraryWatchedListEl.innerHTML = `
+      <a href='${element.id}' id = '${element.id}' class='movie-link'>
+    <img src='${IMG_URL}${element.poster_path}' alt='' class='movie-image' />
     <div class='movie-info'>
-      <p class='movie-title'>${data.original_title}</p>
-      <p class='movie-description'>${data.genres
+      <p class='movie-title'>${element.original_title}</p>
+      <p class='movie-description'>${element.genres
         .map(elem => `${elem.name}`)
-        .join(', ')} | ${data.release_date}</p>
+        .join(', ')} | ${element.release_date}</p>
     </div>
   </a>
       `;
-      watchedList.appendChild(libraryWatchedListEl);
-    });
-}
-const queuedListForClick = document.querySelector('.movie-list-queue');
-const watchedListForClick = document.querySelector('.movie-list-watched');
-const queuedTitleOnClick = document.querySelector('.page-heading-queued');
-const watchedTitleOnClick = document.querySelector('.page-heading');
+
+  watchedList.appendChild(libraryWatchedListEl);
+});
+
+const queuedListForClick = document.querySelector('.movie-list.queued');
+const watchedListForClick = document.querySelector('.movie-list.watched');
+const queuedTitleOnClick = document.querySelector('.page-heading.queued');
+const watchedTitleOnClick = document.querySelector('.page-heading.watched');
 
 const queuedBtnLibrary = document.getElementById(
   'js-navigationLibraryButtonQueue'
@@ -88,5 +72,5 @@ watchedBtnLibrary.addEventListener('click', e => {
   queuedBtnLibrary.disabled = false;
 });
 
-// Add modal-movie
 AddListenerToMovieList();
+queuedListHandler();

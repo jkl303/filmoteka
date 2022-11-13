@@ -44,22 +44,19 @@ export async function openModal(movie_id, movieSmallPoster) {
 
     modalEl.innerHTML = movieModalTpl(respData);
 
-    const modalCard = document.querySelector('.modal__card');
-    modalCard.dataset.id = movie_id;
-
     const addToWatchedBtn = document.querySelector('.modal__btn-watched');
     addToWatchedBtn.addEventListener('click', onClickWatchedBtn);
     function onClickWatchedBtn(e) {
       e.preventDefault();
-      console.dir(addToWatchedBtn);
       if (addToWatchedBtn.innerHTML === 'ADD TO WATCHED') {
         addToWatchedBtn.innerHTML = 'REMOVE FROM WATCHED';
       } else {
         addToWatchedBtn.innerHTML = 'ADD TO WATCHED';
       }
-      let myId = modalCard.dataset.id;
+      let movieObj = respData;
+      console.log(movieObj);
       const storageClick = new LocalStorageWatchedUtil();
-      storageClick.addWatched(myId);
+      storageClick.addWatched(movieObj);
     }
 
     const addToQueuedBtn = document.querySelector('.modal__btn-queue');
@@ -71,9 +68,10 @@ export async function openModal(movie_id, movieSmallPoster) {
       } else {
         addToQueuedBtn.innerHTML = 'ADD TO QUEUED';
       }
-      let myId = modalCard.dataset.id;
+      let movieObj = respData;
+      console.log(movieObj);
       const storageClickQ = new LocalStorageQueuedUtil();
-      storageClickQ.addQueued(myId);
+      storageClickQ.addQueued(movieObj);
     }
   } else {
     modalEl.classList.add('modal--show');
@@ -139,22 +137,26 @@ export function AddListenerToMovieList() {
   //   console.log(movieCards);
   movieCards.addEventListener('click', evt => {
     evt.preventDefault();
-    mediaType = evt.composedPath().find(elem => elem.tagName === 'A').dataset
-      .type
-      ? evt.composedPath().find(elem => elem.tagName === 'A').dataset.type
-      : 'movie';
-    let t = evt.target;
-    while (t.nodeName !== 'A' && t.parentNode !== null) {
-      t = t.parentNode;
-    }
+    try {
+      mediaType = evt.composedPath().find(elem => elem.tagName === 'A').dataset
+        .type
+        ? evt.composedPath().find(elem => elem.tagName === 'A').dataset.type
+        : 'movie';
+      let t = evt.target;
+      while (t.nodeName !== 'A' && t.parentNode !== null) {
+        t = t.parentNode;
+      }
 
-    if (t.nodeName === 'A') {
-      const movieId = parseInt(t.id);
-      const movieSmallPoster = t.getElementsByTagName('img')[0].src;
-      //   console.log(t);
-      //   console.log('Рендер:', movieId, ', ', movieSmallPoster);
+      if (t.nodeName === 'A') {
+        const movieId = parseInt(t.id);
+        const movieSmallPoster = t.getElementsByTagName('img')[0].src;
+        //   console.log(t);
+        //   console.log('Рендер:', movieId, ', ', movieSmallPoster);
 
-      openModal(movieId, movieSmallPoster);
+        openModal(movieId, movieSmallPoster);
+      }
+    } catch {
+      console.log('click empty fild ))');
     }
   });
   //   console.log('after add listener:');

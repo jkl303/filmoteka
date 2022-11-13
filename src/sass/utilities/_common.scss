@@ -105,3 +105,11 @@ body {
 .theme-icon[data-theme='dark'] {
   display: block;
 }
+
+.queued {
+  display: none;
+}
+
+.movie-list.queued {
+  display: none;
+}
