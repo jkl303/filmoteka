@@ -25,10 +25,11 @@ AddListenerToMovieList();
 
 
 
-const divForFilters = document.querySelector('.js-select');
+const select = document.querySelector('.js-select');
 
-divForFilters.addEventListener('change', (e) => {
-  filterByGenres(divForFilters.value);
+select.addEventListener('change', (e) => {
+  console.dir(select.options[select.selectedIndex]);
+  filterByGenres(select.value);
   
 });
 
