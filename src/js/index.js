@@ -23,20 +23,13 @@ AddListenerToMovieList();
 
 // searchInputLogic
 
-// const divForFilters = document.querySelector('.divForFilters');
 
-// divForFilters.addEventListener('change', e => {
-//   let selectValue = e.target.value;
-//   console.dir(selectValue);
-//   if (selectValue !== '') {
-//     filterByGenres(selectValue);
-//   }
-// });
 
-const divForFilters = document.querySelector('.divForFilters');
+const divForFilters = document.querySelector('.js-select');
 
-divForFilters.addEventListener('change', e => {
- filterByGenres(e.target.value);
+divForFilters.addEventListener('change', (e) => {
+  filterByGenres(divForFilters.value);
+  
 });
 
 const searchForm = document.querySelector('.search-form');
