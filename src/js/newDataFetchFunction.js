@@ -23,7 +23,10 @@ export async function fetchData(endpoint, page, genres) {
         with_genres: genres,
       },
     });
-    if (data.page === data.total_pages) {
+    if (data.total_pages === 0) {
+      movieListEl.innerHTML = '<p class="nothing-p">Nothing to show</p>';
+    }
+    if (data.page === data.total_pages || data.total_pages <= 1) {
       removeObserver();
     }
     return data.results;
