@@ -7,7 +7,9 @@ import axios from 'axios';
 import { addLoader, removeLoader } from './loader';
 import { addObserver, removeObserver } from './intersectionObserver';
 import { removeEventListeners } from './removeBtnEventlisteners';
+
 import { seeMoreByName, seeMoreByYear } from './homePageSorting';
+
 
 export const refs = {
   input: document.querySelector('.search-input'),
@@ -27,6 +29,10 @@ const defaultImg =
 let searchQuery = '';
 let genresList = null;
 let page = 1;
+
+
+refs.loadBtn.addEventListener('click', onLoadBtnClick);
+
 
 getGenresListData();
 async function getGenresListData() {

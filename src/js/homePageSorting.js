@@ -25,7 +25,6 @@ export async function byName(value) {
   movieListEl.innerHTML = '';
   addLoader(loaderContainer);
   pagination.classList.add('visually-hidden');
-  addObserver();
   title.textContent = `Sorted by title(${byNameSelect.value}ending)`;
   removeBubble();
   removeEventListeners();
@@ -55,7 +54,11 @@ export async function seeMoreByName() {
 export async function byYear(year) {
   addLoader(loaderContainer);
   pagination.classList.add('visually-hidden');
+
   addObserver();
+
+  removeEventListeners();
+
   movieListEl.innerHTML = '';
   title.textContent = `Movies released in ${byYearInput.value}`;
   removeEventListeners();
