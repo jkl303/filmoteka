@@ -4,15 +4,29 @@ import { getCurrentPage } from './getCurrentPage';
 import { openModal } from './modal-movie';
 import { AddListenerToMovieList } from './modal-movie';
 
-export function queuedListHandler() {
-  const movie_obj = JSON.parse(localStorage.getItem('QueuedList'));
 
-  movie_obj.forEach(element => {
-    const queuedList = document.querySelector('.movie-list.queued');
+//const movie_idQ = JSON.parse(localStorage.getItem('QueuedList'));
 
-    const libraryQueuedListEl = document.createElement('li');
-    libraryQueuedListEl.classList.add('movie-item');
-    libraryQueuedListEl.innerHTML = `
+const options = {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
+
+export function apiLibraryQueued(movie_id) {
+  return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`, options)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('fail');
+    })
+    .then(element => {
+      const queuedList = document.querySelector('.movie-list');
+      const libraryQueuedListEl = document.createElement('li');
+      libraryQueuedListEl.classList.add('movie-item');
+      libraryQueuedListEl.innerHTML = `
+
       <a href='${element.id}' id = '${element.id}' class='movie-link'>
     <img src='${IMG_URL}${element.poster_path}' alt='' class='movie-image' />
     <div class='movie-info'>
@@ -23,8 +37,11 @@ export function queuedListHandler() {
     </div>
   </a>
       `;
-    queuedList.appendChild(libraryQueuedListEl);
-  });
+
+      queuedList.appendChild(libraryQueuedListEl);
+    })
+    .catch();
+
 }
 AddListenerToMovieList();
 // openModal();
