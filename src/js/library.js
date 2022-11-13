@@ -2,10 +2,9 @@ import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 import movieCardTpl from './../templates/movie-card.hbs';
 import { getCurrentPage } from './getCurrentPage';
 import { openModal } from './modal-movie';
-// import { fetchInitialData } from './renderHomePageUI';
 import Notiflix from 'notiflix';
 import { queuedListHandler } from './queuedList';
-// import { AddListenerToMovieList } from './modal-movie';
+import { AddListenerToMovieList } from './modal-movie';
 
 function storageLibraryChecker() {
   if (localStorage.getItem('theme') !== null) {
@@ -73,4 +72,5 @@ watchedBtnLibrary.addEventListener('click', e => {
   queuedBtnLibrary.disabled = false;
 });
 
+AddListenerToMovieList();
 queuedListHandler();

@@ -2,6 +2,7 @@ import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 import movieCardTpl from './../templates/movie-card.hbs';
 import { getCurrentPage } from './getCurrentPage';
 import { openModal } from './modal-movie';
+import { AddListenerToMovieList } from './modal-movie';
 
 export function queuedListHandler() {
   const movie_obj = JSON.parse(localStorage.getItem('QueuedList'));
@@ -25,3 +26,5 @@ export function queuedListHandler() {
     queuedList.appendChild(libraryQueuedListEl);
   });
 }
+AddListenerToMovieList();
+// openModal();
