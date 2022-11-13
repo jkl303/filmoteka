@@ -8,24 +8,27 @@
 
 .divForFilters {
     overflow: hidden;
-    // position: absolute;
-    left: 16px;
-    top: 167px;
+    position: absolute;
+    // left: 16px;
+    // top: 38px;
     // padding: 16px 0;
 
-    @include desktop {
-        left: 30%;
+    @include tablet-bg {
+        top: 38px;
     }
 }
 
 .select {
     background-color: #333;
     color: white;
-    width: 150px;
+    width: 80px;
 
     @include tablet-sm {
-        width: 200px;
+        width: 130px;
     }
+        @include tablet-bg {
+            width: 150px;
+        }
 
     border: 1px solid black;
     border-radius: 10px;
