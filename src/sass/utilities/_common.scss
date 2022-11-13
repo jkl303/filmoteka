@@ -69,10 +69,14 @@ body {
   font-family: $main-font;
   font-weight: 500;
   font-size: 24px;
-  padding-top: 30px;
+  padding-top: 120px;
   text-align: center;
   text-transform: uppercase;
   color: black;
+
+  @include tablet-bg {
+    padding-top: 80px;
+  }
 }
 
 .page-heading-queued {

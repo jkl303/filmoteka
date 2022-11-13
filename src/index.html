@@ -13,8 +13,6 @@
     />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png" />
     <link rel="stylesheet" href="./sass/main.scss" />
-    <!-- <link rel="stylesheet" title="theme" href="./sass/utilities/dark_theme.css" /> -->
-    <!-- <link rel="stylesheet" title="theme" href="./sass/utilities/light_theme.css" /> -->
   </head>
   <body>
     <header class="header">
@@ -50,9 +48,7 @@
             </svg>
           </button>
         </form>
-
         <div class="loader-container"></div>
-
         <div class="theme">
           <svg class="theme-icon" data-theme="light" width="20px" height="20px">
             <use href="./icons/light_dark_svg.svg#icon-sun"></use>
@@ -61,52 +57,61 @@
             <use href="./icons/light_dark_svg.svg#icon-moon"></use>
           </svg>
         </div>
-
-        <!-- <section class="filters js-filters">
-    <div class="divForFilters">
-      <select name="" id="" label="" class="select js-select" onfocus="this.size=4;" onblur="this.size=1;"
-        onchange="this.size=1; this.blur();"></select>
-    </div>
-  </section> -->
       </div>
     </header>
-
     <main>
       <div class="container">
-
-            <section class="filters js-filters">
-              <div class="divForFilters">
-                <select name="" id="" label="" class="select js-select" onfocus="this.size=4;" onblur="this.size=1;"
-                  onchange="this.size=1; this.blur();"></select>
-              </div>
-            </section>
-        <div class="sort">
-
-          <h2 class="sort__title">Sort:</h2>
-          <div class="by-name">
-            <label for="by-name" class="by-name__label">by name</label>
-            <select name="by-name__select" id="by-name" class="by-name__select">
+        <section class="filters js-filters">
+          <div class="filters-item">
+            <label for="by-genre" class="by-genre__label filters-label"
+              >BY GENRE</label
+            >
+            <select
+              name="by-genre__select"
+              id="by-genre"
+              class="select js-select"
+              onfocus="this.size=4"
+              onblur="this.size=1"
+              onchange="this.size=1; this.blur()"
+            ></select>
+          </div>
+          <div class="filters-item">
+            <label for="by-name" class="by-name__label filters-label"
+              >BY NAME</label
+            >
+            <select
+              name="by-name__select"
+              id="by-name"
+              class="by-name__select select"
+              onfocus="this.size=2"
+              onblur="this.size=1"
+              onchange="this.size=1;
+              this.blur()"
+            >
               <option value="empty" class="by-name__option">Select</option>
               <option value="asc" class="by-name__option">A-z</option>
               <option value="desc" class="by-name__option">Z-a</option>
             </select>
           </div>
-          <div class="by-year">
-            <output class="bubble"></output>
-            <input
-              type="range"
-              id="by-year"
-              name="by-year"
-              value="2022"
-              min="1878"
-              max="2022"
-            />
-            <label for="by-year" class="by-year__label">by year</label>
+          <div class="filters-item filters-item__by-year">
+            <label for="by-year" class="by-year__label filters-label"
+              >BY YEAR</label
+            >
+            <div class="slider-container">
+              <input
+                type="range"
+                id="by-year"
+                name="by-year"
+                value="2022"
+                min="1878"
+                max="2022"
+                class="slider"
+              />
+              <output class="bubble"></output>
+            </div>
           </div>
-        </div>
-   
+        </section>
         <h1 class="page-heading">Trending today</h1>
-
         <ul class="movie-list">
           <li class="movie-item">
             <a href="#" class="movie-link">
@@ -128,7 +133,6 @@
       </div>
       <div class="modal"></div>
     </main>
-
     <footer class="footer">
       <div class="container">
         <p class="footer-text">
@@ -140,7 +144,6 @@
         </p>
       </div>
     </footer>
-
     <!--Modal footerGalleryItems-->
     <div
       class="modal__overlay is-hidden"
@@ -414,7 +417,6 @@
                 </div>
               </div>
             </li>
-
             <li class="footer-team-link-list">
               <div class="footer-photo-links">
                 <img
@@ -457,7 +459,6 @@
                 </div>
               </div>
             </li>
-
             <li class="footer-team-link-list">
               <div class="footer-photo-links">
                 <img
@@ -482,7 +483,6 @@
                         <i class="fab fa-linkedin-in i-link"></i>
                       </a>
                     </li>
-
                     <li class="link-img">
                       <a
                         href="https://github.com/jkl303"
@@ -500,7 +500,6 @@
                 </div>
               </div>
             </li>
-
             <li class="footer-team-link-list">
               <div class="footer-photo-links">
                 <img
@@ -525,7 +524,6 @@
                         <i class="fab fa-linkedin-in i-link"></i>
                       </a>
                     </li>
-
                     <li class="link-img">
                       <a
                         href="https://github.com/Mykhail92"
@@ -543,7 +541,6 @@
                 </div>
               </div>
             </li>
-
             <li class="footer-team-link-list">
               <div class="footer-photo-links">
                 <img
@@ -568,7 +565,6 @@
                         <i class="fab fa-linkedin-in i-link"></i>
                       </a>
                     </li>
-
                     <li class="link-img">
                       <a
                         href="https://github.com/Liettualainen"
@@ -590,7 +586,6 @@
         </div>
       </div>
     </div>
-
     <script type="module" src="./js/index.js"></script>
     <script type="module" src="./js/modal-footer.js"></script>
   </body>
