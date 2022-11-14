@@ -14,7 +14,7 @@ export class LocalStorageWatchedUtil {
   addWatched(movieObj) {
     let movieInWatched = this.getMovieToWatched();
     let pushMovie = false;
-    const index = movieInWatched.indexOf(movieObj);
+    const index = movieInWatched.findIndex(elem => elem.id === movieObj.id);
 
     if (index === -1) {
       movieInWatched.push(movieObj);
@@ -45,7 +45,7 @@ export class LocalStorageQueuedUtil {
   addQueued(movieObj) {
     let movieInQueued = this.getMovieToQueued();
     let pushQueuedMovie = false;
-    const index = movieInQueued.indexOf(movieObj);
+    const index = movieInQueued.findIndex(elem => elem.id === movieObj.id);
 
     if (index === -1) {
       movieInQueued.push(movieObj);
