@@ -3,7 +3,6 @@ import axios from 'axios';
 import movieCardTpl from './../templates/movie-card.hbs';
 import {
   fetchInitialData,
-  renderUI,
   convertResponseDataToObject,
 } from './renderHomePageUI';
 
@@ -16,7 +15,6 @@ async function getData(page) {
         page: page,
       },
     });
-    // console.log(response.data);
     return response.data;
   } catch (err) {
     return err;
@@ -25,10 +23,8 @@ async function getData(page) {
 
 export async function renderPages() {
   const filmData = await getData(page);
-  // console.log(filmData);
   const totalPages = filmData.total_pages;
-  //   const totalResults = filmData.total_results;
-  //   const resultsArr = filmData.results;
+
   let initialPageNumber = 1;
   let currentPageNumber = 1;
 
@@ -67,18 +63,22 @@ export async function renderPages() {
     paginationEl.appendChild(ulEl);
     ulEl.appendChild(arrowRightBtn);
 
-    arrowRightBtn.addEventListener('click', () => {
-      initialPageNumber += 10;
-      pagesCount += 10;
+    const arrowRightClick = evt => {
+      initialPageNumber += 1;
+      pagesCount += 1;
       ulEl.innerHTML = '';
       ulEl.insertAdjacentElement('afterbegin', arrowLeftBtn);
 
       if (pagesCount < totalPages) {
         for (let i = initialPageNumber; i <= pagesCount; i++) {
-          // console.log(i);
-
           const liEl = displayPaginationBtn(i);
           ulEl.appendChild(liEl);
+        }
+
+        let liArrPlus = document.querySelectorAll('.pagination__item');
+
+        if (liArrPlus[0].classList.contains('pagination__item--active')) {
+          liArrPlus[0].classList.remove('pagination__item--active');
         }
       }
 
@@ -87,20 +87,25 @@ export async function renderPages() {
       }
 
       ulEl.appendChild(arrowRightBtn);
-    });
+    };
 
-    arrowLeftBtn.addEventListener('click', () => {
-      initialPageNumber -= 10;
-      pagesCount -= 10;
+    arrowRightBtn.addEventListener('click', arrowRightClick);
+
+    const arrowLeftClick = evt => {
+      initialPageNumber -= 1;
+      pagesCount -= 1;
       ulEl.innerHTML = '';
       ulEl.insertAdjacentElement('afterbegin', arrowLeftBtn);
 
       if (pagesCount < totalPages) {
         for (let i = initialPageNumber; i <= pagesCount; i++) {
-          // console.log(i);
-
           const liEl = displayPaginationBtn(i);
           ulEl.appendChild(liEl);
+        }
+
+        let liArrMinus = document.querySelectorAll('.pagination__item');
+        if (liArrMinus[9].classList.contains('pagination__item--active')) {
+          liArrMinus[9].classList.remove('pagination__item--active');
         }
       }
 
@@ -109,7 +114,9 @@ export async function renderPages() {
       }
 
       ulEl.appendChild(arrowRightBtn);
-    });
+    };
+
+    arrowLeftBtn.addEventListener('click', arrowLeftClick);
   }
   function displayPaginationBtn(page) {
     const liEl = document.createElement('li');
@@ -119,17 +126,17 @@ export async function renderPages() {
     if (currentPageNumber === page) {
       liEl.classList.add('pagination__item--active');
     }
-    liEl.addEventListener('click', evt => {
-      let clickedPage = Number(evt.target.innerHTML);
-      // console.log(clickedPage);
-      displayFilmsList(clickedPage);
-      page = clickedPage;
 
+    const handleCkickPage = evt => {
+      currentPageNumber = page;
+      displayFilmsList(currentPageNumber);
       let currentItemLi = document.querySelector('li.pagination__item--active');
-      currentItemLi.classList.remove('pagination__item--active');
-
-      liEl.classList.add('pagination__item--active');
-    });
+      if (currentItemLi) {
+        currentItemLi.classList.remove('pagination__item--active');
+      }
+      evt.target.classList.add('pagination__item--active');
+    };
+    liEl.addEventListener('click', handleCkickPage);
 
     return liEl;
   }
