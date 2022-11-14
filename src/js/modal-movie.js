@@ -55,8 +55,6 @@ export async function openModal(movie_id, movieSmallPoster) {
         localStorage.removeItem('WatchedList', JSON.stringify(movieObj));
         addToWatchedBtn.innerHTML = 'ADD TO WATCHED';
       }
-
-      console.log(movieObj);
       const storageClick = new LocalStorageWatchedUtil();
       storageClick.addWatched(movieObj);
     }
@@ -72,7 +70,6 @@ export async function openModal(movie_id, movieSmallPoster) {
         localStorage.removeItem('QueuedList', JSON.stringify(movieObj));
         addToQueuedBtn.innerHTML = 'ADD TO QUEUED';
       }
-
       console.log(movieObj);
       const storageClickQ = new LocalStorageQueuedUtil();
       storageClickQ.addQueued(movieObj);
