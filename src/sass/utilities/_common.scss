@@ -95,12 +95,20 @@ body {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
-.theme-icon {
-  margin-top: 50px;
-  margin-right: 20px;
-  margin-left: auto;
-  fill: white;
-}
+
+.theme-icon {margin-top: 30px;
+margin-right: 50px;
+margin-left: auto;
+cursor: pointer;
+fill:white}
+
+//.theme-icon {
+//  margin-top: 50px;
+//  margin-right: 20px;
+//  margin-left: auto;
+//  fill: white;
+//}
+
 
 .theme-icon[data-theme='light'] {
   display: none;
