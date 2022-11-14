@@ -10,7 +10,7 @@ import { storageChecker } from './changeTheme';
 
 import { byName, byYear, setBubble } from './homePageSorting';
 
-// import debounce from 'debounce';
+import debounce from 'debounce';
 
 // Adds a red line under active page in the website header
 getCurrentPage();
