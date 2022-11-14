@@ -9,7 +9,7 @@ import {
 } from './newDataFetchFunction';
 import { removeBubble } from './homePageSorting';
 const moviesList = document.querySelector('.movie-list');
-const select = document.querySelector('.js-select');
+const select = document.querySelector('#by-genre');
 const title = document.querySelector('.page-heading');
 const loaderContainer = document.querySelector('.loader-container');
 
@@ -44,7 +44,9 @@ generateOptions();
 
 export async function filterByGenres(genre) {
   moviesList.innerHTML = '';
-  title.textContent = `Movies of the ${select.options[select.selectedIndex].textContent} genre`;
+  title.textContent = `Movies of the ${
+    select.options[select.selectedIndex].textContent
+  } genre`;
   addLoader(loaderContainer);
   removeBubble();
   try {
