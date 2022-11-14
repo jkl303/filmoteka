@@ -1,48 +1,90 @@
-import { API_KEY, BASE_URL, IMG_URL } from './api-service';
-import axios from 'axios';
-import { addLoader, removeLoader } from './loader';
-const container = document.querySelector('main .container');
+import {
+  fetchData,
+  formatResponseData,
+  renderUI,
+} from './newDataFetchFunction';
+
+import { removeEventListeners } from './removeBtnEventlisteners';
+import { addLoader } from './loader';
+import { addObserver } from './intersectionObserver';
+import { onLoadBtnClick } from './searchinputLogic';
+
 const range = document.querySelector("input[type='range']");
 const bubble = document.querySelector('.bubble');
+const byNameSelect = document.querySelector('[name="by-name__select"]');
+const byYearInput = document.querySelector('[name="by-year"]');
+const loadBtn = document.querySelector('.load-btn');
 const title = document.querySelector('.page-heading');
+const movieListEl = document.querySelector('.movie-list');
+const loaderContainer = document.querySelector('.loader-container');
+const pagination = document.querySelector('.pagination');
+
+let page = 1;
 
 export async function byName(value) {
+  movieListEl.innerHTML = '';
+  addLoader(loaderContainer);
+  pagination.classList.add('visually-hidden');
+  title.textContent = `Sorted by title(${byNameSelect.value}ending)`;
+  removeBubble();
+  removeEventListeners();
+  loadBtn.addEventListener('click', seeMoreByName);
   try {
-    if (value === 'empty') {
-    } else {
-      title.textContent = `Sorted by title(${value}ending)`;
-      const {
-        data: { results },
-      } = await axios.get(`${BASE_URL}/discover/movie?sort_by=title.${value}`, {
-        params: {
-          api_key: API_KEY,
-        },
-      });
+    await fetchData(`/discover/movie?sort_by=title.${value}`)
+      .then(formatResponseData)
+      .then(renderUI);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-      console.log(results);
-    }
-  } catch (err) {
-    return err;
+export async function seeMoreByName() {
+  page += 1;
+  addLoader(loaderContainer);
+  loadBtn.classList.remove('load-btn-visible');
+  try {
+    await fetchData(`/discover/movie?sort_by=title.${byNameSelect.value}`, page)
+      .then(formatResponseData)
+      .then(renderUI);
+  } catch (error) {
+    console.log(error);
   }
 }
 
 export async function byYear(year) {
-  try {
-    title.textContent = `Movies released in ${year}`;
-    const {
-      data: { results },
-    } = await axios.get(
-      `${BASE_URL}/discover/movie?primary_release_year=${year}`,
-      {
-        params: {
-          api_key: API_KEY,
-        },
-      }
-    );
+  addLoader(loaderContainer);
+  pagination.classList.add('visually-hidden');
 
-    console.log(results);
-  } catch (err) {
-    return err;
+  addObserver();
+
+  removeEventListeners();
+
+  movieListEl.innerHTML = '';
+  title.textContent = `Movies released in ${byYearInput.value}`;
+  removeEventListeners();
+  loadBtn.addEventListener('click', seeMoreByYear);
+  try {
+    await fetchData(`/discover/movie?primary_release_year=${year}`)
+      .then(formatResponseData)
+      .then(renderUI);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function seeMoreByYear() {
+  addLoader(loaderContainer);
+  loadBtn.classList.remove('load-btn-visible');
+  page += 1;
+  try {
+    await fetchData(
+      `/discover/movie?primary_release_year=${byYearInput.value}`,
+      page
+    )
+      .then(formatResponseData)
+      .then(renderUI);
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -53,5 +95,9 @@ export function setBubble() {
   const max = range.max ? range.max : 100;
   const newVal = Number(((val - min) * 100) / (max - min));
   bubble.innerHTML = val;
-  bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+}
+
+export function removeBubble() {
+  const bubble = document.querySelector('.bubble');
+  bubble.style.visibility = 'hidden';
 }

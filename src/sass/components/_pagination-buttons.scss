@@ -1,0 +1,29 @@
+.pagination__list {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  gap: 5px;
+}
+
+.pagination__item:hover {
+  cursor: pointer;
+}
+
+.pagination__item--active {
+  background-color: #ff6b08;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+.arrow-right,
+.arrow-left {
+  border-color: transparent;
+  border-radius: 4px;
+}
+
+.arrow-right,
+.arrow-left {
+  background-color: transparent;
+  cursor: pointer;
+}
