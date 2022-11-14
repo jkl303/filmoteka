@@ -70,7 +70,7 @@ export async function openModal(movie_id, movieSmallPoster) {
         localStorage.removeItem('QueuedList', JSON.stringify(movieObj));
         addToQueuedBtn.innerHTML = 'ADD TO QUEUED';
       }
-      console.log(movieObj);
+      // console.log(movieObj);
       const storageClickQ = new LocalStorageQueuedUtil();
       storageClickQ.addQueued(movieObj);
     }
