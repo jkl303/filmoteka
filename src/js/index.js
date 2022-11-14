@@ -25,7 +25,7 @@ AddListenerToMovieList();
 
 // searchInputLogic
 
-const select = document.querySelector('.js-select');
+const select = document.querySelector('#by-genre');
 
 select.addEventListener('change', e => {
   console.dir(select.options[select.selectedIndex]);
