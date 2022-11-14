@@ -10,7 +10,6 @@ import { removeEventListeners } from './removeBtnEventlisteners';
 
 import { seeMoreByName, seeMoreByYear } from './homePageSorting';
 
-
 export const refs = {
   input: document.querySelector('.search-input'),
   list: document.querySelector('.movie-list'),
@@ -21,18 +20,17 @@ export const refs = {
   guard: document.querySelector('.guard'),
   pagination: document.querySelector('.pagination'),
   filter: document.querySelector('.filters'),
-  sort: document.querySelector('.sort'),
 };
 
-const defaultImg =
+export const defaultImg =
   'https://www.gulftoday.ae/-/media/gulf-today/images/articles/opinion/2022/8/7/cinema.ashx?h=450&la=en&w=750&hash=EB12327C59FAEB577FBED56AF6BF2E12';
 let searchQuery = '';
 let genresList = null;
 let page = 1;
 
-
-refs.loadBtn.addEventListener('click', onLoadBtnClick);
-
+if (refs.loadBtn) {
+  refs.loadBtn.addEventListener('click', onLoadBtnClick);
+}
 
 getGenresListData();
 async function getGenresListData() {
@@ -56,7 +54,6 @@ export async function onSubmit(evt) {
   searchRenderUI();
 
   refs.pagination.classList.add('visually-hidden');
-  refs.sort.classList.add('visually-hidden');
   refs.filter.classList.add('visually-hidden');
   addObserver();
 }

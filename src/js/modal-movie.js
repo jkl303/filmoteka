@@ -53,7 +53,7 @@ export async function openModal(movie_id, movieSmallPoster) {
       } else {
         addToWatchedBtn.innerHTML = 'ADD TO WATCHED';
       }
-      let movieObj = respData.id;
+      let movieObj = respData;
       console.log(movieObj);
       const storageClick = new LocalStorageWatchedUtil();
       storageClick.addWatched(movieObj);
@@ -68,7 +68,7 @@ export async function openModal(movie_id, movieSmallPoster) {
       } else {
         addToQueuedBtn.innerHTML = 'ADD TO QUEUED';
       }
-      let movieObj = respData.id;
+      let movieObj = respData;
       console.log(movieObj);
       const storageClickQ = new LocalStorageQueuedUtil();
       storageClickQ.addQueued(movieObj);
