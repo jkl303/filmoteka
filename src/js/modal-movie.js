@@ -48,12 +48,14 @@ export async function openModal(movie_id, movieSmallPoster) {
     addToWatchedBtn.addEventListener('click', onClickWatchedBtn);
     function onClickWatchedBtn(e) {
       e.preventDefault();
+      let movieObj = respData;
       if (addToWatchedBtn.innerHTML === 'ADD TO WATCHED') {
         addToWatchedBtn.innerHTML = 'REMOVE FROM WATCHED';
       } else {
+        localStorage.removeItem('WatchedList', JSON.stringify(movieObj));
         addToWatchedBtn.innerHTML = 'ADD TO WATCHED';
       }
-      let movieObj = respData;
+
       console.log(movieObj);
       const storageClick = new LocalStorageWatchedUtil();
       storageClick.addWatched(movieObj);
@@ -63,12 +65,14 @@ export async function openModal(movie_id, movieSmallPoster) {
     addToQueuedBtn.addEventListener('click', onClickQueuedBtn);
     function onClickQueuedBtn(e) {
       e.preventDefault();
+      let movieObj = respData;
       if (addToQueuedBtn.innerHTML === 'ADD TO QUEUED') {
         addToQueuedBtn.innerHTML = 'REMOVE FROM QUEUED';
       } else {
+        localStorage.removeItem('QueuedList', JSON.stringify(movieObj));
         addToQueuedBtn.innerHTML = 'ADD TO QUEUED';
       }
-      let movieObj = respData;
+
       console.log(movieObj);
       const storageClickQ = new LocalStorageQueuedUtil();
       storageClickQ.addQueued(movieObj);
