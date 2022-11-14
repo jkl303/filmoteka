@@ -42,7 +42,6 @@ export async function renderPages() {
     const moviesList = document.querySelector('.movie-list');
     moviesList.innerHTML = '';
 
-    // console.log('Page: ', page);
     fetchInitialData(page)
       .then(convertResponseDataToObject)
       .then(data => {
@@ -63,7 +62,7 @@ export async function renderPages() {
     paginationEl.appendChild(ulEl);
     ulEl.appendChild(arrowRightBtn);
 
-    const arrowRightClick = evt => {
+    const arrowRightClick = () => {
       initialPageNumber += 1;
       pagesCount += 1;
       ulEl.innerHTML = '';
@@ -72,6 +71,7 @@ export async function renderPages() {
       if (pagesCount < totalPages) {
         for (let i = initialPageNumber; i <= pagesCount; i++) {
           const liEl = displayPaginationBtn(i);
+
           ulEl.appendChild(liEl);
         }
 
@@ -79,6 +79,7 @@ export async function renderPages() {
 
         if (liArrPlus[0].classList.contains('pagination__item--active')) {
           liArrPlus[0].classList.remove('pagination__item--active');
+          liArrPlus[0].classList.add('pagination__item--active');
         }
       }
 
@@ -91,7 +92,7 @@ export async function renderPages() {
 
     arrowRightBtn.addEventListener('click', arrowRightClick);
 
-    const arrowLeftClick = evt => {
+    const arrowLeftClick = () => {
       initialPageNumber -= 1;
       pagesCount -= 1;
       ulEl.innerHTML = '';
@@ -106,6 +107,7 @@ export async function renderPages() {
         let liArrMinus = document.querySelectorAll('.pagination__item');
         if (liArrMinus[9].classList.contains('pagination__item--active')) {
           liArrMinus[9].classList.remove('pagination__item--active');
+          liArrMinus[9].classList.add('pagination__item--active');
         }
       }
 
@@ -130,10 +132,12 @@ export async function renderPages() {
     const handleCkickPage = evt => {
       currentPageNumber = page;
       displayFilmsList(currentPageNumber);
+
       let currentItemLi = document.querySelector('li.pagination__item--active');
       if (currentItemLi) {
         currentItemLi.classList.remove('pagination__item--active');
       }
+
       evt.target.classList.add('pagination__item--active');
     };
     liEl.addEventListener('click', handleCkickPage);
