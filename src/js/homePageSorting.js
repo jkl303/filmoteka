@@ -4,16 +4,14 @@ import {
   renderUI,
 } from './newDataFetchFunction';
 
-import { removeEventListeners } from './removeBtnEventlisteners';
+import { removeEventListeners, removeBtn } from './removeBtnEventlisteners';
 import { addLoader } from './loader';
 import { addObserver } from './intersectionObserver';
-import { onLoadBtnClick } from './searchinputLogic';
 
 const range = document.querySelector("input[type='range']");
 const bubble = document.querySelector('.bubble');
 const byNameSelect = document.querySelector('[name="by-name__select"]');
 const byYearInput = document.querySelector('[name="by-year"]');
-const loadBtn = document.querySelector('.load-btn');
 const title = document.querySelector('.page-heading');
 const movieListEl = document.querySelector('.movie-list');
 const loaderContainer = document.querySelector('.loader-container');
@@ -25,10 +23,9 @@ export async function byName(value) {
   movieListEl.innerHTML = '';
   addLoader(loaderContainer);
   pagination.classList.add('visually-hidden');
-  title.textContent = `Sorted by title(${byNameSelect.value}ending)`;
+  title.textContent = `Sorted by title(${value}ending)`;
   removeBubble();
-  removeEventListeners();
-  loadBtn.addEventListener('click', seeMoreByName);
+  removeEventListeners(seeMoreByName);
   try {
     await fetchData(`/discover/movie?sort_by=title.${value}`)
       .then(formatResponseData)
@@ -38,10 +35,10 @@ export async function byName(value) {
   }
 }
 
-export async function seeMoreByName() {
+async function seeMoreByName() {
   page += 1;
   addLoader(loaderContainer);
-  loadBtn.classList.remove('load-btn-visible');
+  removeBtn();
   try {
     await fetchData(`/discover/movie?sort_by=title.${byNameSelect.value}`, page)
       .then(formatResponseData)
@@ -54,15 +51,10 @@ export async function seeMoreByName() {
 export async function byYear(year) {
   addLoader(loaderContainer);
   pagination.classList.add('visually-hidden');
-
   addObserver();
-
-  removeEventListeners();
-
   movieListEl.innerHTML = '';
-  title.textContent = `Movies released in ${byYearInput.value}`;
-  removeEventListeners();
-  loadBtn.addEventListener('click', seeMoreByYear);
+  title.textContent = `Movies released in ${year}`;
+  removeEventListeners(seeMoreByYear);
   try {
     await fetchData(`/discover/movie?primary_release_year=${year}`)
       .then(formatResponseData)
@@ -72,10 +64,10 @@ export async function byYear(year) {
   }
 }
 
-export async function seeMoreByYear() {
+async function seeMoreByYear() {
   addLoader(loaderContainer);
-  loadBtn.classList.remove('load-btn-visible');
   page += 1;
+  removeBtn();
   try {
     await fetchData(
       `/discover/movie?primary_release_year=${byYearInput.value}`,

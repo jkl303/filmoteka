@@ -15,7 +15,7 @@ const observerOpions = {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         refs.list.style.marginBottom = '75px';
-        refs.loadBtn.classList.add('load-btn-visible');
+        document.querySelector('.load-btn').classList.add('load-btn-visible');
       }
     });
   }
