@@ -28,7 +28,7 @@ export async function fetchData(endpoint, page, genres) {
       movieListEl.innerHTML = '<p class="nothing-p">Nothing to show</p>';
     }
     if (data.total_pages <= 1) {
-      loadBtn.classList.remove('load-btn-visible');
+      document.querySelector('.load-btn').classList.remove('load-btn-visible');
     }
     if (data.total_pages > 1) {
       addObserver();

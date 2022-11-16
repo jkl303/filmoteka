@@ -6,9 +6,7 @@ import movieCardTpl from './../templates/movie-card.hbs';
 import axios from 'axios';
 import { addLoader, removeLoader } from './loader';
 import { addObserver, removeObserver } from './intersectionObserver';
-import { removeEventListeners } from './removeBtnEventlisteners';
-
-import { seeMoreByName, seeMoreByYear } from './homePageSorting';
+import { removeEventListeners, removeBtn } from './removeBtnEventlisteners';
 
 export const refs = {
   input: document.querySelector('.search-input'),
@@ -28,10 +26,6 @@ let searchQuery = '';
 let genresList = null;
 let page = 1;
 
-if (refs.loadBtn) {
-  refs.loadBtn.addEventListener('click', onLoadBtnClick);
-}
-
 getGenresListData();
 async function getGenresListData() {
   const genresData = await getGenres();
@@ -41,9 +35,7 @@ async function getGenresListData() {
 
 export async function onSubmit(evt) {
   evt.preventDefault();
-  removeEventListeners();
-  refs.loadBtn.addEventListener('click', onLoadBtnClick);
-
+  removeEventListeners(onLoadBtnClick);
   if (refs.input.value.trim() === '') {
     Notify.failure('Please enter the keyword', notifyParams);
     return;
@@ -123,9 +115,8 @@ async function fetchSearchedMovies(genresDictionary) {
 }
 
 export function onLoadBtnClick(evt) {
-  refs.loadBtn.classList.remove('load-btn-visible');
+  removeBtn();
   page += 1;
-
   upgradeUI();
 }
 
