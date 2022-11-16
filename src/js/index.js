@@ -24,14 +24,6 @@ getCurrentPage();
 AddListenerToMovieList();
 
 // searchInputLogic
-
-const select = document.querySelector('#by-genre');
-
-select.addEventListener('change', e => {
-  console.dir(select.options[select.selectedIndex]);
-  filterByGenres(select.value);
-});
-
 const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', onSubmit);
 
@@ -41,6 +33,12 @@ const dark = document.querySelector('[data-theme ="dark"]');
 dark.addEventListener('click', becomeDark);
 const light = document.querySelector('[data-theme ="light"]');
 light.addEventListener('click', becomeLight);
+
+// filter by genre
+const select = document.querySelector('#by-genre');
+select.addEventListener('change', () => {
+  filterByGenres(select.value);
+});
 
 // sort by name
 const byNameSelect = document.querySelector('[name="by-name__select"]');

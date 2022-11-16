@@ -14,7 +14,6 @@ const defaultYear = 'Year unknown';
 const defaultGenre = 'Genre unknown';
 
 let genresDictionary = {};
-let page = 1;
 
 export async function fetchData(endpoint, page, genres) {
   try {
