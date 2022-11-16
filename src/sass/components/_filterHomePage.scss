@@ -8,11 +8,12 @@
   align-items: flex-start;
   justify-content: space-around;
   width: 98%;
-  margin-top: 18px;
+  margin-top: 10px;
 
   @include tablet-bg {
     flex-wrap: nowrap;
     justify-content: center;
+    margin-top: 38px;
   }
 }
 
@@ -33,15 +34,15 @@
   }
 
   &__by-year {
-    display: none;
-    @include desktop {
       display: flex;
+      margin-top: 34px;
+      @include tablet-bg {
+          margin-top: 0;
+        }
     }
   }
-}
 
-.filters-label,
-.bubble {
+.filters-label {
   font-family: $main-font;
   font-size: 10px;
   font-weight: 500;
@@ -52,12 +53,6 @@
   @include tablet-bg {
     font-size: 12px;
   }
-}
-
-.bubble {
-  margin-left: 6px;
-  position: absolute;
-  right: -35px;
 }
 
 .filters-item::after {
@@ -104,20 +99,30 @@
 }
 
 .slider-container {
-  display: flex;
   position: relative;
+  width:220px;
+  @include tablet-sm {
+    width: 318px;
+  }
+  @include tablet-sm {
+    width: 280px;
+  }
+  @include desktop {
+    width: 360px;
+  }
 }
 
-.slider {
+.slider {width: 100%;
   border-radius: 3px;
   -webkit-appearance: none;
   appearance: none;
-  width: 240px;
   height: 26px;
   background: #d3d3d3;
   outline: none;
   margin: 0;
 }
+
+
 
 .slider:hover {
   opacity: 1;
@@ -128,6 +133,7 @@
   appearance: none;
   width: 28px;
   height: 28px;
+  border-radius: 3px;
   background: $color-accent-red;
   cursor: pointer;
 }
@@ -135,6 +141,35 @@
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
+  border-radius: 3px;
   background: #04aa6d;
   cursor: pointer;
+}
+
+.bubble {
+  visibility: hidden;
+  background: $color-accent-red;
+  color: white;
+  padding: 6px;
+  border-radius: 3px;
+  position: absolute;
+  top: -112%;
+  transform: translateX(-50%);
+  font-family: $main-font;
+  font-size: 14px;
+  font-weight: 400;
+  
+  &:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 5px solid $color-accent-red;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      margin-top: -1px;
+    }
 }
