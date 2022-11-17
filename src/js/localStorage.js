@@ -1,3 +1,6 @@
+import { Notify } from "notiflix";
+import { notifyParams } from "./notifyParams";
+
 export class LocalStorageWatchedUtil {
   constructor() {
     this.keyName = 'WatchedList';
@@ -20,7 +23,8 @@ export class LocalStorageWatchedUtil {
       movieInWatched.push(movieObj);
       pushMovie = true;
     } else {
-      movieInWatched.splice(index, 1);
+      Notify.info('This movie is already on the list!!!', notifyParams);
+      // movieInWatched.splice(index, 1);
     }
 
     localStorage.setItem(this.keyName, JSON.stringify(movieInWatched));
@@ -51,7 +55,8 @@ export class LocalStorageQueuedUtil {
       movieInQueued.push(movieObj);
       pushQueuedMovie = true;
     } else {
-      movieInQueued.splice(index, 1);
+      Notify.info('This movie is already on the list!!!', notifyParams);
+      // movieInQueued.splice(index, 1);
     }
 
     localStorage.setItem(this.keyName, JSON.stringify(movieInQueued));
