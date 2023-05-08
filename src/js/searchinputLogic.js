@@ -7,7 +7,7 @@ import { addLoader, removeLoader } from './loader';
 import { addObserver, removeObserver } from './intersectionObserver';
 import { changeEventListeners, removeBtn } from './changeBtnEventlisteners';
 
-export const { BASE_URL, API_KEY, IMG_URL } = process.env;
+const { BASE_URL, API_KEY, IMG_URL } = process.env;
 
 export const refs = {
   input: document.querySelector('.search-input'),
