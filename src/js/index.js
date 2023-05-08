@@ -16,9 +16,7 @@ import debounce from 'debounce';
 getCurrentPage();
 
 // UI render invocation
-// renderUI();
-
-// searchInputLogic();
+renderUI();
 
 // Add modal-movie
 AddListenerToMovieList();

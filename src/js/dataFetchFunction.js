@@ -1,12 +1,11 @@
 import axios from 'axios';
-import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 import movieCardTpl from './../templates/movie-card.hbs';
 import { removeLoader } from './loader';
 import { addObserver, removeObserver } from './intersectionObserver';
 
 const movieListEl = document.querySelector('.movie-list');
 const loaderContainer = document.querySelector('.loader-container');
-const loadBtn = document.querySelector('.load-btn');
+const { BASE_URL, API_KEY, IMG_URL } = process.env;
 
 const defaultImg =
   'https://www.gulftoday.ae/-/media/gulf-today/images/articles/opinion/2022/8/7/cinema.ashx?h=450&la=en&w=750&hash=EB12327C59FAEB577FBED56AF6BF2E12';
@@ -17,26 +16,33 @@ let genresDictionary = {};
 
 export async function fetchData(endpoint, page, genres) {
   try {
-    const { data } = await axios.get(BASE_URL + endpoint, {
+    const {
+      data: { total_pages, results },
+    } = await axios.get(BASE_URL + endpoint, {
       params: {
         api_key: API_KEY,
         page: page,
         with_genres: genres,
       },
     });
-    if (data.total_pages === 0) {
-      movieListEl.innerHTML = '<p class="nothing-p">Nothing to show</p>';
+
+    switch (total_pages) {
+      case 0:
+        movieListEl.innerHTML = '<p class="nothing-p">Nothing to show</p>';
+      case 1:
+        document
+          .querySelector('.load-btn')
+          .classList.remove('load-btn-visible');
+      case total_pages > 1:
+        addObserver();
+      case total_pages === page || total_pages <= 1:
+        removeObserver();
+      default:
+        document
+          .querySelector('.load-btn')
+          .classList.remove('load-btn-visible');
     }
-    if (data.total_pages <= 1) {
-      document.querySelector('.load-btn').classList.remove('load-btn-visible');
-    }
-    if (data.total_pages > 1) {
-      addObserver();
-    }
-    if (data.page === data.total_pages || data.total_pages <= 1) {
-      removeObserver();
-    }
-    return data.results;
+    return results;
   } catch (err) {
     console.error(err);
   }
@@ -90,14 +96,13 @@ export async function formatResponseData(results) {
             ? defaultGenre
             : elem.genre_ids
                 .map((elem, index) => {
-                  if (index < 2) {
-                    return genresDictionary[elem].name;
-                  }
-                  if (index === 2) {
-                    return 'Other';
-                  }
-                  if (index > 2) {
-                    return '';
+                  switch (index) {
+                    case index < 2:
+                      return genresDictionary[elem].name;
+                    case index === 2:
+                      return 'Other';
+                    case index > 2:
+                      return '';
                   }
                 })
                 .filter(elem => elem != '')
@@ -116,7 +121,3 @@ export async function formatResponseData(results) {
 export async function renderUI(data) {
   movieListEl.innerHTML += data.map(elem => movieCardTpl(elem)).join('');
 }
-
-// EXAMPLE OF HOW TO RENDER UI
-
-// fetchData('/discover/movie', 1, '16').then(formatResponseData).then(renderUI);

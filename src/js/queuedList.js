@@ -1,11 +1,4 @@
-import { API_KEY, BASE_URL, IMG_URL } from './api-service';
-import movieCardTpl from './../templates/movie-card.hbs';
-import { getCurrentPage } from './getCurrentPage';
-import { openModal } from './modal-movie';
 import { AddListenerToMovieList } from './modal-movie';
-
-
-//const movie_idQ = JSON.parse(localStorage.getItem('QueuedList'));
 
 const options = {
   headers: {
@@ -14,7 +7,10 @@ const options = {
 };
 
 export function apiLibraryQueued(movie_id) {
-  return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`, options)
+  return fetch(
+    `${process.env.BASE_URL}/movie/${movie_id}?api_key=${process.env.API_KEY}`,
+    options
+  )
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -28,7 +24,9 @@ export function apiLibraryQueued(movie_id) {
       libraryQueuedListEl.innerHTML = `
 
       <a href='${element.id}' id = '${element.id}' class='movie-link'>
-    <img src='${IMG_URL}${element.poster_path}' alt='' class='movie-image' />
+    <img src='${process.env.IMG_URL}${
+        element.poster_path
+      }' alt='' class='movie-image' />
     <div class='movie-info'>
       <p class='movie-title'>${element.original_title}</p>
       <p class='movie-description'>${element.genres
@@ -41,7 +39,6 @@ export function apiLibraryQueued(movie_id) {
       queuedList.appendChild(libraryQueuedListEl);
     })
     .catch();
-
 }
 AddListenerToMovieList();
 // openModal();

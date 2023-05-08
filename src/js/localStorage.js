@@ -1,5 +1,5 @@
-import { Notify } from "notiflix";
-import { notifyParams } from "./notifyParams";
+import { Notify } from 'notiflix';
+import { notifyParams } from './notifyParams';
 
 export class LocalStorageWatchedUtil {
   constructor() {
@@ -24,7 +24,6 @@ export class LocalStorageWatchedUtil {
       pushMovie = true;
     } else {
       Notify.info('This movie is already on the list!!!', notifyParams);
-      // movieInWatched.splice(index, 1);
     }
 
     localStorage.setItem(this.keyName, JSON.stringify(movieInWatched));
@@ -56,7 +55,6 @@ export class LocalStorageQueuedUtil {
       pushQueuedMovie = true;
     } else {
       Notify.info('This movie is already on the list!!!', notifyParams);
-      // movieInQueued.splice(index, 1);
     }
 
     localStorage.setItem(this.keyName, JSON.stringify(movieInQueued));

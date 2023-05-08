@@ -1,13 +1,9 @@
-import { API_KEY } from './api-service';
 import { addLoader } from './loader';
 import options from './../templates/options.hbs';
-import { removeEventListeners, removeBtn } from './removeBtnEventlisteners';
-import {
-  fetchData,
-  formatResponseData,
-  renderUI,
-} from './newDataFetchFunction';
+import { changeEventListeners, removeBtn } from './changeBtnEventlisteners';
+import { fetchData, formatResponseData, renderUI } from './dataFetchFunction';
 import { removeBubble } from './homePageSorting';
+
 const moviesList = document.querySelector('.movie-list');
 const select = document.querySelector('#by-genre');
 const title = document.querySelector('.page-heading');
@@ -18,7 +14,7 @@ let page = 1;
 
 async function getOptions() {
   const response = await fetch(
-    `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
+    `${process.env.BASE_URL}/genre/movie/list?api_key=${process.env.API_KEY}`
   );
   if (response.ok) {
     return await response.json();
@@ -51,9 +47,9 @@ export async function filterByGenres(genre) {
   pagination.classList.add('visually-hidden');
   title.textContent = `Movies of the ${
     select.options[select.selectedIndex].textContent
-    } genre`;
+  } genre`;
   removeBubble();
-  removeEventListeners(seeMoreByGenre);
+  changeEventListeners(seeMoreByGenre);
   try {
     await fetchData(`/discover/movie?sort_by=title.&with_genres=${genre}`)
       .then(formatResponseData)
@@ -68,7 +64,10 @@ async function seeMoreByGenre() {
   addLoader(loaderContainer);
   removeBtn();
   try {
-    await fetchData(`/discover/movie?sort_by=title.&with_genres=${select.value}`, page)
+    await fetchData(
+      `/discover/movie?sort_by=title.&with_genres=${select.value}`,
+      page
+    )
       .then(formatResponseData)
       .then(renderUI);
   } catch (error) {

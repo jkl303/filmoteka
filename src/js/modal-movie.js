@@ -1,20 +1,14 @@
-import { API_KEY, BASE_URL, IMG_URL } from './api-service';
-
 import {
   LocalStorageWatchedUtil,
   LocalStorageQueuedUtil,
 } from './localStorage';
 
-let addToQueuedBtn;
-let addToWatchedBtn;
 let mediaType;
-
-// import SimpleLightbox from 'simplelightbox';
 
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import movieModalTpl from './../templates/movie-modal.hbs';
 
-//-----------MODAL-MOVIE---------------//
+export const { BASE_URL, API_KEY, IMG_URL } = process.env;
 
 export async function openModal(movie_id, movieSmallPoster) {
   const movie_url_original = `${BASE_URL}/${mediaType}/${movie_id}?api_key=${API_KEY}`;
@@ -70,7 +64,7 @@ export async function openModal(movie_id, movieSmallPoster) {
         localStorage.removeItem('QueuedList', JSON.stringify(movieObj));
         addToQueuedBtn.innerHTML = 'ADD TO QUEUED';
       }
-      // console.log(movieObj);
+
       const storageClickQ = new LocalStorageQueuedUtil();
       storageClickQ.addQueued(movieObj);
     }
@@ -105,8 +99,6 @@ window.addEventListener('keydown', evt => {
   }
 });
 
-// цветовое решение для рейтинга
-
 function getClassByRate(vote) {
   if (vote >= 7) {
     return 'green';
@@ -116,8 +108,6 @@ function getClassByRate(vote) {
     return 'red';
   }
 }
-
-//проверка img
 
 function getImgPath(poster, backdrop, url, backupPoster) {
   if (poster === null) {
@@ -130,12 +120,9 @@ function getImgPath(poster, backdrop, url, backupPoster) {
   }
 }
 
-// Adds event listeners to the movies list DOM element
-
 export function AddListenerToMovieList() {
   const movieCards = document.querySelector('.movie-list');
-  //   console.log('before add listener:');
-  //   console.log(movieCards);
+
   movieCards.addEventListener('click', evt => {
     evt.preventDefault();
     try {
@@ -151,8 +138,6 @@ export function AddListenerToMovieList() {
       if (t.nodeName === 'A') {
         const movieId = parseInt(t.id);
         const movieSmallPoster = t.getElementsByTagName('img')[0].src;
-        //   console.log(t);
-        //   console.log('Рендер:', movieId, ', ', movieSmallPoster);
 
         openModal(movieId, movieSmallPoster);
       }
@@ -160,6 +145,4 @@ export function AddListenerToMovieList() {
       console.log('click empty fild ))');
     }
   });
-  //   console.log('after add listener:');
-  //   console.log(movieCards);
 }

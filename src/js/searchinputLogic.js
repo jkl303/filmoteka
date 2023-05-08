@@ -1,12 +1,13 @@
 import { Notify } from 'notiflix';
 import { notifyParams } from './notifyParams';
-import { API_KEY, BASE_URL, IMG_URL } from './api-service';
 import { getGenres } from './fetchGenres';
 import movieCardTpl from './../templates/movie-card.hbs';
 import axios from 'axios';
 import { addLoader, removeLoader } from './loader';
 import { addObserver, removeObserver } from './intersectionObserver';
-import { removeEventListeners, removeBtn } from './removeBtnEventlisteners';
+import { changeEventListeners, removeBtn } from './changeBtnEventlisteners';
+
+export const { BASE_URL, API_KEY, IMG_URL } = process.env;
 
 export const refs = {
   input: document.querySelector('.search-input'),
@@ -35,7 +36,7 @@ async function getGenresListData() {
 
 export async function onSubmit(evt) {
   evt.preventDefault();
-  removeEventListeners(onLoadBtnClick);
+  changeEventListeners(onLoadBtnClick);
   if (refs.input.value.trim() === '') {
     Notify.failure('Please enter the keyword', notifyParams);
     return;

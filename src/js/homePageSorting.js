@@ -1,10 +1,5 @@
-import {
-  fetchData,
-  formatResponseData,
-  renderUI,
-} from './newDataFetchFunction';
-
-import { removeEventListeners, removeBtn } from './removeBtnEventlisteners';
+import { fetchData, formatResponseData, renderUI } from './dataFetchFunction';
+import { changeEventListeners, removeBtn } from './changeBtnEventlisteners';
 import { addLoader } from './loader';
 import { addObserver } from './intersectionObserver';
 
@@ -25,22 +20,11 @@ export async function byName(value) {
   pagination.classList.add('visually-hidden');
   title.textContent = `Sorted by title(${value}ending)`;
   removeBubble();
-  removeEventListeners(seeMoreByName);
+  changeEventListeners(() =>
+    seeMore(`/discover/movie?sort_by=title.${byNameSelect.value}`)
+  );
   try {
     await fetchData(`/discover/movie?sort_by=title.${value}`)
-      .then(formatResponseData)
-      .then(renderUI);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function seeMoreByName() {
-  page += 1;
-  addLoader(loaderContainer);
-  removeBtn();
-  try {
-    await fetchData(`/discover/movie?sort_by=title.${byNameSelect.value}`, page)
       .then(formatResponseData)
       .then(renderUI);
   } catch (error) {
@@ -54,7 +38,9 @@ export async function byYear(year) {
   addObserver();
   movieListEl.innerHTML = '';
   title.textContent = `Movies released in ${year}`;
-  removeEventListeners(seeMoreByYear);
+  changeEventListeners(() =>
+    seeMore(`/discover/movie?primary_release_year=${byYearInput.value}`)
+  );
   try {
     await fetchData(`/discover/movie?primary_release_year=${year}`)
       .then(formatResponseData)
@@ -64,17 +50,12 @@ export async function byYear(year) {
   }
 }
 
-async function seeMoreByYear() {
-  addLoader(loaderContainer);
+async function seeMore(endpoint) {
   page += 1;
+  addLoader(loaderContainer);
   removeBtn();
   try {
-    await fetchData(
-      `/discover/movie?primary_release_year=${byYearInput.value}`,
-      page
-    )
-      .then(formatResponseData)
-      .then(renderUI);
+    await fetchData(endpoint, page).then(formatResponseData).then(renderUI);
   } catch (error) {
     console.log(error);
   }

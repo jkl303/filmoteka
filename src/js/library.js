@@ -1,6 +1,5 @@
 import { getCurrentPage } from './getCurrentPage';
 import { render } from './libraryRender';
-import { AddListenerToMovieList } from './modal-movie';
 import { addListenerOnLibraryPage } from './renderModalOnLibrary';
 
 function storageLibraryChecker() {
