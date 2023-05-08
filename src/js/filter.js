@@ -1,3 +1,4 @@
+import { BASE_URL, API_KEY } from './API';
 import { addLoader } from './loader';
 import options from './../templates/options.hbs';
 import { changeEventListeners, removeBtn } from './changeBtnEventlisteners';
@@ -14,7 +15,7 @@ let page = 1;
 
 async function getOptions() {
   const response = await fetch(
-    `${process.env.BASE_URL}/genre/movie/list?api_key=${process.env.API_KEY}`
+    `${BASE_URL}/genre/movie/list?api_key=${API_KEY}`
   );
   if (response.ok) {
     return await response.json();

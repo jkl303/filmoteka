@@ -1,11 +1,11 @@
 import axios from 'axios';
+import { BASE_URL, API_KEY, IMG_URL } from './API';
 import movieCardTpl from './../templates/movie-card.hbs';
 import { removeLoader } from './loader';
 import { addObserver, removeObserver } from './intersectionObserver';
 
 const movieListEl = document.querySelector('.movie-list');
 const loaderContainer = document.querySelector('.loader-container');
-const { BASE_URL, API_KEY, IMG_URL } = process.env;
 
 const defaultImg =
   'https://www.gulftoday.ae/-/media/gulf-today/images/articles/opinion/2022/8/7/cinema.ashx?h=450&la=en&w=750&hash=EB12327C59FAEB577FBED56AF6BF2E12';

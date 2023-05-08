@@ -1,14 +1,12 @@
+import { BASE_URL, API_KEY, IMG_URL } from './API';
 import {
   LocalStorageWatchedUtil,
   LocalStorageQueuedUtil,
 } from './localStorage';
-
-let mediaType;
-
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import movieModalTpl from './../templates/movie-modal.hbs';
 
-export const { BASE_URL, API_KEY, IMG_URL } = process.env;
+let mediaType;
 
 export async function openModal(movie_id, movieSmallPoster) {
   const movie_url_original = `${BASE_URL}/${mediaType}/${movie_id}?api_key=${API_KEY}`;

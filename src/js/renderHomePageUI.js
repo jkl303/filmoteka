@@ -2,8 +2,7 @@ import { getGenres } from './fetchGenres';
 import movieCardTpl from './../templates/movie-card.hbs';
 import axios from 'axios';
 import { renderPages } from './pagination-homepage';
-
-export const { BASE_URL, API_KEY, IMG_URL } = process.env;
+import { BASE_URL, API_KEY, IMG_URL } from './API';
 const moviesList = document.querySelector('.movie-list');
 let page = 1;
 

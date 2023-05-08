@@ -2,6 +2,7 @@ import movieCardTpl from './../templates/movie-card.hbs';
 import { defaultImg } from './searchinputLogic';
 import { Notify } from 'notiflix';
 import { notifyParams } from './notifyParams';
+import { IMG_URL } from './API';
 
 export function render(movie) {
   const queuedList = document.querySelector('.movie-list');
@@ -15,9 +16,7 @@ export function render(movie) {
       const forRenderArr = {
         title: elem.title ? elem.title : elem.name,
         id: elem.id,
-        image: elem.poster_path
-          ? `${process.env.IMG_URL + elem.poster_path}`
-          : defaultImg,
+        image: elem.poster_path ? `${IMG_URL + elem.poster_path}` : defaultImg,
         year: movieDate ? movieDate : '',
 
         genres: elem.genres.map(elem => `${elem.name}`).join(', '),

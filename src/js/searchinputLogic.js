@@ -3,11 +3,10 @@ import { notifyParams } from './notifyParams';
 import { getGenres } from './fetchGenres';
 import movieCardTpl from './../templates/movie-card.hbs';
 import axios from 'axios';
+import { BASE_URL, API_KEY, IMG_URL } from './API';
 import { addLoader, removeLoader } from './loader';
 import { addObserver, removeObserver } from './intersectionObserver';
 import { changeEventListeners, removeBtn } from './changeBtnEventlisteners';
-
-const { BASE_URL, API_KEY, IMG_URL } = process.env;
 
 export const refs = {
   input: document.querySelector('.search-input'),

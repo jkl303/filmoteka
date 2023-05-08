@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { BASE_URL, API_KEY } from './API';
 import movieCardTpl from './../templates/movie-card.hbs';
 import {
   fetchInitialData,
@@ -8,15 +9,12 @@ import {
 let page = 1;
 async function getData(page) {
   try {
-    const response = await axios.get(
-      `${process.env.BASE_URL}/trending/all/day`,
-      {
-        params: {
-          api_key: process.env.API_KEY,
-          page: page,
-        },
-      }
-    );
+    const response = await axios.get(`${BASE_URL}/trending/all/day`, {
+      params: {
+        api_key: API_KEY,
+        page: page,
+      },
+    });
     return response.data;
   } catch (err) {
     return err;

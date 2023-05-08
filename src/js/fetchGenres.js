@@ -1,7 +1,7 @@
 import axios from 'axios';
+import { BASE_URL, API_KEY } from './API';
 
 const genresDictionary = {};
-const { BASE_URL, API_KEY } = process.env;
 
 async function fetchMovieGenres() {
   try {

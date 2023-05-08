@@ -1,4 +1,5 @@
 import { AddListenerToMovieList } from './modal-movie';
+import { BASE_URL, API_KEY, IMG_URL } from './API';
 
 const options = {
   headers: {
@@ -7,10 +8,7 @@ const options = {
 };
 
 export function apiLibraryQueued(movie_id) {
-  return fetch(
-    `${process.env.BASE_URL}/movie/${movie_id}?api_key=${process.env.API_KEY}`,
-    options
-  )
+  return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`, options)
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -24,9 +22,7 @@ export function apiLibraryQueued(movie_id) {
       libraryQueuedListEl.innerHTML = `
 
       <a href='${element.id}' id = '${element.id}' class='movie-link'>
-    <img src='${process.env.IMG_URL}${
-        element.poster_path
-      }' alt='' class='movie-image' />
+    <img src='${IMG_URL}${element.poster_path}' alt='' class='movie-image' />
     <div class='movie-info'>
       <p class='movie-title'>${element.original_title}</p>
       <p class='movie-description'>${element.genres
