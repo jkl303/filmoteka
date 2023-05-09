@@ -1,7 +1,6 @@
 @use './variables' as *;
 @use './mixins' as *;
 
-// GLOBAL RESET //
 body,
 h1,
 h2,
@@ -37,8 +36,6 @@ picture {
 body {
   font-family: $main-font;
 }
-
-// COMMON
 
 .container {
   position: relative;
@@ -96,11 +93,13 @@ body {
   overflow: hidden;
 }
 
-.theme-icon {margin-top: 30px;
-margin-right: 50px;
-margin-left: auto;
-cursor: pointer;
-fill:white}
+.theme-icon {
+  margin-top: 30px;
+  margin-right: 50px;
+  margin-left: auto;
+  cursor: pointer;
+  fill: white;
+}
 
 //.theme-icon {
 //  margin-top: 50px;
@@ -108,7 +107,6 @@ fill:white}
 //  margin-left: auto;
 //  fill: white;
 //}
-
 
 .theme-icon[data-theme='light'] {
   display: none;
