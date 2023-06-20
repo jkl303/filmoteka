@@ -1,11 +1,11 @@
 {
-  "name": "goit-group-project",
+  "name": "filmoteka-teamproject",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://jkl303.github.io/filmoteka/",
+  "homepage": "https://jkl303.github.io/filmoteka-teamproject/",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /filmoteka/"
+    "build": "parcel build src/*.html --public-url /filmoteka-teamproject/"
   },
   "repository": {
     "type": "git",
